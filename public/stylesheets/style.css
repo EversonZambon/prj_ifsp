@@ -9,26 +9,9 @@ body {
   margin-left: 13%;
 }
 
-#btn-login {
+.btn-login-subscribe {
   margin-top: 5%;
   margin-bottom: 9%;
-}
-
-#icon-login {
-  color: #ffa76a;
-  margin-top: 2%;
-}
-
-#login-footer {
-  color: #9e9e9e;
-}
-
-#login-text, h4 {
-  padding-top: 2%;
-}
-
-#login-text, h4 {
-  color: #26a69a;
 }
 
 .logo-wecomp-nav {
@@ -69,6 +52,7 @@ body {
 .side-nav a:hover {
   background-color: rgba(0,0,0,0.10);
 }
+
 .side-nav li>a:hover {
   background-color: rgba(0,0,0,0.10);
 }
@@ -80,6 +64,11 @@ body {
   margin-left: 225px;
 }
 
-.page-footer {
-  background-color: unset;
+.login-subscribe {
+  margin-top: 10%;
+  padding-top: 1%;
+}
+
+.login-subscribe h4 {
+ color: #00664d;
 }
