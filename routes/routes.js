@@ -13,5 +13,10 @@ router.get('/programacao', function(requisicao, resposta, next) {
     resposta.render('programacao', {titulo: 'Programação | WeComp'});
 });
 
+router.post('/postLogin', function(request, response, next) {
+
+	console.log("Aqui");
+});
+
 
 module.exports = router;
