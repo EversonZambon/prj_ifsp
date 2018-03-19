@@ -13,14 +13,16 @@ $(document).ready(function() {
 
 	 $('.modal').modal();
 
+	 $('.tooltipped').tooltip({delay: 50});
+
 }); 
 
 
-function openModalEvento() {
-	$('#cadastrarEvento').modal('open')
+function openModalEvent() {
+	$('#registerEvent').modal('open')
 }
 
-function openModalDia() {
-	$('#cadastrarDiaProg').modal('open')
+function openModalDay() {
+	$('#registerDay').modal('open')
 }
 
