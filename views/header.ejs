@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html class="no-js" lang="pt-BR">
+    <html class="no-js" lang="pt-BR" ng-app="prj_ifsp">
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,15 +12,17 @@
 
         </head>
         <body id="body" class="">
+            <script src="./javascripts/angular.js"></script>
+            <script>angular.module("prj_ifsp", []);</script>
             <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
-                        <a href="" class="brand-logo"><img class="logo-wecomp-nav" src="/images/wecomp2.png" alt="WeComp"></a>
+                        <a href="/index" class="brand-logo"><img class="logo-wecomp-nav" src="/images/wecomp2.png" alt="WeComp"></a>
                         <a href="#" data-activates="side-nav" class="button-collapse" onclick="openNav()"><i class="material-icons reset">menu</i></a>
                         <ul class="right hide-on-med-and-down">
                             <li class=" "><a href="">Programação</a></li>
                             <li class=" "><a href="">Contato</a></li>
-                            <li class=" "><a href="">Entrar</a></li>
+                            <li class=" "><a href="/login">Entrar</a></li>
                         </ul>
                     </div>
                 </nav>
@@ -30,5 +32,5 @@
             <li class=" "><a class="closebtn" href="" onclick="closeNav()">&times;</a></li>
             <li class=" "><a href="">Programação</a></li>
             <li class=" "><a href="">Contato</a></li>
-            <li class=" "><a href="">Entrar</a></li>
+            <li class=" "><a href="/login">Entrar</a></li>
         </ul>
