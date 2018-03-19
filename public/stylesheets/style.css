@@ -30,3 +30,52 @@ body {
 #login-text, h4 {
   color: #26a69a;
 }
+
+.logo-wecomp-nav {
+  width: 150px;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+.logo-wecomp-main {
+  width: 65%
+}
+
+.nav-wrapper {
+  background-color: #cc3300;
+}
+
+.event-date {
+  color: #ffffff;
+  margin-top: 0;
+}
+
+.subscribe {
+  background-color: #cc3300;
+}
+
+.subscribe:hover{
+  background-color: #ff4000;
+}
+
+.footer-title {
+  color: #212121;
+}
+
+.side-nav li>a {
+  font-size: 20px;
+}
+
+.side-nav a:hover {
+  background-color: rgba(0,0,0,0.10);
+}
+.side-nav li>a:hover {
+  background-color: rgba(0,0,0,0.10);
+}
+
+.side-nav .closebtn {
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 225px;
+}

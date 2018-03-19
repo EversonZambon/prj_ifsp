@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var rotas    = require('./routes/routes');
+var routes    = require('./routes/routes');
 
 var app = express();
 
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', rotas);     // irá utilizar o arquivo rotas.js  para criar as rotas de url.
+app.use('/', routes);     // irá utilizar o arquivo routes.js  para criar as routes de url.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

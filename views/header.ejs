@@ -1,11 +1,34 @@
 <!DOCTYPE html>
-    <html lang="pt-BR">
-      <head>
-        <meta charset="utf-8">
-        <title><%= titulo %></title>
-        <link href="./icons/icons.css" rel="stylesheet">
-        <link href="./stylesheets/materialize-min.css" rel="stylesheet">
-        <link href="./stylesheets/style.css" rel="stylesheet">
+    <html class="no-js" lang="pt-BR">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-      </head>
-    <body>
+            <title><%= titulo %></title>
+
+            <link href="./icons/icons.css" rel="stylesheet">
+            <link href="./stylesheets/materialize-min.css" rel="stylesheet">
+            <link href="./stylesheets/style.css" rel="stylesheet">
+
+        </head>
+        <body id="body" class="">
+            <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper">
+                        <a href="" class="brand-logo"><img class="logo-wecomp-nav" src="/images/wecomp2.png" alt="WeComp"></a>
+                        <a href="#" data-activates="side-nav" class="button-collapse" onclick="openNav()"><i class="material-icons reset">menu</i></a>
+                        <ul class="right hide-on-med-and-down">
+                            <li class=" "><a href="">Programação</a></li>
+                            <li class=" "><a href="">Contato</a></li>
+                            <li class=" "><a href="">Entrar</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        <!-- Off Canvas Menu -->
+        <ul class="side-nav collapsible" id="side-nav" data-collapsible="expandable">
+            <li class=" "><a class="closebtn" href="" onclick="closeNav()">&times;</a></li>
+            <li class=" "><a href="">Programação</a></li>
+            <li class=" "><a href="">Contato</a></li>
+            <li class=" "><a href="">Entrar</a></li>
+        </ul>
