@@ -79,3 +79,7 @@ body {
   font-size: 36px;
   margin-left: 225px;
 }
+
+.page-footer {
+  background-color: unset;
+}

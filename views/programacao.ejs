@@ -1,0 +1,88 @@
+<% include header %>
+<div class="row">
+	<div class="s12 col">
+		<div class="row container">
+			<div class="col s12 m12 l10 offset-l1"> 
+				<div class="row no-gap">
+					<h4>Segunda-feira (10/09)
+						<a onClick="openModalEvento()" class="btn-floating btn-small waves-effect waves-light green secondary-content"><i class="material-icons">add</i></a>
+					</h4>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12 m12 l10 offset-l4">
+					<a onClick="openModalDia()" class="btn-floating btn-large waves-effect waves-light red secondary-content"><i class="material-icons">add</i></a>
+				</div>
+				    
+			</div>
+		</div>
+	</div>
+</div>
+<div id="cadastrarEvento" class="modal col s12 m12 l12">
+	<div class="modal-content">
+		<div class="modal-header center">
+			<h3 class="modal-title" id="myModalLabel">Cadastrar evento</h3>
+		</div>
+		<div class="modal-body">
+			<form action="" method="POST">
+				<input type="hidden" name="id" id="id"/>
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="row">
+							<div class="input-field col s6">
+								<input type="text" name="begin" class="timepicker validate" id="begin">
+								<label for="begin">Horário início</label>
+							</div>
+							<div class="input-field col s6">
+								<input type="text" name="finish" class="validate timepicker" id="finish">
+								<label for="finish">Horário término</label>
+							</div>
+						</div>
+						<div class="input-field col s12">
+							<input type="text" name="titule" class="validate" id="titule">
+							<label for="titule">Titulo</label>
+						</div>
+						<div class="input-field col s12">
+							<textarea id="description" class="materialize-textarea"></textarea>
+							<label for="description">Descrição</label>							
+						</div>						
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="col s8 center">
+						<a class="btn btn-primary center-block modal-close">Cancelar</a>	
+						<button type="submit" class="btn btn-primary center-block">Cadastrar</button>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<div id="cadastrarDiaProg" class="modal col s12 m12 l12">
+	<div class="modal-content">
+		<div class="modal-header center">
+			<h3 class="modal-title" id="myModalLabel">Cadastrar dia</h3>
+		</div>
+		<div class="modal-body">
+			<form action="" method="POST">
+				<input type="hidden"/>
+				<div class="row">
+					<div class="col s12 m12 l12">
+						<div class="form-group">
+							<label>Dia:</label>
+							<input type="date" name="dia" class="validate" id="dia">
+						</div>					
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="col s8 center">
+						<a class="btn btn-primary center-block modal-close">Cancelar</a>	
+						<button type="submit" class="btn btn-primary center-block">Cadastrar</button>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<% include footer%>
+<script src="/controllers/programacao_controller.js"></script>
