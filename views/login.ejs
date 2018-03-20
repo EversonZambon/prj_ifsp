@@ -1,5 +1,6 @@
 <% include header %>
   <div ng-controller="login_controller">
+      <script src="./services/loginAPI.js"></script>
       <script src="./controllers/login_controller.js"></script>
       <div class="row">
       <div class="center">
@@ -7,7 +8,7 @@
           <div class="col s12 m6 l4">
             <div class="card login-subscribe">
               <h4>Login</h4>
-              <form action="postLogin" method="POST">
+              <form ng-submit="teste(user)">
                 <div class="row-login">
                     <div class="row">
                       <div class="input-field col s10">
@@ -23,7 +24,7 @@
                     </div>
                 </div>
                 <div class="center">
-                  <button id="btn-login" class="waves-effect waves-light btn btn-login-subscribe" type="submit">Entrar</button>
+                  <button id="btn-login" class="waves-effect waves-light btn btn-login-subscribe" type="submit" name="action">Entrar</button>
                 </div>
               </form>
             </div>
