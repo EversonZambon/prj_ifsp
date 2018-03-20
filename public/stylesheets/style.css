@@ -9,6 +9,11 @@ body {
   margin-left: 13%;
 }
 
+.btn-login-subscribe {
+  margin-top: 5%;
+  margin-bottom: 9%;
+}
+
 #btn-login {
   margin-top: 5%;
   margin-bottom: 9%;
@@ -85,3 +90,11 @@ body {
 }
 
 /*-- Programação --*/
+.modal {
+  max-height: 95%;
+}
+
+/*-- Localização --*/
+.localization{
+  margin: auto;
+}

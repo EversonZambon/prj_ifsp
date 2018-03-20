@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-    <html class="no-js" lang="pt-BR">
+    <html class="no-js" lang="pt-BR" ng-app="prj_ifsp">
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -13,6 +13,13 @@
 
         </head>
         <body id="body" class="">
+            <script src="./javascripts/angular.js"></script>
+            <script>
+
+                const webComp = angular.module('prj_ifsp', [])
+                webComp.constant('env', window.env)
+                
+            </script>
             <div class="navbar-fixed">
                 <nav>
                     <div class="nav-wrapper">
@@ -20,7 +27,7 @@
                         <a href="#" data-activates="side-nav" class="button-collapse" onclick="openNav()"><i class="material-icons reset">menu</i></a>
                         <ul class="right hide-on-med-and-down">
                             <li class=" "><a href="/programacao">Programação</a></li>
-                            <li class=" "><a href="">Contato</a></li>
+                            <li class=" "><a href="/localizacao">Localização</a></li>
                             <li class=" "><a href="/login">Entrar</a></li>
                         </ul>
                     </div>
@@ -30,6 +37,6 @@
         <ul class="side-nav collapsible" id="side-nav" data-collapsible="expandable">
             <li class=" "><a class="closebtn" href="" onclick="closeNav()">&times;</a></li>
             <li class=" "><a href="/programacao">Programação</a></li>
-            <li class=" "><a href="">Contato</a></li>
+            <li class=" "><a href="/localizacao">Localização</a></li>
             <li class=" "><a href="/login">Entrar</a></li>
         </ul>
