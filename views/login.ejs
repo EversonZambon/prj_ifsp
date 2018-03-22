@@ -1,6 +1,7 @@
 <% include header %>
   <div ng-controller="login_controller">
       <script src="./services/registerAPI.js"></script>
+      <script src="./services/loginAPI.js"></script>
       <script src="./controllers/login_controller.js"></script>
       <% include preloader %>
       <div class="row">
@@ -9,7 +10,7 @@
           <div class="col s12 m6 l4">
             <div class="card login-subscribe">
               <h4>Login</h4>
-              <form ng-submit="teste(user)">
+              <form ng-submit="find(user)">
                 <div class="row-login">
                     <div class="row">
                       <div class="input-field col s10">
@@ -70,5 +71,4 @@
       </div>
     </div>
   </div>
-
 <% include footer%>

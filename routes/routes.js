@@ -23,4 +23,17 @@ router.post('/postRegisterUser', function(request, response, next) {
 	newUser.registerUser(request.body, response)
 });
 
+router.get('/postLogin', function(request, response, next) {
+    var loginDAO = require('../DAO/loginDAO');
+	var user = new loginDAO()
+	user.find(request.body, response)
+});
+
+router.get('/postRegisterProgramming', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var event = new programmingDAO()
+	event.registerProgramming(request.body, response)
+});
+
+
 module.exports = router;

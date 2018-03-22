@@ -1,4 +1,4 @@
-webComp.factory('registerAPI', ['$http', 'env', function ($http, env) {
+weComp.factory('registerAPI', ['$http', 'env', function ($http, env) {
   var _create = function (user) {
     return $http.post(`postRegisterUser/`, user)
   }

@@ -1,125 +1,128 @@
 <% include header %>
-<div class="row">
-	<div class="s12 col">
-		<div class="row container">
-			<div class="col s12 m12 l10 offset-l1">
-				<div class="card">
-					<div class="card-content">
-							<h4>Segunda-feira (10/09) <a onClick="openModalEvent()" class="btn tooltipped btn-floating btn-small waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um evento" data-position="left"><i class="material-icons">add</i></a></h4>
-						<div class="card-action"></div>
-					</div>
-				</div>
-
-			</div>
-			<div class="row">
-				<div class="col s12 m12 l10 offset-l4">
-					<a onClick="openModalDay()" class="btn tooltipped btn-floating btn-large waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar uma dia" data-position="left"><i class="material-icons">add</i></a>
-				</div>
-				    
-			</div>
-		</div>
-	</div>
-</div>
-<div id="registerEvent" class="modal col s12 m12 l12">
-	<div class="modal-content">
-		<div class="modal-header center">
-			<h3 class="modal-title" id="myModalLabel">Cadastrar evento</h3>
-		</div>
-		<div class="card-action"></div>
-			<form action="" method="POST">
-				<input type="hidden" name="id" id="id"/>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col s12 m12 l12">
-							<div class="row">
-								<div class="input-field col s6">
-									<input type="text" name="hour-begin" class="timepicker validate" id="hour-begin">
-									<label for="hour-begin">Horário início</label>
-								</div>
-								<div class="input-field col s6">
-									<input type="text" name="hour-finish" class="timepicker validate" id="hour-finish">
-									<label for="hour-finish">Horário término</label>
-								</div>
-							</div>
-							<div class="row">
-								<div class="input-field col s6">
-									<input type="number" name="vagas" class="validate" id="vagas">
-									<label for="vagas">Numéro de vagas</label>
-								</div>
-								<div class="input-field col s6">
-								    <select class="validate">
-								      <option value="" disabled selected>Sala do evento</option>
-								      <option value="1">C103</option>
-								      <option value="2">C104</option>
-								      <option value="3">C105</option>
-								      <option value="4">C106</option>
-								      <option value="5">C107</option>
-								    </select>
-								</div>
-							</div>
-							<div class="input-field col s12">
-								<input type="text" name="title" class="validate" id="title">
-								<label for="title">Titulo do evento</label>
-							</div>
-							<div class="input-field col s12">
-								<textarea id="description" class="materialize-textarea validate"></textarea>
-								<label for="description">Descrição do evento</label>							
-							</div>
-							<div class="input-field col s12">
-								<input type="text" name="name-speaker" class="validate" id="name-speaker">
-								<label for="name-speaker">Nome do palestrante</label>
-							</div>
-							<div class="input-field col s12">
-								<div class="file-field input-field">
-								    <div class="btn">
-								        <span>Foto do palestrante</span>
-									    <input type="file">
-								    </div>
-							    	<div class="file-path-wrapper">
-							        	<input fclass="file-path" type="text">
-							    	</div>
-							    </div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-				<div class="modal-footer">
-					<div class="col s8 center">
-						<a class="btn btn-primary center-block modal-close">Cancelar</a>	
-						<button type="submit" class="btn btn-primary center-block">Cadastrar</button>
-					</div>	
-				</div>
-			</form>
-	</div>
-</div>
-<div id="registerDay" class="modal col s12 m12 l12">
-	<div class="modal-content">
-		<div class="modal-header center">
-			<h3 class="modal-title" id="myModalLabel">Cadastrar dia</h3>
-		</div>
-
-			<form action="" method="POST">
-				<input type="hidden"/>
-				<div class="modal-body">
-					<div class="row">
-						<div class="col s12 m12 l12">
-							<div class="form-group col s12">
-								<label for="day">Data</label>
-								<input type="date" class="validate" id="day">
+	<div ng-controller="programming_controller">
+		<script src="./services/programmingAPI.js"></script>
+		<script src="./services/loginAPI.js"></script>
+     	<script src="./controllers/programming_controller.js"></script>
+		<div class="row">
+			<div class="s12 col">
+				<div class="row container">
+					<div class="col s12 m12 l10 offset-l1">
+						<div class="card">
+							<div class="card-content">
+									<h4>Segunda-feira (10/09) <a ng-click="openModalEvent()" class="btn tooltipped btn-floating btn-small waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um evento" data-position="left"><i class="material-icons">add</i></a></h4>
+								<div class="card-action"></div>
 							</div>
 						</div>
-					</div>	
-				</div>				
-				<div class="modal-footer">
-					<div class="col s8 center">
-						<a class="btn btn-primary center-block modal-close">Cancelar</a>	
-						<button type="submit" class="btn btn-primary center-block">Cadastrar</button>
-					</div>	
+
+					</div>
+					<div class="row">
+						<div class="col s12 m12 l10 offset-l4">
+							<a ng-click="openModalDay()" class="btn tooltipped btn-floating btn-large waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar uma dia" data-position="left"><i class="material-icons">add</i></a>
+						</div>
+						    
+					</div>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
-</div>
+		<div id="registerEvent" class="modal col s12 m12 l12">
+			<div class="modal-content">
+				<div class="modal-header center">
+					<h3 class="modal-title" id="myModalLabel">Cadastrar evento</h3>
+				</div>
+				<div class="card-action"></div>
+					<form action="" method="POST">
+						<input type="hidden" name="id" id="id"/>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col s12 m12 l12">
+									<div class="row">
+										<div class="input-field col s6">
+											<input type="text" name="hour-begin" class="timepicker validate" id="hour-begin">
+											<label for="hour-begin">Horário início</label>
+										</div>
+										<div class="input-field col s6">
+											<input type="text" name="hour-finish" class="timepicker validate" id="hour-finish">
+											<label for="hour-finish">Horário término</label>
+										</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s6">
+											<input type="number" name="vagas" class="validate" id="vagas">
+											<label for="vagas">Numéro de vagas</label>
+										</div>
+										<div class="input-field col s6">
+										    <select class="validate">
+										      <option value="" disabled selected>Sala do evento</option>
+										      <option value="1">C103</option>
+										      <option value="2">C104</option>
+										      <option value="3">C105</option>
+										      <option value="4">C106</option>
+										      <option value="5">C107</option>
+										    </select>
+										</div>
+									</div>
+									<div class="input-field col s12">
+										<input type="text" name="title" class="validate" id="title">
+										<label for="title">Titulo do evento</label>
+									</div>
+									<div class="input-field col s12">
+										<textarea id="description" class="materialize-textarea validate"></textarea>
+										<label for="description">Descrição do evento</label>							
+									</div>
+									<div class="input-field col s12">
+										<input type="text" name="name-speaker" class="validate" id="name-speaker">
+										<label for="name-speaker">Nome do palestrante</label>
+									</div>
+									<div class="input-field col s12">
+										<div class="file-field input-field">
+										    <div class="btn">
+										        <span>Foto do palestrante</span>
+											    <input type="file">
+										    </div>
+									    	<div class="file-path-wrapper">
+									        	<input fclass="file-path" type="text">
+									    	</div>
+									    </div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<div class="col s8 center">
+								<a class="btn btn-primary center-block modal-close">Cancelar</a>	
+								<button type="submit" class="btn btn-primary center-block">Cadastrar</button>
+							</div>	
+						</div>
+					</form>
+			</div>
+		</div>
+		<div id="registerDay" class="modal col s12 m12 l12">
+			<div class="modal-content">
+				<div class="modal-header center">
+					<h3 class="modal-title" id="myModalLabel">Cadastrar dia</h3>
+				</div>
+				<form action="" method="POST">
+					<input type="hidden"/>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col s12 m12 l12">
+								<div class="form-group col s12">
+									<label for="day">Data</label>
+									<input type="date" class="validate" id="day">
+								</div>
+							</div>
+						</div>	
+					</div>				
+					<div class="modal-footer">
+						<div class="col s8 center">
+							<a class="btn btn-primary center-block modal-close">Cancelar</a>	
+							<button type="submit" class="btn btn-primary center-block">Cadastrar</button>
+						</div>	
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>	
 <% include footer%>
 <script src="/controllers/programming_controller.js"></script>
