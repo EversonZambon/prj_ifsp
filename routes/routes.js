@@ -23,7 +23,7 @@ router.post('/postRegisterUser', function(request, response, next) {
 	newUser.registerUser(request.body, response)
 });
 
-router.get('/postLogin', function(request, response, next) {
+router.post('/postLogin', function(request, response, next) {
     var loginDAO = require('../DAO/loginDAO');
 	var user = new loginDAO()
 	user.find(request.body, response)

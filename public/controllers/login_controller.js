@@ -33,17 +33,10 @@ weComp.controller("login_controller", ['$scope', 'registerAPI', 'loginAPI',
 			$scope.load = true
 			loginAPI.find(user)
 				.then(function(response){
-					console.log(response)
 					Materialize.toast('Bem vindo!', 4000, 'green')
 				})
 				.catch(function(err){
-					Materialize.toast('Erro - confira seus dados', 4000, 'red')
-					/*var msg = err.data.error
-					if(msg === "ER_DUP_ENTRY"){
-						Materialize.toast('E-mail já cadastrado!', 4000, 'red')
-					}else{
-						Materialize.toast('Erro ao cadastrar!', 4000, 'red')
-					}*/
+					Materialize.toast('Dados incorretos', 4000, 'red')
 				})
 				.finally(function(){
 					$scope.user = {}
