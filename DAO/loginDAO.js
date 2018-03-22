@@ -12,7 +12,7 @@ loginDAO = function(){
             if(!result[0]){
                 response.status(404).send({ error: 'Dados não encontrados' });
             }else{
-                response.send({result})
+                response.send({result});
             }
             response.end();
         })

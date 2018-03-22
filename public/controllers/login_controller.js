@@ -1,5 +1,5 @@
-weComp.controller("login_controller", ['$scope', 'registerAPI', 'loginAPI',
-	function ($scope, registerAPI, loginAPI){
+weComp.controller("login_controller", ['$scope', '$window', '$interval', 'registerAPI', 'loginAPI',
+	function ($scope, $window, $interval, registerAPI, loginAPI){
 
 		$scope.user = {}
 		$scope.newUser = {}
@@ -34,6 +34,9 @@ weComp.controller("login_controller", ['$scope', 'registerAPI', 'loginAPI',
 			loginAPI.find(user)
 				.then(function(response){
 					Materialize.toast('Bem vindo!', 4000, 'green')
+					$interval(function(){
+						$window.location.href = '/programacao';
+					},700);
 				})
 				.catch(function(err){
 					Materialize.toast('Dados incorretos', 4000, 'red')
