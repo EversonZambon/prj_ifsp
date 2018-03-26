@@ -2,66 +2,62 @@ weComp.controller("programming_controller", ['$scope', 'programmingAPI', 'loginA
 	function ($scope, programmingAPI, loginAPI, $filter){
 
 		$scope.load = false
-		$scope.programming = {};
+		$scope.events = {};
+		$scope.days = {};
 		$scope.newEvent = {};
 
 		(function showEvents() {
         $scope.load = true
         programmingAPI.showEvents()
                   .then(function (response) {
-                  	$scope.programming = response.data.result
-                  	for(var i in $scope.programming){
-	                   $scope.programming[i].day = $filter('date')($scope.programming[i].day,'dd/MM/yyyy')
-	                   $scope.programming[i].hourStart = $filter('date')($scope.programming[i].hourStart,'HHmm')
-	                   $scope.programming[i].hourFinish = $filter('date')($scope.programming[i].hourFinish,'HHmm') 
+                  	$scope.events = response.data.result
+                  	for(var i in $scope.events){
+	                   $scope.events[i].day = $filter('date')($scope.events[i].day,'dd/MM/yyyy')
+	                   $scope.events[i].hourStart = $filter('date')($scope.events[i].hourStart,'hhmm')
+	                   $scope.events[i].hourFinish = $filter('date')($scope.events[i].hourFinish,'hhmm') 
                   	}
+                  	console.log("Eventos",$scope.events)
                   })
                   .catch(function (err) {
                     console.log(err)
-                    Materialize.toast('Erro ao carregar a programação!', 4000, "red")
+                    Materialize.toast('Erro ao carregar a programção!', 4000, "red")
                   })
                   .finally(function () {
                     $scope.load = false
                   })
      	}());
 
-     	$scope.registerDay = function(newDay) {
-			$scope.load = true
-			newDay = $('#day').pickadate('picker').get('highlight', 'yyyy-mm-dd');
-			programmingAPI.createDay(newDay)
-				.then(function(response){
-					Materialize.toast('Dia cadastrado!', 4000, 'green')
-				})
-				.catch(function(err){
-					console.log("Erro controller ",err)
-					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
-				})
-				.finally(function(){
-					$scope.load = false
-				})
-		}
+     	(function showDays() {
+        $scope.load = true
+        programmingAPI.showDays()
+                  .then(function (response) {
+                  	$scope.days = response.data.result
+                  	for(var i in $scope.days){
+	                   $scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
+                  	}
+                  })
+                  .catch(function (err) {
+                    console.log(err)
+                    Materialize.toast('Erro ao carregar os dias!', 4000, "red")
+                  })
+                  .finally(function () {
+                    $scope.load = false
+                  })
+     	}());
 
+     	$(document).ready(function() {
 
-     	$scope.registerEvent = function(newEvent) {
-			$scope.load = true
+     		setTimeout(function(){
+     			$('.collapsible').collapsible();
+     		},700)
+			 
 
-			newEvent.hourStart = $('#hour-start').pickatime('picker').get();
+			 $('.modal').modal();
 
-			console.log(newEvent.hourStart)
-			/*programmingAPI.createEvent(newEvent)
-				.then(function(response){
-					Materialize.toast('Evento cadastrado!', 4000, 'green')
-				})
-				.catch(function(err){
-					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
-				})
-				.finally(function(){
-					$scope.load = false
-				})*/
-		}
+			 $('.tooltipped').tooltip({delay: 50});
 
+			 $('select').material_select();
 
-		$(document).ready(function() {
 			 $('.timepicker').pickatime({
 			    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
 			    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
@@ -100,15 +96,42 @@ weComp.controller("programming_controller", ['$scope', 'programmingAPI', 'loginA
 					$(document.activeElement).blur()
 				}
 			 });
-
-			 $('.collapsible').collapsible();
-
-			 $('.modal').modal();
-
-			 $('.tooltipped').tooltip({delay: 50});
-
-			 $('select').material_select();
 		}); 
+
+     	$scope.registerDay = function(newDay) {
+			$scope.load = true
+			newDay = $('#day').pickadate('picker').get('highlight', 'yyyy-mm-dd');
+			programmingAPI.createDay(newDay)
+				.then(function(response){
+					Materialize.toast('Dia cadastrado!', 4000, 'green')
+				})
+				.catch(function(err){
+					console.log("Erro controller ",err)
+					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})
+		}
+
+
+     	$scope.registerEvent = function(newEvent) {
+			$scope.load = true
+
+			newEvent.hourStart = $('#hour-start').pickatime('picker').get();
+
+			console.log(newEvent.hourStart)
+			/*programmingAPI.createEvent(newEvent)
+				.then(function(response){
+					Materialize.toast('Evento cadastrado!', 4000, 'green')
+				})
+				.catch(function(err){
+					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})*/
+		}
 
 		$scope.openModalEvent = function() {
 			

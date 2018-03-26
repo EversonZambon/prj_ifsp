@@ -37,8 +37,10 @@ router.get('/showEvents', function(request, response, next) {
 	event.showEvents(response)
 });
 
-router.get('/teste/:id', function(request, response, next) {
-    console.log(request.params)
+router.get('/showDays', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var day = new programmingDAO()
+	day.showDays(response)
 });
 
 //--- router.post ---//
@@ -66,6 +68,5 @@ router.post('/postRegisterEvent', function(request, response, next) {
 	var event = new programmingDAO()
 	event.registerEvent(request.body, response)
 });
-
 
 module.exports = router;

@@ -15,7 +15,7 @@ programmingDAO = function(){
         conection.end();
     };
 
-    this.showEvents = function(response){
+    this.showEvents= function(response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("select * from event;",function(err, result){
             if(err){
@@ -35,6 +35,18 @@ programmingDAO = function(){
                 response.status(500).send({ error: err.code });
                 console.log("erro aqui",err)
             }
+            response.end();
+        })
+        conection.end();
+    };
+
+    this.showDays= function(response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("select * from day;",function(err, result){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }
+            response.send({result});
             response.end();
         })
         conection.end();
