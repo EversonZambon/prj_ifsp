@@ -1,13 +1,47 @@
 var express = require('express');
 var router = express.Router();
+var app = express();
+
+//--- router.get ---//
 
 router.get('/', function(request, response, next) {
-    response.render('index', {titulo: 'WeComp'});
+    response.render('index-pattern', {titulo: 'WeComp'});
 });
 
 router.get('/login', function(request, response, next) {
     response.render('login', {titulo: 'Login | WeComp'});
 });
+
+router.get('/localizacao', function(request, response, next) {
+    response.render('localization-pattern', {titulo: 'Localização | WeComp'});
+});
+
+router.get('/sair', function(request, response, next) {
+	logged = {};
+	response.render('index', {titulo: 'WeComp'});
+});
+
+router.get('/programacao', function(request, response, next) {
+	if(logged.user){
+		if(logged.user.profile == 0){
+			response.render('programming-admin', {titulo: 'Programação | WeComp'});
+		}
+	}else{
+		response.render('teste', {titulo: 'WeComp'});
+	}
+});
+
+router.get('/showEvents', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var event = new programmingDAO()
+	event.showEvents(response)
+});
+
+router.get('/teste/:id', function(request, response, next) {
+    console.log(request.params)
+});
+
+//--- router.post ---//
 
 router.post('/postLogin', function(request, response, next) {
     var loginDAO = require('../DAO/loginDAO');
@@ -21,35 +55,16 @@ router.post('/postRegisterUser', function(request, response, next) {
 	newUser.registerUser(request.body, response)
 });
 
-router.get('/programacao', function(request, response, next) {
-	if(logged.user){
-		if(logged.user.profile == 0){
-			response.render('programacao', {titulo: 'Programação | WeComp'});
-		}
-	}else{
-		response.render('teste', {titulo: 'WeComp'});
-	}
+router.post('/postRegisterDay/:newDay', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var day = new programmingDAO()
+	day.registerDay(request.params.newDay, response)
 });
 
-router.get('/localizacao', function(request, response, next) {
-    response.render('localizacao', {titulo: 'Localização | WeComp'});
-});
-
-router.get('/teste/:id', function(request, response, next) {
-    console.log(request.params)
-});
-router.get('/sair', function(request, response, next) {
-	logged = {};
-	response.render('index', {titulo: 'WeComp'});
-});
-
-
-
-
-router.get('/postRegisterProgramming', function(request, response, next) {
+router.post('/postRegisterEvent', function(request, response, next) {
     var programmingDAO = require('../DAO/programmingDAO');
 	var event = new programmingDAO()
-	event.registerProgramming(request.body, response)
+	event.registerEvent(request.body, response)
 });
 
 

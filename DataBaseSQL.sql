@@ -6,22 +6,21 @@ CREATE TABLE person(
     
     email VARCHAR(30) NOT NULL,
     name VARCHAR(30) NOT NULL,
-    password VARCHAR(30) NOT NULL,
-    statusLogin BOOLEAN NOT NULL DEFAULT FALSE,
-    status BOOLEAN NOT NULL DEFAULT FALSE,
+    password TEXT NOT NULL,
+    profile BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY(email)
 )ENGINE=INNODB;
 
 CREATE TABLE day(
     
-    day DATE NOT NULL,
+    day DATETIME NOT NULL,
     PRIMARY KEY(day)
 )ENGINE=INNODB;
 
 CREATE TABLE event(
     
     id INT NOT NULL AUTO_INCREMENT,
-    day DATE NOT NULL,
+    day DATETIME NOT NULL,
     hourStart TIME NOT NULL,
     hourFinish TIME NOT NULL,
     classroom VARCHAR(10) NOT NULL,

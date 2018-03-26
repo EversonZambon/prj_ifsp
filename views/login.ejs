@@ -1,9 +1,9 @@
-<% include header %>
+<% include navbar-pattern %>
   <div ng-controller="login_controller">
       <script src="./services/registerAPI.js"></script>
       <script src="./services/loginAPI.js"></script>
       <script src="./controllers/login_controller.js"></script>
-      <% include preloader %>
+      <% include components/preloader %>
       <div class="row">
       <div class="center">
         <div class="col s12 offset-l2">
@@ -72,4 +72,4 @@
       </div>
     </div>
   </div>
-<% include footer%>
+<% include components/footer%>

@@ -6,12 +6,20 @@ body {
 }
 
 #preloader {
-  position: absolute;
+  position: fixed;
+  z-index: 399;
+  left: 0;
+  right: 0;
+  margin: auto;
   top: 50%;
-  left: 48%;
-  bottom: 50%;
-  right: 50%;
-  z-index: 101;
+  @media (min-width: $min-desktop-size) {
+    left: 0;
+  }
+  &.with-sidebar {
+    @media (min-width: $min-desktop-size) {
+      left: 240px;
+    }
+  }
 }
 
 .row-login {
@@ -100,7 +108,29 @@ body {
 
 /*-- Programação --*/
 .modal {
-  max-height: 95%;
+  max-height: 90%;
+}
+
+#modalRegisterDay{
+  height: 460px;
+}
+
+.date{
+  margin-top: 10%;
+}
+
+.config-programming{
+  margin: auto;
+  height: 54px;
+}
+
+.collapsible-body{
+  padding-top: 0;
+}
+
+#btn-add{
+  margin-top: 5px;
+  margin-right: 18px;
 }
 
 /*-- Localização --*/
