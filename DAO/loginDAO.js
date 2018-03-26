@@ -10,8 +10,9 @@ loginDAO = function(){
                 response.status(500).send({ error: err.code });
             }
             if(!result[0]){
-                response.status(404).send({ error: 'Dados não encontrados' });
+                response.status(401).send({ error: 'Não autorizado' });
             }else{
+                logged.user = result[0];
                 response.send({result});
             }
             response.end();

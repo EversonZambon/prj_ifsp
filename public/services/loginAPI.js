@@ -3,7 +3,12 @@ weComp.factory('loginAPI', ['$http', 'env', function ($http, env) {
     return $http.post(`postLogin/`, user)
   }
 
+  var _test = function (number) {
+    return $http.get(`teste/${number}`)
+  }
+
   return {
     find: _find,
+    test: _test,
   }
 }])
