@@ -13,7 +13,7 @@ router.get('/login', function(request, response, next) {
 });
 
 router.get('/localizacao', function(request, response, next) {
-    response.render('localization-pattern', {titulo: 'Localização | WeComp'});
+    response.render('localization', {titulo: 'Localização | WeComp'});
 });
 
 router.get('/sair', function(request, response, next) {
@@ -27,7 +27,7 @@ router.get('/programacao', function(request, response, next) {
 			response.render('programming-admin', {titulo: 'Programação | WeComp'});
 		}
 	}else{
-		response.render('teste', {titulo: 'WeComp'});
+		response.render('index-pattern', {titulo: 'WeComp'});
 	}
 });
 

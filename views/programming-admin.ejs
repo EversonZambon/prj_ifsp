@@ -1,15 +1,18 @@
 <% include navbar-pattern %>
-	<div ng-controller="programming_controller">
+	<div class="container-wecomp" ng-controller="programming_controller">
 		<script src="./services/programmingAPI.js"></script>
 		<script src="./services/loginAPI.js"></script>
      	<script src="./controllers/programming_controller.js"></script>
 		<% include components/preloader %>
-		<div class="row">
+		<div class="row" ng-cloak>
 			<div class="s12 col">
 				<div class="row container">
 					<div class="col s12 m12 l10 offset-l1">
 						<div ng-if="days.length == 0" class="center-align">
 							<p>Nenhuma programação foi postada</p>
+						</div>
+						<div ng-if="days.length > 0" class="center">
+							<h4>Programação</h4>
 						</div>
 						<div ng-repeat="day in days" ng-if="days.length != 0">		
 							<ul class="collapsible">

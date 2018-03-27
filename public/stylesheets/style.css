@@ -5,6 +5,8 @@ body {
   background-color: #F8F8FF;
 }
 
+/*-- Componentes --*/
+
 #preloader {
   position: fixed;
   z-index: 399;
@@ -20,68 +22,6 @@ body {
       left: 240px;
     }
   }
-}
-
-.row-login {
-  margin-left: 13%;
-}
-
-.btn-login-subscribe {
-  margin-top: 5%;
-  margin-bottom: 9%;
-}
-
-#btn-login {
-  margin-top: 5%;
-  margin-bottom: 9%;
-}
-
-#icon-login {
-  color: #ffa76a;
-  margin-top: 2%;
-}
-
-#login-footer {
-  color: #9e9e9e;
-}
-
-#login-text, h4 {
-  padding-top: 5%;
-}
-
-#login-text, h4 {
-  color: #26a69a;
-}
-
-.logo-wecomp-nav {
-  width: 150px;
-  margin-top: 12px;
-  margin-left: 12px;
-}
-
-.logo-wecomp-main {
-  width: 65%
-}
-
-.nav-wrapper {
-  background-color: #cc3300;
-}
-
-.event-date {
-  color: #ffffff;
-  margin-top: 0;
-}
-
-.subscribe {
-  background-color: #cc3300;
-}
-
-.subscribe:hover{
-  background-color: #ff4000;
-}
-
-.footer-title {
-  color: #212121;
 }
 
 .side-nav li>a {
@@ -102,11 +42,67 @@ body {
   margin-left: 225px;
 }
 
-.page-footer {
-  background-color: unset;
+.container-wecomp {
+  min-height: calc(100vh - 29rem);
+}
+
+.container-wecomp h4{
+  color: #26a69a;
+}
+
+.logo-wecomp-nav {
+  width: 150px;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+.logo-wecomp-main {
+  width: 65%
+}
+
+.nav-wrapper {
+  background-color: #cc3300;
+}
+
+p {
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #8c8c8c;
+}
+
+/*-- Index --*/
+
+.event-date {
+  color: #ffffff;
+  margin-top: 0;
+}
+
+.subscribe {
+  background-color: #cc3300;
+}
+
+.subscribe:hover{
+  background-color: #ff4000;
+}
+
+/*-- Login --*/
+
+.row-login {
+  margin-left: 13%;
+}
+
+.btn-login-subscribe {
+  margin-top: 5%;
+  margin-bottom: 9%;
+}
+
+.card-login-subscribe h4 {
+  padding-top: 5%;
+  color: #26a69a;
 }
 
 /*-- Programação --*/
+
 .modal {
   max-height: 90%;
 }
@@ -134,10 +130,33 @@ body {
 }
 
 /*-- Localização --*/
+
 .localization{
   margin: auto;
 }
 
+.card-localization h4{
+  padding-top: 2%;
+  color: #26a69a;
+}
+
+.card-localization b{
+  color: #4d4d4d;
+}
+
 #toast-container {
   bottom: 84%;
+}
+
+/*-- Footer --*/
+
+.page-footer {
+  background-color: unset;
+  font-family: sans-serif;
+  color: #8c8c8c;
+}
+
+.page-footer h4 {
+  font-family: sans-serif;
+  color: #4d4d4d;
 }

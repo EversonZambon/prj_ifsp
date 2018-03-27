@@ -8,7 +8,7 @@
       <div class="center">
         <div class="col s12 offset-l2">
           <div class="col s12 m6 l4">
-            <div class="card login-subscribe">
+            <div class="card card-login-subscribe">
               <h4>Login</h4>
               <form ng-submit="find(user)">
                 <div class="row-login">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="row">
                       <div class="input-field col s10">
-                        <input id="userPass" ng-model="user.password" type="password" class="validate" required>
+                        <input id="userPass" ng-model="user.password" type="password" class="validate" maxlength="8" size="8" required>
                         <label for="userPass">Senha</label>
                       </div>
                     </div>
@@ -29,11 +29,10 @@
                   <button id="btn-login" class="waves-effect waves-light btn btn-login-subscribe" type="submit" name="action">Entrar</button> 
                 </div>
               </form>
-              <button id="btn-teste" class="waves-effect waves-light btn btn-login-subscribe" ng-click="teste()">Teste</button>
             </div>
           </div>
           <div class="col s12 m6 l4">
-            <div class="card login-subscribe">
+            <div class="card card-login-subscribe">
               <h4>Inscreva-se</h4>
               <form ng-submit="register(newUser)">
                 <div class="row-login">
@@ -51,13 +50,13 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s10">
-                      <input id="newPassword" ng-model="newUser.password" type="password" class="validate" required>
-                      <label for="newPassword">Senha</label>
+                      <input id="newPassword" ng-model="newUser.password" type="password" class="validate" maxlength="8" size="8" required>
+                      <label for="newPassword">Senha (máximo de 8 caracteres)</label>
                     </div>
                   </div>
                   <div class="row">
                     <div class="input-field col s10">
-                      <input id="passwordConfirm" ng-model="newUser.passConfirm" type="password" class="validate" required>
+                      <input id="passwordConfirm" ng-model="newUser.passConfirm" type="password" class="validate" maxlength="8" size="8" required>
                       <label for="passwordConfirm">Confirmar senha</label>
                     </div>
                   </div>

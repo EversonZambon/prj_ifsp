@@ -48,21 +48,5 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 				})
 			
 		}
-
-		$scope.teste = function() {
-			var number = 1
-			loginAPI.test(number)
-				.then(function(response){
-					console.log("response",response)
-				})
-				.catch(function(err){
-					console.log("err",err)
-				})
-				.finally(function(){
-					$scope.user = {}
-					$scope.load = false
-				})
-			
-		}
 	},
 ])
