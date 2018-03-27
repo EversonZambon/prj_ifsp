@@ -24,6 +24,19 @@ body {
   }
 }
 
+#dropdown1 li{
+  background-color: #ff531a;
+}
+
+#dropdown1 li>a{
+  color: #fff;
+}
+
+#dropdown1 li>a:hover {
+  background-color: #e63900;
+  color: #fff;
+}
+
 .side-nav li>a {
   font-size: 20px;
 }

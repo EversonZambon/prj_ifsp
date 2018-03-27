@@ -18,13 +18,14 @@ router.get('/localizacao', function(request, response, next) {
 
 router.get('/sair', function(request, response, next) {
 	logged = {};
-	response.render('index', {titulo: 'WeComp'});
+	response.render('index-pattern', {titulo: 'WeComp'});
 });
 
 router.get('/programacao', function(request, response, next) {
 	if(logged.user){
 		if(logged.user.profile == 0){
-			response.render('programming-admin', {titulo: 'Programação | WeComp'});
+	 		var userName = logged.user.name.split(" ");
+			response.render('programming-admin', {titulo: 'Programação | WeComp', nome: userName[0]});
 		}
 	}else{
 		response.render('index-pattern', {titulo: 'WeComp'});

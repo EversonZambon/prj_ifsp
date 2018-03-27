@@ -8,6 +8,7 @@ $(document).ready(function(){
 		$('.modal').modal();
 		$('.tooltipped').tooltip({delay: 50});
 		$('select').material_select();
+		$('.dropdown-trigger').dropdown();
 	},200)
 
 	 $('.timepicker').pickatime({

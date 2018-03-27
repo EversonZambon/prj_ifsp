@@ -11,6 +11,14 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 				registerAPI.create(newUser)
 					.then(function(response){
 						Materialize.toast('Cadastrado!', 4000, 'green')
+						$interval(function(){
+							loginAPI.find(newUser)
+								.then(function(){
+									$interval(function(){
+										$window.location.href = '/programacao';
+									},700);
+								})
+						},700);
 					})
 					.catch(function(err){
 						var msg = err.data.error
@@ -34,7 +42,6 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 			loginAPI.find(user)
 				.then(function(response){
 					Materialize.toast('Bem vindo!', 4000, 'green')
-					console.log(response)
 					$interval(function(){
 						$window.location.href = '/programacao';
 					},700);
