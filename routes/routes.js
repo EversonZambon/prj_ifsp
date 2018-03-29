@@ -16,6 +16,11 @@ router.get('/localizacao', function(request, response, next) {
     response.render('localization', {titulo: 'Localização | WeComp'});
 });
 
+router.get('/recuperarSenha', function(request, response, next) {
+    response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
+});
+
+
 router.get('/sair', function(request, response, next) {
 	logged = {};
 	response.render('index-pattern', {titulo: 'WeComp'});
@@ -49,7 +54,7 @@ router.get('/showDays', function(request, response, next) {
 router.post('/postLogin', function(request, response, next) {
     var loginDAO = require('../DAO/loginDAO');
 	var user = new loginDAO();
-	user.find(request.body, response, request);
+	user.signIn(request.body, response);
 });
 
 router.post('/postRegisterUser', function(request, response, next) {
@@ -68,6 +73,12 @@ router.post('/postRegisterEvent', function(request, response, next) {
     var programmingDAO = require('../DAO/programmingDAO');
 	var event = new programmingDAO()
 	event.registerEvent(request.body, response)
+});
+
+router.post('/postRecoverPassword/:email', function(request,response,next){
+    var loginDAO = require('../DAO/loginDAO');
+	var user = new loginDAO();
+	user.recoverPassword(request.params.email, response);
 });
 
 module.exports = router;

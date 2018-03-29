@@ -1,4 +1,4 @@
-body {
+body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -7,7 +7,7 @@ body {
 
 /*-- Componentes --*/
 
-#preloader {
+#preloader{
   position: fixed;
   z-index: 399;
   left: 0;
@@ -17,7 +17,7 @@ body {
   @media (min-width: $min-desktop-size) {
     left: 0;
   }
-  &.with-sidebar {
+  &.with-sidebar{
     @media (min-width: $min-desktop-size) {
       left: 240px;
     }
@@ -32,48 +32,52 @@ body {
   color: #fff;
 }
 
-#dropdown1 li>a:hover {
+#dropdown1 li>a:hover{
   background-color: #e63900;
   color: #fff;
 }
 
-.side-nav li>a {
+.user-name{
+  min-width: 8rem;
+}
+
+.side-nav li>a{
   font-size: 20px;
 }
 
-.side-nav a:hover {
+.side-nav a:hover{
   background-color: rgba(0,0,0,0.10);
 }
-.side-nav li>a:hover {
+.side-nav li>a:hover{
   background-color: rgba(0,0,0,0.10);
 }
 
-.side-nav .closebtn {
+.side-nav .closebtn{
   top: 0;
   right: 25px;
   font-size: 36px;
   margin-left: 225px;
 }
 
-.container-wecomp {
-  min-height: calc(100vh - 29rem);
+.container-wecomp{
+  min-height: calc(100vh - 22rem);
 }
 
 .container-wecomp h4{
   color: #26a69a;
 }
 
-.logo-wecomp-nav {
+.logo-wecomp-nav{
   width: 150px;
   margin-top: 12px;
   margin-left: 12px;
 }
 
-.logo-wecomp-main {
+.logo-wecomp-main{
   width: 65%
 }
 
-.nav-wrapper {
+.nav-wrapper{
   background-color: #cc3300;
 }
 
@@ -85,12 +89,12 @@ p {
 
 /*-- Index --*/
 
-.event-date {
+.event-date{
   color: #ffffff;
   margin-top: 0;
 }
 
-.subscribe {
+.subscribe{
   background-color: #cc3300;
 }
 
@@ -100,23 +104,31 @@ p {
 
 /*-- Login --*/
 
-.row-login {
+.row-login{
   margin-left: 13%;
 }
 
-.btn-login-subscribe {
+.btn-login-subscribe{
   margin-top: 5%;
   margin-bottom: 9%;
 }
 
-.card-login-subscribe h4 {
+.card-login-subscribe h4{
   padding-top: 5%;
   color: #26a69a;
 }
 
+.recover-password{
+  padding: 10px;
+}
+
+.recover{
+  margin-bottom: 12rem;
+}
+
 /*-- Programação --*/
 
-.modal {
+.modal{
   max-height: 90%;
 }
 
@@ -157,19 +169,19 @@ p {
   color: #4d4d4d;
 }
 
-#toast-container {
+#toast-container{
   bottom: 84%;
 }
 
 /*-- Footer --*/
 
-.page-footer {
+.page-footer{
   background-color: unset;
   font-family: sans-serif;
   color: #8c8c8c;
 }
 
-.page-footer h4 {
+.page-footer h4{
   font-family: sans-serif;
   color: #4d4d4d;
 }

@@ -10,7 +10,7 @@
           <div class="col s12 m6 l4">
             <div class="card card-login-subscribe">
               <h4>Login</h4>
-              <form ng-submit="find(user)">
+              <form ng-submit="signIn(user)">
                 <div class="row-login">
                     <div class="row">
                       <div class="input-field col s10">
@@ -25,8 +25,15 @@
                       </div>
                     </div>
                 </div>
-                <div class="center">
-                  <button id="btn-login" class="waves-effect waves-light btn btn-login-subscribe" type="submit" name="action">Entrar</button> 
+                <div class="row recover-password">
+                  <div class="col s12">
+                    <div class="col s12">
+                      <button id="btn-login" class="waves-effect waves-light btn btn-login-subscribe" type="submit" name="action">Entrar</button> 
+                    </div>
+                    <div class="col s12">
+                     <a class="center-align" href="/recuperarSenha">Esqueceu a senha?</a>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
