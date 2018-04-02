@@ -126,6 +126,28 @@ p {
   margin-bottom: 12rem;
 }
 
+/*-- Minha Conta --*/
+
+.current-user{
+  margin-top: -2%;
+}
+
+.card.current-user{
+  margin-top: 4%;
+}
+
+.current-user h1{
+  font-family: cursive;
+  color: #13534d;
+}
+
+.card.current-user p{
+  color: #404040;
+}
+.person-profile{
+  color: #e64d00;
+}
+
 /*-- Programação --*/
 
 .modal{

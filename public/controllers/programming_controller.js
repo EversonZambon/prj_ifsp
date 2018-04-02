@@ -1,5 +1,5 @@
-weComp.controller("programming_controller", ['$scope', 'programmingAPI', 'loginAPI', '$filter',
-	function ($scope, programmingAPI, loginAPI, $filter){
+weComp.controller("programming_controller", ['$scope', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
+	function ($scope, $window, $interval, programmingAPI, loginAPI, $filter){
 
 		$scope.load = false
 		$scope.events = {};
@@ -16,11 +16,9 @@ weComp.controller("programming_controller", ['$scope', 'programmingAPI', 'loginA
 	                   $scope.events[i].hourStart = $filter('date')($scope.events[i].hourStart,'hhmm')
 	                   $scope.events[i].hourFinish = $filter('date')($scope.events[i].hourFinish,'hhmm') 
                   	}
-                  	console.log("Eventos",$scope.events)
                   })
                   .catch(function (err) {
-                    console.log(err)
-                    Materialize.toast('Erro ao carregar a programção!', 4000, "red")
+                    Materialize.toast('Erro ao carregar os eventos!', 4000, "red")
                   })
                   .finally(function () {
                     $scope.load = false
@@ -37,7 +35,6 @@ weComp.controller("programming_controller", ['$scope', 'programmingAPI', 'loginA
                   	}
                   })
                   .catch(function (err) {
-                    console.log(err)
                     Materialize.toast('Erro ao carregar os dias!', 4000, "red")
                   })
                   .finally(function () {
@@ -51,9 +48,11 @@ weComp.controller("programming_controller", ['$scope', 'programmingAPI', 'loginA
 			programmingAPI.createDay(newDay)
 				.then(function(response){
 					Materialize.toast('Dia cadastrado!', 4000, 'green')
+					$interval(function(){
+						$window.location.reload();
+					},700)
 				})
 				.catch(function(err){
-					console.log("Erro controller ",err)
 					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
 				})
 				.finally(function(){

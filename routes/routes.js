@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var app = express();
+var userName = "";
 
 //--- router.get ---//
 
@@ -16,20 +17,30 @@ router.get('/localizacao', function(request, response, next) {
     response.render('localization', {titulo: 'Localização | WeComp'});
 });
 
-router.get('/recuperarSenha', function(request, response, next) {
+router.get('/recuperarsenha', function(request, response, next) {
     response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
 });
-
 
 router.get('/sair', function(request, response, next) {
 	logged = {};
 	response.render('index-pattern', {titulo: 'WeComp'});
 });
 
+router.get('/minhaconta', function(request, response, next) {
+	if(logged.user){
+		if(logged.user.profile == 0){
+			userName = logged.user.name.split(" ");
+			response.render('profile-user', {titulo: 'Minha Conta | WeComp', nome: userName[0], user: logged.user});
+		}
+	}else{
+		response.render('index-pattern', {titulo: 'WeComp'});
+	}
+});
+
 router.get('/programacao', function(request, response, next) {
 	if(logged.user){
 		if(logged.user.profile == 0){
-	 		var userName = logged.user.name.split(" ");
+	 		userName = logged.user.name.split(" ");
 			response.render('programming-admin', {titulo: 'Programação | WeComp', nome: userName[0]});
 		}
 	}else{

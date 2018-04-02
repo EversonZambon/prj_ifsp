@@ -1,0 +1,34 @@
+<% include navbar-user %>
+  <div class="container-wecomp" ng-controller="login_controller">
+      <script src="./services/registerAPI.js"></script>
+      <script src="./services/loginAPI.js"></script>
+      <script src="./controllers/login_controller.js"></script>
+      <% include components/preloader %>
+      <div class="row" ng-cloak>
+        <div class="col s12 offset-l2 offset-m1">
+            <div class="col s12 m10 l8">
+            <div class="row">
+              <div class="card current-user">
+                <div class="card-content">
+                  <div class="row">
+                      <div class="col s12">
+                        <div class="col l1.5">
+                          <i class="large material-icons person-profile">person_pin</i>
+                        </div>
+                         <div class="col s9 current-user">
+                          <h1 class="card-title"><%= user.name%></h1>
+                          <p><%= user.email %></p>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+                <div class="card-action right-align">
+                  <a ng-click="" class="btn tooltipped btn-floating btn-small waves-effect waves-light" data-tooltip="Editar" data-position="left"><i class="material-icons">edit</i></a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% include components/footer%>

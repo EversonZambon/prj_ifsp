@@ -60,7 +60,10 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 			loginAPI.passwordRecover(email)
 				.then(function(response){
 					Materialize.toast('Código enviado!', 4000, 'green')
-					console.log(response)
+					$interval(function(){
+						$window.location.href = '/login';
+					},700);
+					
 				})
 				.catch(function(err){
 					Materialize.toast('E-mail não cadastrado!', 4000, 'red')
@@ -68,6 +71,10 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 				.finally(function(){
 					$scope.load = false
 				})
+		}
+
+		$scope.teste = function(userT){
+			console.log(userT)
 		}
 	},
 ])
