@@ -64,19 +64,24 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
      	$scope.registerEvent = function(newEvent) {
 			$scope.load = true
 
-			newEvent.hourStart = $('#hour-start').pickatime('picker').get();
+			newEvent.classroom = $('#class-room').val();
+			newEvent.hourStart = $('#hour-start').val();
+			newEvent.hourFinish = $('#hour-finish').val();
+			newEvent.photo = $('#speaker-photo').val();
+			var buffer = new Buffer( blob, 'binary' ).toString('base64');
+			newEvent.image = buffer;
 
-			console.log(newEvent.hourStart)
-			/*programmingAPI.createEvent(newEvent)
+			programmingAPI.createEvent(newEvent)
 				.then(function(response){
 					Materialize.toast('Evento cadastrado!', 4000, 'green')
 				})
 				.catch(function(err){
+					console.log("erro",err)
 					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
 				})
 				.finally(function(){
 					$scope.load = false
-				})*/
+				})
 		}
 
 		$scope.openModalEvent = function() {

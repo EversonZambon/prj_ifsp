@@ -19,15 +19,25 @@
 								<li class="active">
 									<div class="collapsible-header">
 										<i class="material-icons">date_range</i>
-										<b>{{day.day}}</b>
+										<b id="x">{{day.day}}</b>
 									</div>
 									<div class="row config-programming">
 										<a id="btn-add" ng-click="openModalEvent()" class="btn tooltipped btn-floating btn-small waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um evento" data-position="left"><i class="material-icons">add</i></a>
 									</div>
+									<div ng-if="events.length == 0" class="collapsible-body">
+										<div class="card">
+											<div class="card-action">
+												<b>Não há nenhum evento cadastrado</b>
+											</div>
+										</div>
+									</div>
 									<div class="collapsible-body">
 										<div ng-if="event.day == day.day" ng-repeat="event in events" class="card">
 											<div class="card-action">
-												<span class="card-title activator grey-text text-darken-4">{{event.title}} {{event.hourStart}} {{event.hourFinish}} {{event.speaker}}</span>		
+												<span class="card-title activator grey-text text-darken-4">{{event.title}} {{event.hourStart}} {{event.hourFinish}} {{event.speaker}} {{event.image}}</span>
+												<div class="card-action">
+													<embed width="200" src='data:image/png;base64,' base64_encode(event.image.data)/>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -51,7 +61,7 @@
 					<h3 class="modal-title" id="myModalLabel">Cadastrar evento</h3>
 				</div>
 				<div class="card-action"></div>
-					<form ng-submit="registerEvent(newEvent)" method="POST">
+					<form ng-submit="registerEvent(newEvent)" enctype="multipart/form-data" method="POST">
 						<input type="hidden" name="id" id="id"/>
 						<div class="modal-body">
 							<div class="row">
@@ -72,13 +82,13 @@
 											<label for="vagas">Numéro de vagas</label>
 										</div>
 										<div class="input-field col s6">
-										    <select ng-model="newEvent.classroom" class="validate">
+										    <select id="class-room" ng-model="newEvent.classroom" class="validate">
 										      <option value="" disabled selected>Sala do evento</option>
-										      <option value="1">C103</option>
-										      <option value="2">C104</option>
-										      <option value="3">C105</option>
-										      <option value="4">C106</option>
-										      <option value="5">C107</option>
+										      <option value="C103">C103</option>
+										      <option value="C104">C104</option>
+										      <option value="C105">C105</option>
+										      <option value="C106">C106</option>
+										      <option value="C107">C107</option>
 										    </select>
 										</div>
 									</div>
@@ -98,19 +108,19 @@
 										<div class="file-field input-field">
 										    <div class="btn">
 										        <span>Foto do palestrante</span>
-											    <input  type="file">
+											    <input type="file">
 										    </div>
 									    	<div class="file-path-wrapper">
-									        	<input ng-model="newEvent.image" fclass="file-path" type="text">
+									        	<input id="speaker-photo" ng-model="newEvent.photo" class="file-path" type="text">
 									    	</div>
 									    </div>
 									</div>
-
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
 							<div class="col s8 center">
+								<button ng-click="teste(newEvent)" class="btn btn-primary center-block">TESTAR</button>
 								<a class="btn btn-primary center-block modal-close">Cancelar</a>	
 								<button type="submit" name="action" class="btn btn-primary center-block">Cadastrar</button>
 							</div>	
