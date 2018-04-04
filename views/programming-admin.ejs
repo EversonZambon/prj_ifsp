@@ -34,9 +34,9 @@
 									<div class="collapsible-body">
 										<div ng-if="event.day == day.day" ng-repeat="event in events" class="card">
 											<div class="card-action">
-												<span class="card-title activator grey-text text-darken-4">{{event.title}} {{event.hourStart}} {{event.hourFinish}} {{event.speaker}} {{event.image}}</span>
-												<div class="card-action">
-													<embed width="200" src='data:image/png;base64,' base64_encode(event.image.data)/>
+												<span class="card-title activator grey-text text-darken-4">{{event.title}} {{event.hourStart}} {{event.hourFinish}} {{event.speaker}}</span>
+												<div class="">
+													<img width="200" ng-src='{{event.image}}'/>
 												</div>
 											</div>
 										</div>
@@ -61,7 +61,7 @@
 					<h3 class="modal-title" id="myModalLabel">Cadastrar evento</h3>
 				</div>
 				<div class="card-action"></div>
-					<form ng-submit="registerEvent(newEvent)" enctype="multipart/form-data" method="POST">
+					<form ng-submit="registerEvent(newEvent)">
 						<input type="hidden" name="id" id="id"/>
 						<div class="modal-body">
 							<div class="row">
@@ -108,10 +108,10 @@
 										<div class="file-field input-field">
 										    <div class="btn">
 										        <span>Foto do palestrante</span>
-											    <input type="file">
+											    <input id="speaker-photo" ng-model="newEvent.photo" name="photo" type="file">
 										    </div>
 									    	<div class="file-path-wrapper">
-									        	<input id="speaker-photo" ng-model="newEvent.photo" class="file-path" type="text">
+									        	<input class="file-path" type="text">
 									    	</div>
 									    </div>
 									</div>

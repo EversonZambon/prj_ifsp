@@ -28,7 +28,7 @@ CREATE TABLE event(
     title VARCHAR(30) NOT NULL,
     description TEXT NOT NULL,
     speaker VARCHAR(30) NOT NULL,
-    image BLOB NOT NULL,
+    image LONGTEXT,
     PRIMARY KEY(id),
     FOREIGN KEY (day) REFERENCES day(day) ON DELETE CASCADE
 )ENGINE=INNODB;
