@@ -48,6 +48,7 @@ body{
 .side-nav a:hover{
   background-color: rgba(0,0,0,0.10);
 }
+
 .side-nav li>a:hover{
   background-color: rgba(0,0,0,0.10);
 }
@@ -144,18 +145,60 @@ p{
 .card.current-user p{
   color: #404040;
 }
+
 .person-profile{
   color: #e64d00;
 }
 
 /*-- Programação --*/
 
-.modal{
-  max-height: 90%;
+#formDay{
+  margin-top: 7rem;
+}
+
+#new-event-day{
+  display: none;
+}
+
+.card-event{
+  padding: 1rem;
+  margin-left: 1rem;
+}
+
+.card-event h4{
+  color: #2d862d;
+}
+
+.card-event p{
+  color: #4d4d4d;
+}
+
+#btn-edit-event{
+  background-color: #f2f2f2;
+  color: #26a69a;
+}
+
+#btn-remove-event{
+  background-color: #f2f2f2;
+  color: #ff531a;
+}
+
+.div-event{
+  text-align: right;
+}
+
+#icon-day{
+  font-size: 4rem;
+  margin-right: 3rem;
+  color: #e64d00;
 }
 
 #modalRegisterDay{
   height: 550px;
+}
+
+#modalRegisterEvent{
+  max-height: 85%;
 }
 
 .date{
@@ -172,8 +215,24 @@ p{
 }
 
 #btn-add{
-  margin-top: 5px;
+  margin-top: 6px;
   margin-right: 18px;
+}
+
+.add-icon-event{
+  background-color: #2eb82e;
+}
+
+.add-icon-day{
+  background-color: #e64d00;
+}
+
+.btn-photo{
+  background-color: #ff531a;
+}
+
+.btn-photo:hover{
+  background-color: #e63900;
 }
 
 /*-- Localização --*/

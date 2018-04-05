@@ -40,7 +40,30 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
                   .finally(function () {
                     $scope.load = false
                   })
-     	}()); 
+     	}());
+
+     	$(document).ready(function () {
+	        $('#speaker-photo').change(function () {
+	            if (this.files.length > 0) {
+	                $.each(this.files, function (index, value) {
+	                	if(value.size > 1000000){
+	                		Materialize.toast('Foto até 1 MB!', 6000, 'red')
+	                		$('#speaker-photo').val('')
+	                	}
+	                	switch(value.type){
+	                		case "image/png": break;
+	                		case "image/jpeg": break;
+	                		case "image/jpg": break;
+	                		default:{
+	                			Materialize.toast('Apenas arquivos de imagem!', 6000, 'red')
+	                			$('#speaker-photo').val('')
+	                			break;
+	                		}
+	                	}
+	                })
+	            }
+	        });
+	    });
 
      	$scope.registerDay = function(newDay) {
 			$scope.load = true
@@ -60,36 +83,43 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 				})
 		}
 
-
      	$scope.registerEvent = function(newEvent) {
 			$scope.load = true
-
 			newEvent.classroom = $('#class-room').val();
 			newEvent.hourStart = $('#hour-start').val();
 			newEvent.hourFinish = $('#hour-finish').val();
-			newEvent.photo = $('#speaker-photo')[0].files[0];
-
-			var file = new FileReader();
-	      	
-      	  	file.onloadend = function () {
-		    	newEvent.photo = file.result
-		    	programmingAPI.createEvent(newEvent)
-					.then(function(response){
-						Materialize.toast('Evento cadastrado!', 4000, 'green')
-					})
-					.catch(function(err){
-						console.log("erro",err)
-						Materialize.toast('Erro ao cadastrar!', 4000, 'red')
-					})
-					.finally(function(){
-						$scope.load = false
-					})
-		  	}
-
-		  	file.readAsDataURL(newEvent.photo);
+			
+			if($('#speaker-photo')[0].files[0]){
+				var file = new FileReader();
+				file.readAsDataURL($('#speaker-photo')[0].files[0]);
+				file.onloadend = function () {
+		    		newEvent.photo = file.result
+		    		$scope.createEvent(newEvent)
+		  		}
+			}else{
+				newEvent.photo = "";
+				$scope.createEvent(newEvent)
+			}
 		}
 
-		$scope.openModalEvent = function() {
+		$scope.createEvent = function(newEvent){
+			console.log(newEvent)
+			programmingAPI.createEvent(newEvent)
+				.then(function(response){
+					Materialize.toast('Evento cadastrado!', 4000, 'green')
+				})
+				.catch(function(err){
+					console.log("erro",err)
+					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})
+		}
+
+		$scope.openModalEvent = function(day) {
+			$scope.newEvent.day = day
+			$scope.newEvent.day = $scope.newEvent.day.split('/').reverse().join('-')
 			$('#modalRegisterEvent').modal('open')
 		}
 
