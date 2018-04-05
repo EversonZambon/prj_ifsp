@@ -17,7 +17,7 @@
     "materialize-css": "^0.100.2",
     "morgan": "~1.9.0",
     "mysql": "^2.15.0",
-    "nodemailer": "^4.6.3",
+    "nodemailer": "^4.6.4",
     "random-number": "0.0.9",
     "serve-favicon": "~2.4.5"
   }

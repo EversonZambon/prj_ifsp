@@ -6,24 +6,31 @@ var userName = "";
 //--- router.get ---//
 
 router.get('/', function(request, response, next) {
-    response.render('index-pattern', {titulo: 'WeComp'});
-});
-
-router.get('/login', function(request, response, next) {
-    response.render('login', {titulo: 'Login | WeComp'});
+	if(logged.user){
+		if(logged.user.profile == 0){
+	 		userName = logged.user.name.split(" ");
+			response.render('index-user', {titulo: 'WeComp', nome: userName[0]});
+		}else if(logged.user.profile == 1){
+			userName = logged.user.name.split(" ");
+			response.render('index-admin', {titulo: 'WeComp', nome: userName[0]});
+		}
+	}else{
+		response.render('index-pattern', {titulo: 'WeComp'});
+	}
 });
 
 router.get('/localizacao', function(request, response, next) {
-    response.render('localization', {titulo: 'Localização | WeComp'});
-});
-
-router.get('/recuperarsenha', function(request, response, next) {
-    response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
-});
-
-router.get('/sair', function(request, response, next) {
-	logged = {};
-	response.render('index-pattern', {titulo: 'WeComp'});
+	if(logged.user){
+		if(logged.user.profile == 0){
+	 		userName = logged.user.name.split(" ");
+			response.render('localization-user', {titulo: 'Localizaçã | WeComp', nome: userName[0]});
+		}else if(logged.user.profile == 1){
+			userName = logged.user.name.split(" ");
+			response.render('localization-admin', {titulo: 'Localizaçã | WeComp', nome: userName[0]});
+		}
+	}else{
+		response.render('localization-pattern', {titulo: 'Localização | WeComp'});
+	}
 });
 
 router.get('/minhaconta', function(request, response, next) {
@@ -41,11 +48,27 @@ router.get('/programacao', function(request, response, next) {
 	if(logged.user){
 		if(logged.user.profile == 0){
 	 		userName = logged.user.name.split(" ");
+			response.render('programming-user', {titulo: 'Programação | WeComp', nome: userName[0]});
+		}else if(logged.user.profile == 1){
+			userName = logged.user.name.split(" ");
 			response.render('programming-admin', {titulo: 'Programação | WeComp', nome: userName[0]});
 		}
 	}else{
-		response.render('index-pattern', {titulo: 'WeComp'});
+		response.render('programming-pattern', {titulo: 'WeComp'});
 	}
+});
+
+router.get('/login', function(request, response, next) {
+    response.render('login', {titulo: 'Login | WeComp'});
+});
+
+router.get('/recuperarsenha', function(request, response, next) {
+    response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
+});
+
+router.get('/sair', function(request, response, next) {
+	logged = {};
+	response.render('index-pattern', {titulo: 'WeComp'});
 });
 
 router.get('/showEvents', function(request, response, next) {

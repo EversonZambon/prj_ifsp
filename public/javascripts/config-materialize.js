@@ -9,7 +9,7 @@ $(document).ready(function(){
 		$('.tooltipped').tooltip({delay: 50});
 		$('select').material_select();
 		$('.dropdown-trigger').dropdown();
-	},200)
+	},400)
 
 	 $('.timepicker').pickatime({
 	    default: 'now', // Set default time: 'now', '1:30AM', '16:30'

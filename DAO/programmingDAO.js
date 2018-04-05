@@ -5,8 +5,7 @@ programmingDAO = function(){
 
     this.registerEvent = function(event, response){
         var conection = mysql.createConnection(dbConfig);
-        console.log("DAO -> ",event)
-        conection.query("insert into event(day,hourStart,hourFinish,vacancies,classroom,title,description,speaker,image) Values(?,?,?,?,?,?,?,?,?)",[event.day,event.hourStart, event.hourFinish, event.vacancies, event.classroom, event.title, event.description, event.speaker, event.photo],function(err){
+        conection.query("insert into event(day,hourStart,hourFinish,vacancies,classroom,title,description,speaker,photo) Values(?,?,?,?,?,?,?,?,?)",[event.day,event.hourStart, event.hourFinish, event.vacancies, event.classroom, event.title, event.description, event.speaker, event.photo],function(err){
             if(err){
                 response.status(500).send({ error: err.code });
             }else{

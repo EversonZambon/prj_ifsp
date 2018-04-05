@@ -43,3 +43,5 @@ CREATE TABLE subscription(
     FOREIGN KEY (idEvent) REFERENCES event(id) ON DELETE CASCADE
     
 )ENGINE=INNODB;
+
+insert into person values ("admin@ifsp.com", "Admin", '$2a$10$bY1Af27upkZEf4EhwIaRyeybTETuMWIe4Xh5mNi37Q8SGc8hvpJ/m',1);
