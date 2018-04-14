@@ -22,8 +22,8 @@
 									<p>{{day.day}}</p>
 								</div>
 								<div class="row config-programming">
-									<a id="btn-add" ng-click="openModalEvent(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um evento" data-position="left"><i class="material-icons add-icon-event">add</i></a>
-									<a id="btn-rmv" ng-click="confirmDeleteDay(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light red secondary-content" data-tooltip="Excluir dia" data-position="left"><i class="material-icons">delete</i></a>
+									<a id="btn-add-event" ng-click="openModalEvent(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um evento" data-position="left"><i class="material-icons add-icon-event">add</i></a>
+									<a id="btn-rmv-day" ng-click="confirmDeleteDay(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light red secondary-content" data-tooltip="Excluir dia" data-position="left"><i class="material-icons">delete</i></a>
 								</div>
 								<div class="collapsible-body">
 									<div ng-if="event.day == day.day" ng-repeat="event in events" class="card">
@@ -35,8 +35,8 @@
 											</div>
 											<div class="card-action">
 												<div class="div-event">
-													<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-floating" data-tooltip="Editar" data-position="left"><i id="btn-edit-event" class="material-icons">edit</i></a>
-													<a id="btn-rmv" ng-click="confirmDeleteDay(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light red secondary-content" data-tooltip="Excluir dia" data-position="left"><i class="material-icons">delete</i></a>
+													<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-floating" data-tooltip="Editar evento" data-position="left"><i id="btn-edit-event" class="material-icons">edit</i></a>
+													<a ng-click="confirmDeleteDay(day.day)" class="btn tooltipped btn-floating" data-tooltip="Excluir evento" data-position="left"><i id="btn-remove-event" class="material-icons">delete</i></a>
 												</div>
 											</div>
 										</div>
