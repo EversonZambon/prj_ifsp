@@ -38,7 +38,7 @@ body{
 }
 
 .user-name{
-  min-width: 8rem;
+  min-width: 9rem;
 }
 
 .side-nav li>a{
@@ -156,7 +156,7 @@ p{
   margin-top: 7rem;
 }
 
-#new-event-day{
+#new-event-day, #edit-event-day{
   display: none;
 }
 
@@ -167,6 +167,10 @@ p{
 
 .card-event h4{
   color: #2d862d;
+}
+
+.modalTitle{
+  color: #26a69a;
 }
 
 .card-event p{
@@ -197,7 +201,7 @@ p{
   height: 550px;
 }
 
-#modalRegisterEvent{
+#modalRegisterEvent, #modalEditEvent{
   max-height: 85%;
 }
 

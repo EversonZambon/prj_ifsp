@@ -1,12 +1,12 @@
 <% include navbar-admin %>
-	<div class="container-wecomp" ng-controller="programming_controller">
+	<div ng-controller="programming_controller">
 		<script src="./services/programmingAPI.js"></script>
 		<script src="./services/loginAPI.js"></script>
      	<script src="./controllers/programming_controller.js"></script>
 		<% include components/preloader %>
 		<div class="row" ng-cloak>
 			<div class="s12 col">
-				<div class="row container">
+				<div class="row container container-wecomp">
 					<div class="col s12 m12 l10 offset-l1">
 						<div ng-if="days.length == 0" class="center-align">
 							<p>Nenhuma programação foi postada</p>
@@ -39,7 +39,7 @@
 												<div class="card-action">
 												<div class="div-event">
 													<a ng-click="" class="btn tooltipped btn-floating" data-tooltip="Editar" data-position="left"><i id="btn-edit-event" class="material-icons">edit</i></a>
-										  			<a ng-click="" class="btn tooltipped btn-floating" data-tooltip="Remover" data-position="left"><i id="btn-remove-event" class="material-icons">delete</i></a>
+										  			<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-floating" data-tooltip="Remover" data-position="left"><i id="btn-remove-event" class="material-icons">delete</i></a>
 										  		</div>
 												</div>
 											</div>
@@ -143,6 +143,70 @@
 			</div>
 		</div>
 
+		<div id="modalEditEvent" class="modal col s12 m12 l12">
+			<div class="modal-content">
+				<div class="modal-header center">
+					<h4 class="modal-title modalTitle">Editar Evento</h4>
+				</div>
+				<div class="card-action"></div>
+				<form ng-submit="" enctype="multipart/form-data">
+					<div class="modal-body">
+						<div class="row">
+							<div id="edit-event-day">
+								<input type="text" ng-model="editEvent.day">
+							</div>
+							<div id="div-edit-event" class="col s12 m12 l12">
+								<div class="row">
+									<div class="input-field col s6">
+										<input ng-model="editEvent.hourStart" type="text" name="edit-hour-start" class="timepicker validate" id="edit-hour-start" required>
+										<label class="active" for="edit-hour-start">Inicia às</label>
+									</div>
+									<div class="input-field col s6">
+										<input ng-model="editEvent.hourFinish" type="text" name="edit-hour-finish" class="timepicker validate" id="edit-hour-finish" required>
+										<label class="active" for="edit-hour-finish">Termina às</label>
+									</div>
+								</div>
+								<div class="row">
+									<div class="input-field col s6">
+										<input ng-model="editEvent.vacancies" type="number" name="edit-vacancies" class="validate" id="edit-vacancies" required>
+										<label class="active" for="edit-vacancies" active>Vagas</label>
+									</div>
+									<div class="input-field col s6">
+										<select id="edit-class-room" ng-model="editEvent.classroom" class="validate" required>
+											<option value="" disabled selected>Sala</option>
+											<option value="C103">C103</option>
+											<option value="C104">C104</option>
+											<option value="C105">C105</option>
+											<option value="C106">C106</option>
+											<option value="C107">C107</option>
+										</select>
+	 								</div>
+	 							</div>
+	 							<div class="input-field col s12">
+									<input ng-model="editEvent.title" type="text" name="edit-title" class="validate" id="edit-title" required>
+									<label class="active" for="edit-title">Titulo do evento</label>
+								</div>
+								<div class="input-field col s12">
+									<textarea ng-model="editEvent.description" id="edit-description" class="materialize-textarea validate" required></textarea>
+									<label class="active" for="edit-description">Descrição do evento</label>							
+								</div>
+								<div class="input-field col s12">
+									<input ng-model="editEvent.speaker" type="text" name="edit-name-speaker" class="validate" id="edit-name-speaker" required>
+									<label class="active" for="edit-name-speaker">Nome do palestrante</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col s8 center">
+							<button type="submit" name="action" class="btn btn-primary center-block">Atualizar</button>
+							<a class="btn btn-primary center-block modal-close">Cancelar</a>	
+						</div>	
+					</div>
+				</form>
+			</div>			
+		</div>
+			
 		<div id="modalRegisterDay" class="modal col s12 m12 l12">
 			<div class="modal-content date">
 				<div class="modal-header center">

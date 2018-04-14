@@ -13,8 +13,10 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
                   	$scope.events = response.data.result
                   	for(var i in $scope.events){
 	                   $scope.events[i].day = $filter('date')($scope.events[i].day,'dd/MM/yyyy')
-	                   $scope.events[i].hourStart = $filter('date')($scope.events[i].hourStart,'hhmm')
-	                   $scope.events[i].hourFinish = $filter('date')($scope.events[i].hourFinish,'hhmm') 
+	                   var hourStart = $scope.events[i].hourStart.split(':')
+	                   $scope.events[i].hourStart = hourStart[0] + ":" + hourStart[1]
+	                   var hourFinish = $scope.events[i].hourFinish.split(':')
+	                   $scope.events[i].hourFinish = hourFinish[0] + ":" + hourFinish[1]
                   	}
                   })
                   .catch(function (err) {
@@ -47,7 +49,7 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 	            if (this.files.length > 0) {
 	                $.each(this.files, function (index, value) {
 	                	if(value.size > 1000000){
-	                		Materialize.toast('Foto até 1 MB!', 6000, 'red')
+	                		Materialize.toast('Foto até 900 KB!', 6000, 'red')
 	                		$('#speaker-photo').val('')
 	                	}
 	                	switch(value.type){
@@ -121,10 +123,12 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 		}
 
 		$scope.createEvent = function(newEvent){
-			console.log(newEvent)
 			programmingAPI.createEvent(newEvent)
 				.then(function(response){
 					Materialize.toast('Evento cadastrado!', 4000, 'green')
+					$interval(function(){
+						$window.location.reload();
+					},700)
 				})
 				.catch(function(err){
 					console.log("erro",err)
@@ -133,6 +137,14 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 				.finally(function(){
 					$scope.load = false
 				})
+		}
+
+		$scope.openModalEditEvent = function(event){
+			$scope.editEvent = event
+			$('#edit-class-room').val($scope.editEvent.classroom)
+			$('#edit-class-room').material_select()
+			$("#div-edit-event").parent().find("label").addClass("active")
+			$('#modalEditEvent').modal('open')
 		}
 
 		$scope.openModalEvent = function(day) {
