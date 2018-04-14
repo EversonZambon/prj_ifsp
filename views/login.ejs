@@ -1,42 +1,81 @@
-<% include header %>
-     <div class="Container">
-        <div class="center">
-          <div class="row">
-              <div class="Col s12" id="icon-login">
-                <i class="large material-icons">cloud_queue</i>
-              </div>
-              </div>
-            </div>
-          <div class="row">
-            <div class="offset-m4 offset-l4 col s12 m4 l4">
-              <div class="card">
-              <div class="row center" id="login-text">
-               <h4>Login</h4>
-              </div>
-                 <div class="row-login">
-				    <form class="col s12">
-				      <div class="row">
-				        <div class="input-field col s10">
-				          <input id="user" type="text" class="validate">
-				          <label for="user">Usuário</label>
-				        </div>
-				      </div>
-				      <div class="row">
-				        <div class="input-field col s10">
-				          <input id="password" type="password" class="validate">
-				          <label for="password">Senha</label>
-				        </div>
-				      </div>
-				    </form>
-				 </div>
-                <div class="center">
-                  <a id="btn-login" class="waves-effect waves-light btn"><i class="material-icons left">adb</i>Entrar</a>
+<% include navbar-pattern %>
+  <div ng-controller="login_controller">
+      <script src="./services/registerAPI.js"></script>
+      <script src="./services/loginAPI.js"></script>
+      <script src="./controllers/login_controller.js"></script>
+      <% include components/preloader %>
+      <div class="row">
+      <div class="center">
+        <div class="col s12 offset-l2">
+          <div class="col s12 m6 l4">
+            <div class="card card-login-subscribe">
+              <h4>Login</h4>
+              <form ng-submit="signIn(user)">
+                <div class="row-login">
+                    <div class="row">
+                      <div class="input-field col s10">
+                        <input id="userEmail" ng-model="user.email" type="email" class="validate" required>
+                        <label for="userEmail">E-mail</label>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s10">
+                        <input id="userPass" ng-model="user.password" type="password" class="validate" maxlength="8" size="8" required>
+                        <label for="userPass">Senha</label>
+                      </div>
+                    </div>
                 </div>
-              </div>
-              <div class="center">
-                <p id="login-footer">PRJ São Carlos ©</p>
-              </div>
+                <div class="row recover-password">
+                  <div class="col s12">
+                    <div class="col s12">
+                      <button id="btn-login" class="waves-effect waves-light btn btn-login-subscribe" type="submit" name="action">Entrar</button> 
+                    </div>
+                    <div class="col s12">
+                     <a class="center-align" href="/recuperarsenha">Esqueceu a senha?</a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col s12 m6 l4">
+            <div class="card card-login-subscribe">
+              <h4>Inscreva-se</h4>
+              <form ng-submit="register(newUser)">
+                <div class="row-login">
+                  <div class="row">
+                    <div class="input-field col s10">
+                      <input id="userName" ng-model="newUser.name" type="text" class="validate" required>
+                      <label for="userName">Nome</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s10">
+                      <input id="newEmail" ng-model="newUser.email" type="email" class="validate" required>
+                      <label for="newEmail">E-mail</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s10">
+                      <input id="newPassword" ng-model="newUser.password" type="password" class="validate" maxlength="8" size="8" required>
+                      <label for="newPassword">Senha (máximo de 8 caracteres)</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s10">
+                      <input id="passwordConfirm" ng-model="newUser.passConfirm" type="password" class="validate" maxlength="8" size="8" required>
+                      <label for="passwordConfirm">Confirmar senha</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="center">
+                  <button id="btn-subscribe" class="waves-effect waves-light btn btn-login-subscribe" type="submit" name="action">Inscrever-se</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-     <% include footer%>
+      </div>
+    </div>
+  </div>
+<% include components/footer%>

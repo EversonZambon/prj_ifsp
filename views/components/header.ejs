@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+    <html class="no-js" lang="pt-BR" ng-app="prj_ifsp">
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+            <title><%= titulo %></title>
+
+            <link href="./icons/icons.css" rel="stylesheet">
+            <link href="./stylesheets/materialize-min.css" rel="stylesheet">
+            <link href="./stylesheets/style.css" rel="stylesheet">
+            <link rel="shortcut icon" href="/images/logo_ifsp.png">
+
+        </head>
+        <body id="body" class="">
+            <script src="./javascripts/angular.js"></script>
+            <script>
+                const weComp = angular.module('prj_ifsp', [])
+                weComp.constant('env', window.env)
+            </script>

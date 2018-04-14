@@ -1,32 +1,281 @@
-body {
+body{
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: #F8F8FF;
 }
 
-.row-login {
+/*-- Componentes --*/
+
+#preloader{
+  position: fixed;
+  z-index: 399;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 50%;
+  @media (min-width: $min-desktop-size) {
+    left: 0;
+  }
+  &.with-sidebar{
+    @media (min-width: $min-desktop-size) {
+      left: 240px;
+    }
+  }
+}
+
+#dropdown1 li{
+  background-color: #ff531a;
+}
+
+#dropdown1 li>a{
+  color: #fff;
+}
+
+#dropdown1 li>a:hover{
+  background-color: #e63900;
+  color: #fff;
+}
+
+.user-name{
+  min-width: 8rem;
+}
+
+.side-nav li>a{
+  font-size: 20px;
+}
+
+.side-nav a:hover{
+  background-color: rgba(0,0,0,0.10);
+}
+
+.side-nav li>a:hover{
+  background-color: rgba(0,0,0,0.10);
+}
+
+.side-nav .closebtn{
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 225px;
+}
+
+.container-wecomp{
+  min-height: calc(100vh - 22rem);
+}
+
+.container-wecomp h4{
+  color: #26a69a;
+}
+
+.logo-wecomp-nav{
+  width: 150px;
+  margin-top: 12px;
+  margin-left: 12px;
+}
+
+.logo-wecomp-main{
+  width: 65%
+}
+
+.nav-wrapper{
+  background-color: #cc3300;
+}
+
+p{
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #8c8c8c;
+}
+
+/*-- Index --*/
+
+.event-date{
+  color: #ffffff;
+  margin-top: 0;
+}
+
+.subscribe{
+  background-color: #cc3300;
+}
+
+.subscribe:hover{
+  background-color: #ff4000;
+}
+
+/*-- Login --*/
+
+.row-login{
   margin-left: 13%;
 }
 
-#btn-login {
+.btn-login-subscribe{
   margin-top: 5%;
   margin-bottom: 9%;
 }
 
-#icon-login {
-  color: #ffa76a;
-  margin-top: 2%;
-}
-
-#login-footer {
-  color: #9e9e9e;
-}
-
-#login-text, h4 {
-  padding-top: 2%;
-}
-
-#login-text, h4 {
+.card-login-subscribe h4{
+  padding-top: 5%;
   color: #26a69a;
+}
+
+.recover-password{
+  padding: 10px;
+}
+
+.recover{
+  margin-bottom: 12rem;
+}
+
+/*-- Minha Conta --*/
+
+.current-user{
+  margin-top: -2%;
+}
+
+.card.current-user{
+  margin-top: 4%;
+}
+
+.current-user h1{
+  font-family: cursive;
+  color: #13534d;
+}
+
+.card.current-user p{
+  color: #404040;
+}
+
+.person-profile{
+  color: #e64d00;
+}
+
+/*-- Programação --*/
+
+#formDay{
+  margin-top: 7rem;
+}
+
+#new-event-day{
+  display: none;
+}
+
+.card-event{
+  padding: 1rem;
+  margin-left: 1rem;
+}
+
+.card-event h4{
+  color: #2d862d;
+}
+
+.card-event p{
+  color: #4d4d4d;
+}
+
+#btn-edit-event{
+  background-color: #f2f2f2;
+  color: #26a69a;
+}
+
+#btn-remove-event{
+  background-color: #f2f2f2;
+  color: #ff531a;
+}
+
+.div-event{
+  text-align: right;
+}
+
+#icon-day{
+  font-size: 4rem;
+  margin-right: 3rem;
+  color: #e64d00;
+}
+
+#modalRegisterDay{
+  height: 550px;
+}
+
+#modalRegisterEvent{
+  max-height: 85%;
+}
+
+.date{
+  margin-top: 10%;
+}
+
+.config-programming{
+  margin: auto;
+  height: 54px;
+}
+
+.collapsible-body{
+  padding-top: 0;
+}
+
+#btn-add{
+  margin-top: 6px;
+  margin-right: 18px;
+}
+
+#btn-rmv{
+  margin-top: 6px;
+  margin-right: 5px;
+}
+
+.add-icon-event{
+  background-color: #2eb82e;
+}
+
+.add-icon-day{
+  background-color: #e64d00;
+}
+
+.btn-photo{
+  background-color: #ff531a;
+}
+
+.btn-photo:hover{
+  background-color: #e63900;
+}
+
+.btn-flat {
+  font-weight: bold;
+}
+
+.btn-flat:hover{
+  background-color: #e0e0e0;
+}
+
+/*-- Localização --*/
+
+.localization{
+  margin: auto;
+}
+
+.card-localization h4{
+  padding-top: 2%;
+  color: #26a69a;
+}
+
+.card-localization b{
+  color: #4d4d4d;
+}
+
+#toast-container{
+  bottom: 84%;
+}
+
+/*-- Footer --*/
+
+.page-footer{
+  background-color: unset;
+  font-family: sans-serif;
+  color: #8c8c8c;
+}
+
+.page-footer h4{
+  font-family: sans-serif;
+  color: #4d4d4d;
 }
