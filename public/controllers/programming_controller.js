@@ -153,6 +153,14 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 			$('#modalRegisterEvent').modal('open')
 		}
 
+		$scope.openModalEditEvent = function(event){
+			$scope.editEvent = event
+			$('#edit-class-room').val($scope.editEvent.classroom)
+			$('#edit-class-room').material_select()
+			$("#div-edit-event").parent().find("label").addClass("active")
+			$('#modalEditEvent').modal('open')
+		}
+
 		$scope.openModalDay = function() {
 			$('#modalRegisterDay').modal('open')
 		}
