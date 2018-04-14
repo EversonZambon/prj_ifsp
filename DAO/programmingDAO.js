@@ -29,7 +29,6 @@ programmingDAO = function(){
     };
 
     this.registerDay = function(day, response){
-        console.log("DAO -> ",day)
         var conection = mysql.createConnection(dbConfig);
         conection.query("insert into day Values(?)",[day],function(err){
             if(err){
@@ -48,6 +47,17 @@ programmingDAO = function(){
                 response.status(500).send({ error: err.code });
             }
             response.send({result});
+            response.end();
+        })
+        conection.end();
+    };
+
+    this.deleteDay = function(day, response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("delete from day where day=(?)",[day],function(err){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }
             response.end();
         })
         conection.end();

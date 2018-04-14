@@ -83,6 +83,24 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 				})
 		}
 
+		$scope.deleteDay = function(day) {
+			$scope.load = true
+			day = day.split('/').reverse().join('-')
+			programmingAPI.deleteDay(day)
+				.then(function(response){
+					Materialize.toast('Dia excluído!', 4000, 'green')
+					$interval(function(){
+						$window.location.reload();
+					},700)
+				})
+				.catch(function(err){
+					Materialize.toast('Erro ao excluir!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})
+		}
+
      	$scope.registerEvent = function(newEvent) {
 			$scope.load = true
 			newEvent.classroom = $('#class-room').val();
@@ -125,6 +143,11 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 
 		$scope.openModalDay = function() {
 			$('#modalRegisterDay').modal('open')
+		}
+
+		$scope.confirmDeleteDay = function(day) {
+			$scope.removeDay = day;
+			$('#modalDeleteDay').modal('open')
 		}
 	},
 ])

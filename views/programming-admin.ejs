@@ -23,6 +23,7 @@
 									</div>
 									<div class="row config-programming">
 										<a id="btn-add" ng-click="openModalEvent(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um evento" data-position="left"><i class="material-icons add-icon-event">add</i></a>
+										<a id="btn-rmv" ng-click="confirmDeleteDay(day.day)" class="btn tooltipped btn-floating btn-small waves-effect waves-light red secondary-content" data-tooltip="Excluir dia" data-position="left"><i class="material-icons">delete</i></a>
 									</div>
 									<div class="collapsible-body">
 										<div ng-if="event.day == day.day" ng-repeat="event in events" class="card">
@@ -57,6 +58,16 @@
 			</div>
 		</div>
 
+		<div id="modalDeleteDay" class="modal">
+			<div class="modal-content center">
+				<p>Tem certeza que deseja excluir esse dia {{removeDay}} ? </p>
+			</div>
+			<div class="modal-footer">
+				<a href="" class="modal-action modal-close waves-effect btn-flat" ng-click="deleteDay(removeDay)">Confirmar</a>
+				<a href="" class="modal-action modal-close waves-effect btn-flat">Cancelar</a>
+			</div>
+		</div>
+
 		<div id="modalRegisterEvent" class="modal col s12 m12 l12">
 			<div class="modal-content">
 				<div class="modal-header center">
@@ -64,7 +75,6 @@
 				</div>
 				<div class="card-action"></div>
 				<form ng-submit="registerEvent(newEvent)" enctype="multipart/form-data">
-					<input type="hidden" name="id" id="id"/>
 					<div class="modal-body">
 						<div class="row">
 							<div id="new-event-day">

@@ -103,6 +103,12 @@ router.post('/postRegisterDay/:newDay', function(request, response, next) {
 	day.registerDay(request.params.newDay, response)
 });
 
+router.post('/postDeleteDay/:day', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var day = new programmingDAO()
+	day.deleteDay(request.params.day, response)
+});
+
 router.post('/postRegisterEvent', function(request, response, next) {
     var programmingDAO = require('../DAO/programmingDAO');
 	var event = new programmingDAO()

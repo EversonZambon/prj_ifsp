@@ -219,6 +219,11 @@ p{
   margin-right: 18px;
 }
 
+#btn-rmv{
+  margin-top: 6px;
+  margin-right: 5px;
+}
+
 .add-icon-event{
   background-color: #2eb82e;
 }
@@ -233,6 +238,14 @@ p{
 
 .btn-photo:hover{
   background-color: #e63900;
+}
+
+.btn-flat {
+  font-weight: bold;
+}
+
+.btn-flat:hover{
+  background-color: #e0e0e0;
 }
 
 /*-- Localização --*/

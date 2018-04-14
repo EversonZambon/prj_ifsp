@@ -5,6 +5,9 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   var _createDay = function (day) {
     return $http.post(`postRegisterDay/${day}`)
   }
+  var _deleteDay = function (day) {
+    return $http.post(`postDeleteDay/${day}`)
+  }
   var _showEvents = function () {
     return $http.get(`showEvents/`)
   }
@@ -14,6 +17,7 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   return {
     createEvent: _createEvent,
     createDay: _createDay,
+    deleteDay: _deleteDay,
     showEvents: _showEvents,
     showDays: _showDays
   }
