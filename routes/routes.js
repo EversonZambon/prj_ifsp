@@ -109,10 +109,22 @@ router.post('/postDeleteDay/:day', function(request, response, next) {
 	day.deleteDay(request.params.day, response)
 });
 
+router.post('/postDeleteEvent/:id', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var event = new programmingDAO()
+	event.deleteEvent(request.params.id, response)
+});
+
 router.post('/postRegisterEvent', function(request, response, next) {
     var programmingDAO = require('../DAO/programmingDAO');
 	var event = new programmingDAO()
 	event.registerEvent(request.body, response)
+});
+
+router.post('/postUpdateEvent', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var event = new programmingDAO()
+	event.updateEvent(request.body, response)
 });
 
 router.post('/postRecoverPassword/:email', function(request,response,next){

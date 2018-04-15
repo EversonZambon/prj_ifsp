@@ -177,14 +177,22 @@ p{
   color: #4d4d4d;
 }
 
-#btn-edit-event{
-  background-color: #f2f2f2;
-  color: #26a69a;
+.btn-event{
+  border-radius: 50%;
 }
 
-#btn-remove-event{
-  background-color: #f2f2f2;
-  color: #ff531a;
+#btn-addevent-icon, #btn-delevent-icon{
+  font-size: 2.3rem;
+  color: #666666;
+  width: 10px;
+}
+
+#btn-addevent-icon:hover, #btn-delevent-icon:hover{
+  color: #404040;
+}
+
+.btn-event:hover{
+  background-color: #ffffff;
 }
 
 .div-event{
@@ -228,11 +236,15 @@ p{
   margin-right: 5px;
 }
 
-.add-icon-event{
-  background-color: #2eb82e;
+.btn-day{
+  background-color: #339933;
 }
 
-.add-icon-day{
+.btn-day:hover{
+  background-color: #53c653;
+}
+
+.btn-add-day{
   background-color: #e64d00;
 }
 
@@ -244,12 +256,24 @@ p{
   background-color: #e63900;
 }
 
-.btn-flat {
+.btn-flat-del{
   font-weight: bold;
 }
 
-.btn-flat:hover{
+.btn-flat-del:hover{
   background-color: #e0e0e0;
+}
+
+.btn-remove-photo{
+  background-color: #f44336;
+  width: 37px;
+  height: 37px;
+  border-radius: 0%;
+  margin-bottom: 10px;
+}
+
+.btn-remove-photo:hover{
+  background-color: #da190b;
 }
 
 /*-- Localização --*/
