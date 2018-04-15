@@ -5,7 +5,6 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 		$scope.events = {};
 		$scope.days = {};
 		$scope.newEvent = {};
-		var photo;
 
 		(function showEvents() {
         $scope.load = true
@@ -241,12 +240,7 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 		}
 
 		$scope.removePhoto = function(event){
-			photo = $scope.editEvent.photo
 			$scope.editEvent.photo = ""
-		}
-
-		$scope.cancelEditEvent = function(){
-			$scope.editEvent.photo = photo
 		}
 	},
 ])
