@@ -16,12 +16,14 @@ loginDAO = function(){
                 response.status(401).send({ error: 'Não autorizado' });
             }else{
                 if(bcrypt.compareSync(user.password, result[0].password)==true){
-                    console.log("nome",result[0].name)
-                    logged.user = {}
-                    logged.user.name = result[0].name;
-                    logged.user.email = result[0].email;
-                    logged.user.profile = result[0].profile;
-                    response.status(200).end();
+                    session.user = {}
+                    session.user.name = result[0].name;
+                    session.user.email = result[0].email;
+                    session.user.profile = result[0].profile;
+                    var userLog = {};
+                    userLog.name = result[0].name;
+                    userLog.email = result[0].email;
+                    response.send(userLog);
                 }else{
                     response.status(401).send({ error: 'Não autorizado' });
                 }

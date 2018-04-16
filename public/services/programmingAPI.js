@@ -13,6 +13,9 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   }
   var _deleteEvent = function (id) {
     return $http.post(`postDeleteEvent/${id}`)
+  }  
+  var _registerInEvent = function(eventID, email){
+    return $http.post(`postRegisterInEvent/${eventID},${email}`)
   }
   var _showEvents = function () {
     return $http.get(`showEvents/`)
@@ -20,13 +23,19 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   var _showDays = function () {
     return $http.get(`showDays/`)
   }
+  var _getSubscriberInfo = function(email){
+    return $http.get(`getSubscriberInfo/${email}`)
+  }
+
   return {
     createEvent: _createEvent,
     createDay: _createDay,
     updateEvent: _updateEvent,
     deleteDay: _deleteDay,
+    registerInEvent: _registerInEvent,
     deleteEvent: _deleteEvent,
     showEvents: _showEvents,
-    showDays: _showDays
+    showDays: _showDays,
+    getSubscriberInfo: _getSubscriberInfo
   }
 }])

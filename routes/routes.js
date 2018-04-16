@@ -6,12 +6,12 @@ var userName = "";
 //--- router.get ---//
 
 router.get('/', function(request, response, next) {
-	if(logged.user){
-		if(logged.user.profile == 0){
-	 		userName = logged.user.name.split(" ");
+	if(session.user){
+		if(session.user.profile == 0){
+	 		userName = session.user.name.split(" ");
 			response.render('index-user', {titulo: 'WeComp', nome: userName[0]});
-		}else if(logged.user.profile == 1){
-			userName = logged.user.name.split(" ");
+		}else if(session.user.profile == 1){
+			userName = session.user.name.split(" ");
 			response.render('index-admin', {titulo: 'WeComp', nome: userName[0]});
 		}
 	}else{
@@ -20,12 +20,12 @@ router.get('/', function(request, response, next) {
 });
 
 router.get('/localizacao', function(request, response, next) {
-	if(logged.user){
-		if(logged.user.profile == 0){
-	 		userName = logged.user.name.split(" ");
+	if(session.user){
+		if(session.user.profile == 0){
+	 		userName = session.user.name.split(" ");
 			response.render('localization-user', {titulo: 'Localizaçã | WeComp', nome: userName[0]});
-		}else if(logged.user.profile == 1){
-			userName = logged.user.name.split(" ");
+		}else if(session.user.profile == 1){
+			userName = session.user.name.split(" ");
 			response.render('localization-admin', {titulo: 'Localizaçã | WeComp', nome: userName[0]});
 		}
 	}else{
@@ -34,10 +34,10 @@ router.get('/localizacao', function(request, response, next) {
 });
 
 router.get('/minhaconta', function(request, response, next) {
-	if(logged.user){
-		if(logged.user.profile == 0){
-			userName = logged.user.name.split(" ");
-			response.render('profile-user', {titulo: 'Minha Conta | WeComp', nome: userName[0], user: logged.user});
+	if(session.user){
+		if(session.user.profile == 0){
+			userName = session.user.name.split(" ");
+			response.render('profile-user', {titulo: 'Minha Conta | WeComp', nome: userName[0]});
 		}
 	}else{
 		response.render('index-pattern', {titulo: 'WeComp'});
@@ -45,12 +45,12 @@ router.get('/minhaconta', function(request, response, next) {
 });
 
 router.get('/programacao', function(request, response, next) {
-	if(logged.user){
-		if(logged.user.profile == 0){
-	 		userName = logged.user.name.split(" ");
+	if(session.user){
+		if(session.user.profile == 0){
+	 		userName = session.user.name.split(" ");
 			response.render('programming-user', {titulo: 'Programação | WeComp', nome: userName[0]});
-		}else if(logged.user.profile == 1){
-			userName = logged.user.name.split(" ");
+		}else if(session.user.profile == 1){
+			userName = session.user.name.split(" ");
 			response.render('programming-admin', {titulo: 'Programação | WeComp', nome: userName[0]});
 		}
 	}else{
@@ -67,7 +67,7 @@ router.get('/recuperarsenha', function(request, response, next) {
 });
 
 router.get('/sair', function(request, response, next) {
-	logged = {};
+	delete session.user;
 	response.render('index-pattern', {titulo: 'WeComp'});
 });
 
@@ -81,6 +81,12 @@ router.get('/showDays', function(request, response, next) {
     var programmingDAO = require('../DAO/programmingDAO');
 	var day = new programmingDAO()
 	day.showDays(response)
+});
+
+router.get('/getSubscriberInfo/:email', function(request, response, next) {
+    var programmingDAO = require('../DAO/programmingDAO');
+	var user = new programmingDAO()
+	user.getSubscriberInfo(response.req.params.email, response)
 });
 
 //--- router.post ---//
@@ -131,6 +137,12 @@ router.post('/postRecoverPassword/:email', function(request,response,next){
     var loginDAO = require('../DAO/loginDAO');
 	var user = new loginDAO();
 	user.recoverPassword(request.params.email, response);
+});
+
+router.post('/postRegisterInEvent/:eventID,:email', function(request,response,next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var event = new programmingDAO()
+	event.registerInEvent(request.params, response)
 });
 
 module.exports = router;

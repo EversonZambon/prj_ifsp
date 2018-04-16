@@ -23,8 +23,10 @@ CREATE TABLE event(
     day DATETIME NOT NULL,
     hourStart TIME NOT NULL,
     hourFinish TIME NOT NULL,
+    workload VARCHAR(8) NOT NULL,
     classroom VARCHAR(10) NOT NULL,
     vacancies INT NOT NULL,
+    vacanciesRemaining INT NOT NULL DEFAULT 0,
     title VARCHAR(30) NOT NULL,
     description TEXT NOT NULL,
     speaker VARCHAR(30) NOT NULL,
@@ -35,13 +37,11 @@ CREATE TABLE event(
 
 CREATE TABLE subscription(
 
-    id INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(30) NOT NULL,
     idEvent INT NOT NULL,
-    PRIMARY KEY(id),
+    PRIMARY KEY(email,idEvent),
     FOREIGN KEY (email) REFERENCES person(email) ON DELETE CASCADE,
     FOREIGN KEY (idEvent) REFERENCES event(id) ON DELETE CASCADE
-    
 )ENGINE=INNODB;
 
 insert into person values ("admin@ifsp.com", "Admin", '$2a$10$bY1Af27upkZEf4EhwIaRyeybTETuMWIe4Xh5mNi37Q8SGc8hvpJ/m',1);

@@ -1,9 +1,13 @@
-weComp.controller("login_controller", ['$scope', '$window', '$interval', 'registerAPI', 'loginAPI',
-	function ($scope, $window, $interval, registerAPI, loginAPI){
+weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$window', '$interval', 'registerAPI', 'loginAPI',
+	function ($scope, $cookies, $cookieStore, $window, $interval, registerAPI, loginAPI){
 
-		$scope.user = {}
-		$scope.newUser = {}
-		$scope.load = false
+		$scope.user = {};
+		$scope.newUser = {};
+		$scope.load = false;
+
+		(function getInfo() {
+	      $scope.currentUser = $cookieStore.get('user');
+	    }());
 
 		$scope.register = function(newUser) {
 			if(newUser.password === newUser.passConfirm){
@@ -19,8 +23,7 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 							})
 					})
 					.catch(function(err){
-						var msg = err.data.error
-						if(msg === "ER_DUP_ENTRY"){
+						if(err.data.error === "ER_DUP_ENTRY"){
 							Materialize.toast('E-mail já cadastrado!', 4000, 'red')
 						}else{
 							Materialize.toast('Erro ao cadastrar!', 4000, 'red')
@@ -39,6 +42,7 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 			$scope.load = true
 			loginAPI.signIn(user)
 				.then(function(response){
+					$cookieStore.put('user', response.data);
 					Materialize.toast('Bem vindo!', 4000, 'green')
 					$interval(function(){
 						$window.location.href = '/programacao';
@@ -71,10 +75,6 @@ weComp.controller("login_controller", ['$scope', '$window', '$interval', 'regist
 				.finally(function(){
 					$scope.load = false
 				})
-		}
-
-		$scope.teste = function(userT){
-			console.log(userT)
 		}
 	},
 ])

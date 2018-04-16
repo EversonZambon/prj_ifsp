@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/routes');
 var app = express();
-logged = express();
+session = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

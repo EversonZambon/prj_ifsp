@@ -30,7 +30,8 @@
 										<div class="card">
 											<div class="card-event">
 												<h4> {{event.title}} </h4>
-												<p> Inicia às: {{event.hourStart}} | Termina às: {{event.hourFinish}}</p>
+												<p> Inicia às: {{event.hourStart}} | Termina às: {{event.hourFinish}} | Carga horária: {{event.workload}}</p>
+												<p> Total de vagas: {{event.vacancies}} | Inscritos: {{event.vacanciesRemaining}}</p>
 												<p> Palestrante:  {{event.speaker}} </p>
 											</div>
 											<div class="card-action">
@@ -115,7 +116,7 @@
 				<h4 class="modal-title modalTitle">Cadastrar Evento</h4>
 			</div>
 			<div class="card-action"></div>
-			<form ng-submit="registerEvent(newEvent)" enctype="multipart/form-data">
+			<form ng-submit="createEvent(newEvent)" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="row">
 						<div id="new-event-day">

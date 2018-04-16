@@ -1,9 +1,14 @@
-weComp.controller("programming_controller_user", ['$scope', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
-	function ($scope, $window, $interval, programmingAPI, loginAPI, $filter){
+weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieStore', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
+	function ($scope, $cookies, $cookieStore, $window, $interval, programmingAPI, loginAPI, $filter){
 
 		$scope.load = false
 		$scope.events = {};
 		$scope.days = {};
+    $scope.currentUser;
+
+    (function getInfo() {
+      $scope.currentUser = $cookieStore.get('user');
+    }());
 
 		(function showEvents() {
         $scope.load = true
@@ -43,9 +48,43 @@ weComp.controller("programming_controller_user", ['$scope', '$window', '$interva
                   })
      	}());
 
-		$scope.openEventInfo = function(event){
-			$scope.eventInfo = event
-			$('#modalViewInfo').modal('open')
-		}
+      (function getSubscriberInfo() {
+        $scope.load = true
+        programmingAPI.getSubscriberInfo($scope.currentUser.email)
+                  .then(function (response) {
+                    $scope.subscriber = response.data.result
+                  })
+                  .catch(function (err) {
+                    Materialize.toast('Erro ao carregar os inscrições!', 4000, "red")
+                  })
+                  .finally(function () {
+                    $scope.load = false
+                  })
+      }());
+
+    $scope.registerInEvent = function(eventID, currentUser){
+      programmingAPI.registerInEvent(eventID, currentUser.email)
+          .then(function (response) {
+              Materialize.toast('Inscrição realizada!', 4000, 'green')
+              $interval(function(){
+                $window.location.reload();
+              },700)
+         })
+          .catch(function (err) {
+            if(err.data.error === "ER_DUP_ENTRY"){
+              Materialize.toast('Você já está inscrito nesse evento!', 6000, 'orange')
+            }else{
+              Materialize.toast('Erro ao inscrever-se!', 4000, 'red')
+            }
+          })
+          .finally(function () {
+            $scope.load = false
+          })
+    }
+
+    $scope.openEventInfo = function(event){
+      $scope.eventInfo = event
+      $('#modalViewInfo').modal('open')
+    }
 	},
 ])

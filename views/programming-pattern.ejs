@@ -26,12 +26,13 @@
 										<div class="card">
 											<div class="card-event">
 												<h4> {{event.title}} </h4>
-												<p> Inicia às: {{event.hourStart}} | Termina às: {{event.hourFinish}}</p>
+												<p> Inicia às: {{event.hourStart}} | Termina às: {{event.hourFinish}} | Carga horária: {{event.workload}}</p>
+												<p> Total de vagas: {{event.vacancies}} | Inscritos: {{event.vacanciesRemaining}}</p>
 												<p> Palestrante:  {{event.speaker}} </p>
 											</div>
 											<div class="card-action">
 												<div class="div-event">
-													<a ng-click="openEventInfo(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Ver informações" data-position="top"><i class="material-icons" id="btn-viewevent-icon">visibility</i></a>
+													<a ng-click="openEventInfo(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Ver informações" data-position="top"><i class="material-icons" id="btn-view-event-icon">info_outline</i></a>
 												</div>
 											</div>
 										</div>
@@ -54,8 +55,8 @@
 			</div>
 			<div class="card-event">
 				<h4> {{eventInfo.title}} </h4>
-				<p> Inicia às: {{eventInfo.hourStart}} | Termina às: {{eventInfo.hourFinish}}</p>
-				<p> Total de vagas: {{eventInfo.vacancies}} </p>
+				<p> Inicia às: {{eventInfo.hourStart}} | Termina às: {{eventInfo.hourFinish}} | Carga horária: {{eventInfo.workload}}</p>
+				<p> Total de vagas: {{eventInfo.vacancies}} | Inscritos: {{eventInfo.vacanciesRemaining}}</p>
 				<p> Sala: {{eventInfo.classroom}} </p>
 				<p> Descrição: {{eventInfo.description}} </p>
 				<p> Palestrante:  {{eventInfo.speaker}} </p>

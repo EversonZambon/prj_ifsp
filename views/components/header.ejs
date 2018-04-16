@@ -14,7 +14,8 @@
         </head>
         <body id="body" class="">
             <script src="./javascripts/angular.js"></script>
+            <script src="./javascripts/angular-cookies.js"></script>
             <script>
-                const weComp = angular.module('prj_ifsp', [])
+                const weComp = angular.module('prj_ifsp', ['ngCookies'])
                 weComp.constant('env', window.env)
             </script>
