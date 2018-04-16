@@ -1,4 +1,4 @@
-weComp.controller("programming_controller", ['$scope', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
+weComp.controller("programming_controller_admin", ['$scope', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
 	function ($scope, $window, $interval, programmingAPI, loginAPI, $filter){
 
 		$scope.load = false
@@ -235,12 +235,17 @@ weComp.controller("programming_controller", ['$scope', '$window', '$interval', '
 			$('#modalDeleteDay').modal('open')
 		}
 		$scope.confirmDeleteEvent = function(event){
-			$scope.removeEvent = event;
+			$scope.removeEvent = event
 			$('#modalDeleteEvent').modal('open')
 		}
 
 		$scope.removePhoto = function(event){
 			$scope.editEvent.photo = ""
+		}
+
+		$scope.openEventInfo = function(event){
+			$scope.eventInfo = event
+			$('#modalViewInfo').modal('open')
 		}
 	},
 ])
