@@ -4,10 +4,9 @@ var hmh = require('hmh');
 
 programmingDAO = function(){
 
-    this.registerEvent = function(event, response){
-        var conection = mysql.createConnection(dbConfig);
-        var hourStart = event.hourStart.split(':').join('h ') + "m"
-        var hourFinish = event.hourFinish.split(':').join('h ') + "m"
+    calcWorkload = function(eventHourStart, eventHourFinish){
+        var hourStart = eventHourStart.split(':').join('h ') + "m"
+        var hourFinish = eventHourFinish.split(':').join('h ') + "m"
         var workload = hmh.diff(hourStart,hourFinish)
         if(workload.m == null){
             workload.m = "00"
@@ -16,6 +15,12 @@ programmingDAO = function(){
             workload.h = "00"
         }
         workload = workload.h + "h" + workload.m
+        return workload
+    }
+
+    this.registerEvent = function(event, response){
+        var conection = mysql.createConnection(dbConfig);
+        var workload = calcWorkload(event.hourStart, event.hourFinish);
         conection.query("insert into event(day,hourStart,hourFinish,workload,vacancies,classroom,title,description,speaker,photo) Values(?,?,?,?,?,?,?,?,?,?)",[event.day, event.hourStart, event.hourFinish, workload, event.vacancies, event.classroom, event.title, event.description, event.speaker, event.photo],function(err){
             if(err){
                 response.status(500).send({ error: err.code });
@@ -29,7 +34,8 @@ programmingDAO = function(){
 
     this.updateEvent = function(event, response){
         var conection = mysql.createConnection(dbConfig);
-        conection.query("update event set hourStart=?,hourFinish=?,vacancies=?,classroom=?,title=?,description=?,speaker=?,photo=? where id=?",[event.hourStart, event.hourFinish, event.vacancies, event.classroom, event.title, event.description, event.speaker, event.photo, event.id],function(err){
+        var workload = calcWorkload(event.hourStart, event.hourFinish);
+        conection.query("update event set hourStart=?,hourFinish=?,workload=?,vacancies=?,classroom=?,title=?,description=?,speaker=?,photo=? where id=?",[event.hourStart, event.hourFinish, workload, event.vacancies, event.classroom, event.title, event.description, event.speaker, event.photo, event.id],function(err){
             if(err){
                 response.status(500).send({ error: err.code });
             }else{
@@ -53,19 +59,38 @@ programmingDAO = function(){
         conection.end();
     };
 
-    this.registerInEvent = function(info, response){
+    this.addSubscription = function(info, response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("insert into subscription(idEvent,email) Values(?,?)",[info.eventID,info.email],function(err){
             if(err){
                 response.status(500).send({ error: err.code });
             }else{
+                var conection2 = mysql.createConnection(dbConfig);
+                conection2.query("update event set vacanciesRemaining=vacanciesRemaining+1 where id=(?)",[info.eventID])
+                conection2.end();
                 response.status(200).end();
             }
             response.end();
         })
         conection.end();
-    }
+    };
     
+    this.removeSubscription = function(info, response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("delete from subscription where email=(?) and idEvent=(?)",[info.email,info.eventID],function(err){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }else{
+                var conection2 = mysql.createConnection(dbConfig);
+                conection2.query("update event set vacanciesRemaining=vacanciesRemaining-1 where id=(?)",[info.eventID])
+                conection2.end();
+                response.status(200).end();
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
     this.showDays = function(response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("select * from day;",function(err, result){

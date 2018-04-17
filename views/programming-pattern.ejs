@@ -32,6 +32,7 @@
 											</div>
 											<div class="card-action">
 												<div class="div-event">
+													<span ng-if="event.vacanciesRemaining == event.vacancies">Total de vagas preenchidas</span>
 													<a ng-click="openEventInfo(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Ver informações" data-position="top"><i class="material-icons" id="btn-view-event-icon">info_outline</i></a>
 												</div>
 											</div>

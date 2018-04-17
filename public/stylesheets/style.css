@@ -156,10 +156,6 @@ p{
   margin-top: 7rem;
 }
 
-#new-event-day, #edit-event-day{
-  display: none;
-}
-
 .card-event{
   padding: 1rem;
   margin-left: 1rem;
@@ -181,14 +177,14 @@ p{
   border-radius: 50%;
 }
 
-#btn-addevent-icon, #btn-delevent-icon, #btn-view-event-icon{
+#btn-edit-event-icon, #btn-del-event-icon, #btn-view-event-icon{
   font-size: 2.3rem;
-  color: #666666;
+  color: #999999;
   width: 10px;
 }
 
-#btn-addevent-icon:hover, #btn-delevent-icon:hover, #btn-view-event-icon:hover{
-  color: #404040;
+#btn-edit-event-icon:hover, #btn-del-event-icon:hover, #btn-view-event-icon:hover{
+  color: #666666;
 }
 
 #btn-register-event-icon{
@@ -257,15 +253,19 @@ p{
 }
 
 .btn-day{
-  background-color: #666666;
+  background-color: #999999;
 }
 
 .btn-day:hover{
-  background-color: #999999;
+  background-color: #666666;
 }
 
 .btn-add-day{
   background-color: #e64d00;
+}
+
+.btn-add-day:hover{
+  background-color: #993300;
 }
 
 .btn-photo{

@@ -32,8 +32,9 @@
 											</div>
 											<div class="card-action">
 												<div class="div-event">
-													<a ng-if="subscriber[events.indexOf(event)].idEvent != event.id" ng-click='registerInEvent(event.id,currentUser)' class="btn tooltipped btn-flat btn-event" data-tooltip="Inscrever-se" data-position="top"><i class="material-icons" id="btn-register-event-icon">add</i></a>
-													<a ng-if="subscriber[events.indexOf(event)].idEvent == event.id" ng-click='' class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir inscrição" data-position="top"><i class="material-icons" id="btn-remove-event-icon">remove</i></a>
+													<a ng-if="subscriber[events.indexOf(event)].idEvent != event.id && event.vacanciesRemaining != event.vacancies" ng-click='addSubscription(event.id)' class="btn tooltipped btn-flat btn-event" data-tooltip="Inscrever-se" data-position="top"><i class="material-icons" id="btn-register-event-icon">add</i></a>
+													<span ng-if="event.vacanciesRemaining == event.vacancies">Total de vagas preenchidas</span>
+													<a ng-if="subscriber[events.indexOf(event)].idEvent == event.id" ng-click='confirmDeleteSubscription(event)' class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir inscrição" data-position="top"><i class="material-icons" id="btn-remove-event-icon">remove</i></a>
 													<a ng-click="openEventInfo(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Ver informações" data-position="top"><i class="material-icons" id="btn-view-event-icon">info_outline</i></a>
 												</div>
 											</div>
@@ -66,6 +67,18 @@
 					<img width="200" ng-src='{{eventInfo.photo}}'/>
 				</div>
 			</div>
+		</div>
+	</div>
+
+	<!-- Modal para remover inscrição -->
+
+	<div id="modalRemoveSubscription" class="modal">
+		<div class="modal-content center">
+			<p>Tem certeza que deseja remover inscrição desse evento?</p>
+		</div>
+		<div class="modal-footer">
+			<a href="" class="modal-action modal-close waves-effect btn-flat btn-flat-del" ng-click="removeSubscription()">Confirmar</a>
+			<a href="" class="modal-action modal-close waves-effect btn-flat btn-flat-del">Cancelar</a>
 		</div>
 	</div>
 

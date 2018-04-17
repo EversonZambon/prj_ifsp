@@ -6,14 +6,14 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
 		$scope.days = {};
     $scope.currentUser;
 
-    (function getInfo() {
+    (function getInfo(){
       $scope.currentUser = $cookieStore.get('user');
     }());
 
-		(function showEvents() {
+		(function showEvents(){
         $scope.load = true
         programmingAPI.showEvents()
-                  .then(function (response) {
+                  .then(function (response){
                   	$scope.events = response.data.result
                   	for(var i in $scope.events){
 	                   $scope.events[i].day = $filter('date')($scope.events[i].day,'dd/MM/yyyy')
@@ -23,68 +23,91 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
 	                   $scope.events[i].hourFinish = hourFinish[0] + ":" + hourFinish[1]
                   	}
                   })
-                  .catch(function (err) {
+                  .catch(function (err){
                     Materialize.toast('Erro ao carregar os eventos!', 4000, "red")
                   })
-                  .finally(function () {
+                  .finally(function (){
                     $scope.load = false
                   })
      	}());
 
-     	(function showDays() {
+     	(function showDays(){
         $scope.load = true
         programmingAPI.showDays()
-                  .then(function (response) {
+                  .then(function (response){
                   	$scope.days = response.data.result
                   	for(var i in $scope.days){
 	                   $scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
                   	}
                   })
-                  .catch(function (err) {
+                  .catch(function (err){
                     Materialize.toast('Erro ao carregar os dias!', 4000, "red")
                   })
-                  .finally(function () {
+                  .finally(function (){
                     $scope.load = false
                   })
      	}());
 
-      (function getSubscriberInfo() {
+      (function getSubscriberInfo(){
         $scope.load = true
         programmingAPI.getSubscriberInfo($scope.currentUser.email)
                   .then(function (response) {
                     $scope.subscriber = response.data.result
                   })
-                  .catch(function (err) {
+                  .catch(function (err){
                     Materialize.toast('Erro ao carregar os inscrições!', 4000, "red")
                   })
-                  .finally(function () {
+                  .finally(function (){
                     $scope.load = false
                   })
       }());
 
-    $scope.registerInEvent = function(eventID, currentUser){
-      programmingAPI.registerInEvent(eventID, currentUser.email)
-          .then(function (response) {
+    $scope.addSubscription = function(eventID){
+      $scope.load = true
+      programmingAPI.addSubscription(eventID, $scope.currentUser.email)
+          .then(function (response){
               Materialize.toast('Inscrição realizada!', 4000, 'green')
               $interval(function(){
                 $window.location.reload();
               },700)
          })
-          .catch(function (err) {
-            if(err.data.error === "ER_DUP_ENTRY"){
-              Materialize.toast('Você já está inscrito nesse evento!', 6000, 'orange')
-            }else{
-              Materialize.toast('Erro ao inscrever-se!', 4000, 'red')
-            }
+          .catch(function (err){
+              if(err.data.error === "ER_DUP_ENTRY"){
+                Materialize.toast('Você já está inscrito nesse evento!', 6000, 'orange')
+              }else{
+                Materialize.toast('Erro ao inscrever-se!', 4000, 'red')
+              }
           })
-          .finally(function () {
-            $scope.load = false
+          .finally(function (){
+              $scope.load = false
+          })
+    }
+
+    $scope.removeSubscription = function(){
+      $scope.load = true
+      programmingAPI.removeSubscription($scope.subscriptionEventID, $scope.currentUser.email)
+          .then(function (response){
+              Materialize.toast('Inscrição removida!', 4000, 'green')
+              $interval(function(){
+                $window.location.reload();
+              },700)
+         })
+          .catch(function (err){
+              Materialize.toast('Erro ao remover inscrição!', 4000, 'red')
+          })
+          .finally(function (){
+              $scope.load = false
           })
     }
 
     $scope.openEventInfo = function(event){
       $scope.eventInfo = event
       $('#modalViewInfo').modal('open')
+    }
+
+    $scope.confirmDeleteSubscription = function(event){
+      $scope.subscriptionEventID = event.id
+      $('#modalRemoveSubscription').modal('open')
     }
 	},
 ])

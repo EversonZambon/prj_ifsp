@@ -5,10 +5,10 @@ weComp.controller("programming_controller_pattern", ['$scope', '$window', '$inte
 		$scope.events = {};
 		$scope.days = {};
 
-		(function showEvents() {
+		(function showEvents(){
 			$scope.load = true
 			programmingAPI.showEvents()
-			.then(function (response) {
+			.then(function (response){
 				$scope.events = response.data.result
 				for(var i in $scope.events){
 					$scope.events[i].day = $filter('date')($scope.events[i].day,'dd/MM/yyyy')
@@ -18,27 +18,27 @@ weComp.controller("programming_controller_pattern", ['$scope', '$window', '$inte
 					$scope.events[i].hourFinish = hourFinish[0] + ":" + hourFinish[1]
 				}
 			})
-			.catch(function (err) {
+			.catch(function (err){
 				Materialize.toast('Erro ao carregar os eventos!', 4000, "red")
 			})
-			.finally(function () {
+			.finally(function (){
 				$scope.load = false
 			})
 		}());
 
-		(function showDays() {
+		(function showDays(){
 			$scope.load = true
 			programmingAPI.showDays()
-			.then(function (response) {
+			.then(function (response){
 				$scope.days = response.data.result
 				for(var i in $scope.days){
 					$scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
 				}
 			})
-			.catch(function (err) {
+			.catch(function (err){
 				Materialize.toast('Erro ao carregar os dias!', 4000, "red")
 			})
-			.finally(function () {
+			.finally(function (){
 				$scope.load = false
 			})
 		}());
@@ -48,4 +48,4 @@ weComp.controller("programming_controller_pattern", ['$scope', '$window', '$inte
 			$('#modalViewInfo').modal('open')
 		}
 	},
-	])
+])

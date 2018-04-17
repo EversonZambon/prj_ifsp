@@ -5,11 +5,11 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 		$scope.newUser = {};
 		$scope.load = false;
 
-		(function getInfo() {
+		(function getInfo(){
 	      $scope.currentUser = $cookieStore.get('user');
 	    }());
 
-		$scope.register = function(newUser) {
+		$scope.register = function(newUser){
 			if(newUser.password === newUser.passConfirm){
 				$scope.load = true
 				registerAPI.create(newUser)
@@ -38,7 +38,7 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 			}
 		}
 
-		$scope.signIn = function(user) {
+		$scope.signIn = function(user){
 			$scope.load = true
 			loginAPI.signIn(user)
 				.then(function(response){

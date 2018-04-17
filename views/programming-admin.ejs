@@ -36,8 +36,8 @@
 											</div>
 											<div class="card-action">
 												<div class="div-event">
-													<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Editar evento" data-position="top"><i class="material-icons" id="btn-addevent-icon">edit</i></a>
-													<a ng-click="confirmDeleteEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir evento" data-position="top"><i class="material-icons btn-event" id="btn-delevent-icon">delete</i></a>
+													<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Editar evento" data-position="top"><i class="material-icons" id="btn-edit-event-icon">edit</i></a>
+													<a ng-click="confirmDeleteEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir evento" data-position="top"><i class="material-icons btn-event" id="btn-del-event-icon">delete</i></a>
 												</div>
 											</div>
 										</div>
@@ -119,9 +119,6 @@
 			<form ng-submit="createEvent(newEvent)" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="row">
-						<div id="new-event-day">
-							<input type="text" ng-model="newEvent.day">
-						</div>
 						<div class="col s12 m12 l12">
 							<div class="row">
 								<div class="input-field col s6">
@@ -196,9 +193,6 @@
 			<form ng-submit="updateEvent(editEvent)" enctype="multipart/form-data">
 				<div class="modal-body">
 					<div class="row">
-						<div id="edit-event-day">
-							<input type="text" ng-model="editEvent.day">
-						</div>
 						<div id="div-edit-event" class="col s12 m12 l12">
 							<div class="row">
 								<div class="input-field col s6">

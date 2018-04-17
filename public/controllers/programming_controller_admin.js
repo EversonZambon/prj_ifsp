@@ -6,10 +6,10 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 		$scope.days = {};
 		$scope.newEvent = {};
 
-		(function showEvents() {
+		(function showEvents(){
         $scope.load = true
         programmingAPI.showEvents()
-                  .then(function (response) {
+                  .then(function (response){
                   	$scope.events = response.data.result
                   	for(var i in $scope.events){
 	                   $scope.events[i].day = $filter('date')($scope.events[i].day,'dd/MM/yyyy')
@@ -27,27 +27,27 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
                   })
      	}());
 
-     	(function showDays() {
+     	(function showDays(){
         $scope.load = true
         programmingAPI.showDays()
-                  .then(function (response) {
+                  .then(function (response){
                   	$scope.days = response.data.result
                   	for(var i in $scope.days){
 	                   $scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
                   	}
                   })
-                  .catch(function (err) {
+                  .catch(function (err){
                     Materialize.toast('Erro ao carregar os dias!', 4000, "red")
                   })
-                  .finally(function () {
+                  .finally(function (){
                     $scope.load = false
                   })
      	}());
 
-     	$(document).ready(function () {
-	        $('#speaker-photo').change(function () {
-	            if (this.files.length > 0) {
-	                $.each(this.files, function (index, value) {
+     	$(document).ready(function (){
+	        $('#speaker-photo').change(function (){
+	            if (this.files.length > 0){
+	                $.each(this.files, function (index, value){
 	                	if(value.size > 1000000){
 	                		Materialize.toast('Foto até 900 KB!', 6000, 'red')
 	                		$('#speaker-photo').val('')
@@ -65,9 +65,9 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 	                })
 	            }
 	        });
-	        $('#edit-speaker-photo').change(function () {
-	            if (this.files.length > 0) {
-	                $.each(this.files, function (index, value) {
+	        $('#edit-speaker-photo').change(function (){
+	            if (this.files.length > 0){
+	                $.each(this.files, function (index, value){
 	                	if(value.size > 1000000){
 	                		Materialize.toast('Foto até 900 KB!', 6000, 'red')
 	                		$('#edit-speaker-photo').val('')
@@ -87,7 +87,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 	        });
 	    });
 
-     	$scope.createDay = function(newDay) {
+     	$scope.createDay = function(newDay){
 			$scope.load = true
 			newDay = $('#day').pickadate('picker').get('highlight', 'yyyy-mm-dd');
 			programmingAPI.createDay(newDay)
@@ -105,7 +105,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 				})
 		}
 
-     	$scope.createEvent = function(newEvent) {
+     	$scope.createEvent = function(newEvent){
 			$scope.load = true
 			newEvent.classroom = $('#class-room').val();
 			newEvent.hourStart = $('#hour-start').val();
@@ -141,7 +141,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 				})
 		}
 
-		$scope.updateEvent = function(editEvent) {
+		$scope.updateEvent = function(editEvent){
 			$scope.load = true
 			editEvent.classroom = $('#edit-class-room').val();
 			editEvent.hourStart = $('#edit-hour-start').val();
@@ -176,7 +176,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 				})
 		}
 
-		$scope.deleteDay = function(day) {
+		$scope.deleteDay = function(day){
 			$scope.load = true
 			day = day.split('/').reverse().join('-')
 			programmingAPI.deleteDay(day)
@@ -194,7 +194,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 				})
 		}
 
-		$scope.deleteEvent = function(id) {
+		$scope.deleteEvent = function(id){
 			console.log(id)
 			$scope.load = true
 			programmingAPI.deleteEvent(id)
@@ -212,11 +212,11 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 				})
 		}
 
-		$scope.openModalDay = function() {
+		$scope.openModalDay = function(){
 			$('#modalRegisterDay').modal('open')
 		}
 
-		$scope.openModalEvent = function(day) {
+		$scope.openModalEvent = function(day){
 			$scope.newEvent.day = day
 			$scope.newEvent.day = $scope.newEvent.day.split('/').reverse().join('-')
 			$('#modalRegisterEvent').modal('open')
@@ -230,10 +230,11 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 			$('#modalEditEvent').modal('open')
 		}
 
-		$scope.confirmDeleteDay = function(day) {
+		$scope.confirmDeleteDay = function(day){
 			$scope.removeDay = day
 			$('#modalDeleteDay').modal('open')
 		}
+		
 		$scope.confirmDeleteEvent = function(event){
 			$scope.removeEvent = event
 			$('#modalDeleteEvent').modal('open')
