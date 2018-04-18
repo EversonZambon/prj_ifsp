@@ -131,6 +131,20 @@ programmingDAO = function(){
         conection.end();
     };
 
+    this.getSubscriberByIdEvent = function(idEvent, response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("select p.name, s.email from subscription s, person p where s.email=p.email and s.idEvent=(?) order by p.name",[idEvent],function(err, result){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }
+            if(result[0]){
+                response.send({result});
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
     this.getEventsOnDays = function(response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("select d.day, e.id from (day d  left join event e on d.day = e.day) order by d.day;",function(err, result){

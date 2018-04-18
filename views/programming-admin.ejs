@@ -38,7 +38,8 @@
 												<p> Palestrante:  {{event.speaker}} </p>
 											</div>
 											<div class="card-action">
-												<div class="div-event">
+												<div  class="div-event">
+													<a ng-click="openModalGenerateCertificate(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Gerar certificados" data-position="top"><i class="material-icons" id="btn-generate-certificate-icon">playlist_add_check</i></a>
 													<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Editar evento" data-position="top"><i class="material-icons" id="btn-edit-event-icon">edit</i></a>
 													<a ng-click="confirmDeleteEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir evento" data-position="top"><i class="material-icons btn-event" id="btn-del-event-icon">delete</i></a>
 												</div>
@@ -104,6 +105,42 @@
 				<div class="modal-footer">
 					<div class="col s8 center">
 						<button type="submit" name="action" class="btn btn-primary center-block">Cadastrar</button>
+						<a class="btn btn-primary center-block modal-close">Cancelar</a>
+					</div>	
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Modal para gerar certificados -->
+
+	<div id="modalGenerateCertificate" class="modal col s12 m12 l12">
+		<div class="modal-content">
+			<div class="modal-header center">
+				<h4 class="modal-title modalTitle">Gerar certificados</h4>
+			</div>
+			<form id="formGenerateCertificate" ng-submit="generateCertificate()">
+				<div  class="modal-body">
+					<div class="row">
+						<div class="col s12" ng-if="subscriber.length==null">
+							<p class="center">Não há inscritos</p>
+						</div>
+						<div ng-repeat="sub in subscriber" class="col s12 m12 l12 certificate">
+							<div class="form-group col s12">
+								<div class="col s9">
+									<p>{{sub.name}}</p>
+								</div>
+								<div class="col s3 certificate-checkbox">
+									<input type="checkbox" id="check-{{subscriber.indexOf(sub)}}" name="myCheckbox" class="filled-in" />
+									<label for="check-{{subscriber.indexOf(sub)}}">Selecionar</label>	
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>				
+				<div class="modal-footer">
+					<div class="col s8 center">
+						<button ng-if="subscriber.length!=null" type="submit" name="action" class="btn btn-primary center-block">Gerar</button>
 						<a class="btn btn-primary center-block modal-close">Cancelar</a>
 					</div>	
 				</div>

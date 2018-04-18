@@ -95,6 +95,12 @@ router.get('/getSubscriberInfo/:email', function(request, response, next){
 	user.getSubscriberInfo(response.req.params.email, response)
 });
 
+router.get('/getSubscriberByIdEvent/:idEvent', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var event = new programmingDAO()
+	event.getSubscriberByIdEvent(response.req.params.idEvent, response)
+});
+
 //--- router.post ---//
 
 router.post('/postLogin', function(request, response, next){

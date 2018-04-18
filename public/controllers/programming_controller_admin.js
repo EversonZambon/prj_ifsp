@@ -6,6 +6,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 		$scope.days = {};
 		$scope.newEvent = {};
 		$scope.eventOnDays = {};
+   		$scope.subscriber = {};
 
 		(function showEvents(){
         $scope.load = true
@@ -44,7 +45,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
           .finally(function (){
             $scope.load = false
           })
-     	}());
+     	}());	
 
      	(function getEventsOnDays(){
         $scope.load = true
@@ -105,6 +106,20 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 	            }
 	        });
 	    });
+
+	    $scope.getSubscriberByIdEvent = function(idEvent){
+	      $scope.load = true
+	      programmingAPI.getSubscriberByIdEvent(idEvent)
+	        .then(function (response){
+	          $scope.subscriber = response.data.result
+	        })
+	        .catch(function (err){
+	          Materialize.toast('Erro ao carregar os inscritos!', 4000, "red")
+	        })
+	        .finally(function (){
+	          $scope.load = false
+	        })
+	    } 
 
      	$scope.createDay = function(newDay){
 			$scope.load = true
@@ -268,6 +283,11 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 		$scope.openEventInfo = function(event){
 			$scope.eventInfo = event
 			$('#modalViewInfo').modal('open')
+		}
+
+		$scope.openModalGenerateCertificate = function(event){
+			$scope.getSubscriberByIdEvent(event.id)
+			$('#modalGenerateCertificate').modal('open')
 		}
 	},
 ])

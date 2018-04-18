@@ -32,6 +32,9 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   var _getSubscriberInfo = function(email){
     return $http.get(`getSubscriberInfo/${email}`)
   }
+  var _getSubscriberByIdEvent = function(idEvent){
+    return $http.get(`getSubscriberByIdEvent/${idEvent}`)
+  }
   return {
     createEvent: _createEvent,
     createDay: _createDay,
@@ -43,6 +46,7 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
     showEvents: _showEvents,
     showDays: _showDays,
     getEventsOnDays: _getEventsOnDays,
-    getSubscriberInfo: _getSubscriberInfo
+    getSubscriberInfo: _getSubscriberInfo,
+    getSubscriberByIdEvent: _getSubscriberByIdEvent
   }
 }])
