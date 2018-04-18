@@ -33,6 +33,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
                   .then(function (response){
                   	$scope.days = response.data.result
                   	for(var i in $scope.days){
+                  	   $scope.days[i].dayFormat = $filter('date')($scope.days[i].day,'dd/MM/yyyy | EEEE')
 	                   $scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
                   	}
                   })
@@ -107,6 +108,8 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 
      	$scope.createEvent = function(newEvent){
 			$scope.load = true
+			newEvent.day = newEvent.day.split(' ')
+			newEvent.day = newEvent.day[0].split('/').reverse().join('-')
 			newEvent.classroom = $('#class-room').val();
 			newEvent.hourStart = $('#hour-start').val();
 			newEvent.hourFinish = $('#hour-finish').val();
@@ -178,7 +181,8 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 
 		$scope.deleteDay = function(day){
 			$scope.load = true
-			day = day.split('/').reverse().join('-')
+			day = day.split(' ')
+			day = day[0].split('/').reverse().join('-')
 			programmingAPI.deleteDay(day)
 				.then(function(response){
 					Materialize.toast('Dia excluído!', 4000, 'green')
@@ -218,7 +222,6 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 
 		$scope.openModalEvent = function(day){
 			$scope.newEvent.day = day
-			$scope.newEvent.day = $scope.newEvent.day.split('/').reverse().join('-')
 			$('#modalRegisterEvent').modal('open')
 		}
 

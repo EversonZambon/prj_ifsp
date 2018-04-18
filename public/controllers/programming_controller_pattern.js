@@ -32,7 +32,8 @@ weComp.controller("programming_controller_pattern", ['$scope', '$window', '$inte
 			.then(function (response){
 				$scope.days = response.data.result
 				for(var i in $scope.days){
-					$scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
+                    $scope.days[i].dayFormat = $filter('date')($scope.days[i].day,'dd/MM/yyyy | EEEE')
+                    $scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
 				}
 			})
 			.catch(function (err){

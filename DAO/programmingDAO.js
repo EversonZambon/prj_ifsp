@@ -119,7 +119,7 @@ programmingDAO = function(){
 
     this.getSubscriberInfo = function(email, response){
         var conection = mysql.createConnection(dbConfig);
-        conection.query("select * from subscription where email=(?)",[email],function(err, result){
+        conection.query("select s.idEvent from (event e left join subscription s on e.id = s.idEvent and s.email =(?)) order by e.id",[email],function(err, result){
             if(err){
                 response.status(500).send({ error: err.code });
             }
