@@ -83,6 +83,12 @@ router.get('/showDays', function(request, response, next){
 	day.showDays(response)
 });
 
+router.get('/getEventsOnDays', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var day = new programmingDAO()
+	day.getEventsOnDays(response)
+});
+
 router.get('/getSubscriberInfo/:email', function(request, response, next){
     var programmingDAO = require('../DAO/programmingDAO');
 	var user = new programmingDAO()

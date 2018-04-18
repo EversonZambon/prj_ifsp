@@ -44,6 +44,23 @@ weComp.controller("programming_controller_pattern", ['$scope', '$window', '$inte
 			})
 		}());
 
+		(function getEventsOnDays(){
+        $scope.load = true
+        programmingAPI.getEventsOnDays()
+          .then(function (response){
+          	$scope.eventOnDays = response.data.result
+          	for(var i in $scope.eventOnDays){
+              	$scope.eventOnDays[i].day =$filter('date')($scope.eventOnDays[i].day,'dd/MM/yyyy') 	
+          	}
+          })
+          .catch(function (err){
+            Materialize.toast('Erro ao carregar a programação!', 4000, "red")
+          })
+          .finally(function (){
+            $scope.load = false
+          })
+     	}());
+
 		$scope.openEventInfo = function(event){
 			$scope.eventInfo = event
 			$('#modalViewInfo').modal('open')

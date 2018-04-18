@@ -22,6 +22,9 @@
 									<p>{{day.dayFormat}}</p>
 								</div>
 								<div class="collapsible-body">
+									<div class="center" ng-repeat="e in eventOnDays" ng-if="day.day == e.day && e.id == null">
+										<p>Nenhum evento cadastrado</p>
+									</div>
 									<div ng-if="event.day == day.day" ng-repeat="event in events" class="card">
 										<div class="card">
 											<div class="card-event">
