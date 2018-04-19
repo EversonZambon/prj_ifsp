@@ -118,8 +118,9 @@
 		<div class="modal-content">
 			<div class="modal-header center">
 				<h4 class="modal-title modalTitle">Gerar certificados</h4>
+				<span>{{title}}</span>
 			</div>
-			<form id="formGenerateCertificate" ng-submit="generateCertificate()">
+			<form id="formGenerateCertificate" ng-submit="generateCertificate()" name="checkForm">
 				<div  class="modal-body">
 					<div class="row">
 						<div class="col s12" ng-if="subscriber.length==null">
@@ -130,9 +131,12 @@
 								<div class="col s9">
 									<p>{{sub.name}}</p>
 								</div>
-								<div class="col s3 certificate-checkbox">
-									<input type="checkbox" id="check-{{subscriber.indexOf(sub)}}" name="myCheckbox" class="filled-in" />
-									<label for="check-{{subscriber.indexOf(sub)}}">Selecionar</label>	
+								<div ng-if="sub.presence==0" class="col s3 certificate-checkbox">
+									<input ng-model="sub.selected" type="checkbox" id="check-{{subscriber.indexOf(sub)}}" name="checkPersons" value={{sub.email}} class="filled-in" ng-checked="sub.checked"/>
+									<label for="check-{{subscriber.indexOf(sub)}}">Selecionar</label>
+								</div>
+								<div ng-if="sub.presence!=0" class="col s3 certificate-checkbox">
+									<label class="certificate-generated">Certificado já gerado</label>
 								</div>
 							</div>
 						</div>
@@ -140,7 +144,7 @@
 				</div>				
 				<div class="modal-footer">
 					<div class="col s8 center">
-						<button ng-if="subscriber.length!=null" type="submit" name="action" class="btn btn-primary center-block">Gerar</button>
+						<button ng-click="getSelectedPersons()" ng-if="subscriber.length!=null" type="submit" name="action" class="btn btn-primary center-block">Gerar</button>
 						<a class="btn btn-primary center-block modal-close">Cancelar</a>
 					</div>	
 				</div>

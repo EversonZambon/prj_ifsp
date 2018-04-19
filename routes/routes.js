@@ -163,4 +163,11 @@ router.post('/postRemoveSubscription/:eventID,:email', function(request,response
 	event.removeSubscription(request.params, response)
 });
 
+router.post('/updatePresence', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var subscriber = new programmingDAO()
+	subscriber.updatePresence(request.body, response)
+});
+
+
 module.exports = router;

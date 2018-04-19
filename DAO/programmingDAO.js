@@ -133,7 +133,7 @@ programmingDAO = function(){
 
     this.getSubscriberByIdEvent = function(idEvent, response){
         var conection = mysql.createConnection(dbConfig);
-        conection.query("select p.name, s.email from subscription s, person p where s.email=p.email and s.idEvent=(?) order by p.name",[idEvent],function(err, result){
+        conection.query("select s.idEvent, p.name, s.email, s.presence from subscription s, person p where s.email=p.email and s.idEvent=(?) order by p.name",[idEvent],function(err, result){
             if(err){
                 response.status(500).send({ error: err.code });
             }
@@ -182,6 +182,19 @@ programmingDAO = function(){
             }
             response.end();
         })
+        conection.end();
+    };
+
+    this.updatePresence = function(selecteds, response){
+        var conection = mysql.createConnection(dbConfig);
+        for(var i in selecteds){
+            conection.query("update subscription set presence=1 where email=(?) and idEvent=(?)",[selecteds[i].email,selecteds[i].idEvent],function(err){
+                if(err){
+                    response.status(500).send({ error: err.code });
+                }
+            })
+        }
+        response.end();
         conection.end();
     };
 }

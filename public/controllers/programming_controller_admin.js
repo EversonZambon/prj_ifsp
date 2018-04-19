@@ -119,7 +119,38 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 	        .finally(function (){
 	          $scope.load = false
 	        })
-	    } 
+	    }
+
+	    $scope.getSelectedPersons = function(){
+			$scope.selecteds = [];
+			angular.forEach($scope.subscriber, function(sub){
+				if (!!sub.selected){
+					$scope.selecteds.push(sub);
+				} 
+			})
+			if($scope.selecteds.length!=0){
+				$scope.updatePresence($scope.selecteds)
+			}else{
+				Materialize.toast('Ninguém foi selecionado!', 4000, 'orange')
+			}
+		}
+
+		$scope.updatePresence = function(selecteds){
+			$scope.load = true
+			programmingAPI.updatePresence(selecteds)
+				.then(function(response){
+					Materialize.toast('Certificados gerados!', 4000, 'green')
+					$interval(function(){
+						$window.location.reload();
+					},700)
+				})
+				.catch(function(err){
+					Materialize.toast('Erro gerar certificados!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})
+		}
 
      	$scope.createDay = function(newDay){
 			$scope.load = true
@@ -287,6 +318,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 
 		$scope.openModalGenerateCertificate = function(event){
 			$scope.getSubscriberByIdEvent(event.id)
+			$scope.title = event.title
 			$('#modalGenerateCertificate').modal('open')
 		}
 	},

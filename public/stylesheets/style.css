@@ -311,6 +311,10 @@ p{
   margin-bottom: 10px;
 }
 
+.certificate-generated{
+  font-size: .99rem;
+}
+
 /*-- Localização --*/
 
 .localization{
