@@ -301,6 +301,8 @@ p{
   color: #00b3b3;
 }
 
+/*-- Certificados --*/
+
 .certificate{
   border-bottom: solid 1px;
   border-color: #cccccc;
@@ -313,6 +315,34 @@ p{
 
 .certificate-generated{
   font-size: .99rem;
+}
+
+.certificates-item{
+  height: 4.5rem;
+}
+
+.certificates-item span{
+  font-size: 1.5rem;
+  font-family: cursive;
+  color: #8c8c8c;
+}
+
+.btn-certificate{
+  background-color: #e64d00;
+}
+
+.btn-certificate:hover{
+  background-color: #993300;
+}
+
+#modalCertificate{
+  background-image: url("/images/Certificado.png");
+  background-repeat: no-repeat, repeat;
+  top: 0;
+  bottom: 65px;
+  width: 73%;
+  height: 96%;
+  max-height: 100%;
 }
 
 /*-- Localização --*/
@@ -333,6 +363,7 @@ p{
 #toast-container{
   bottom: 84%;
 }
+
 
 /*-- Footer --*/
 

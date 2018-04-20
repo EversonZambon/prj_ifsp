@@ -8,10 +8,32 @@
 		<div class="s12 col">
 			<div class="row container container-wecomp">
 				<div class="col s12 m12 l10 offset-l1">
-					<div class="center-align">
+					<div ng-if="certificates.length > 0" class="center">
+						<h4>Certificados</h4>
+					</div>
+					<div ng-if="certificates.length == null" class="center-align" ng-cloak>
 						<p>O certificados serão gerados após a semana da WeComp</p>
 					</div>
+					<div ng-if="certificates.length > 0" ng-cloak>
+						<ul class="collection " >
+							<li ng-repeat="certificate in certificates" class="collection-item certificates-item">
+								<span>{{certificate.title}}</span>
+								<a ng-click="viewCertificate(certificate)" data-tooltip="Visualizar certificado" data-position="left" class="btn tooltipped btn-floating secondary-content btn-certificate" href=""><i class="material-icons right-align">aspect_ratio</i></a>
+							</li>
+						</ul>
+					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="modalCertificate" class="modal">
+		<div class="modal-content">
+			<div style="margin: 22% 0% 0 31%;" class="row">
+				<h1>CERTIFICADO</h1>
+			</div>
+			<div class="row">
+				<h2>{{certificate.person}}</h2>{
 			</div>
 		</div>
 	</div>

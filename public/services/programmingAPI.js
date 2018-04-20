@@ -19,6 +19,9 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   }
   var _removeSubscription = function(eventID, email){
     return $http.post(`postRemoveSubscription/${eventID},${email}`)
+  }  
+  var _updatePresence = function(selecteds){
+    return $http.post(`updatePresence/`,selecteds)
   }
   var _showEvents = function (){
     return $http.get(`showEvents/`)
@@ -35,8 +38,8 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   var _getSubscriberByIdEvent = function(idEvent){
     return $http.get(`getSubscriberByIdEvent/${idEvent}`)
   }
-  var _updatePresence = function(selecteds){
-    return $http.post(`updatePresence/`,selecteds)
+  var _getCertificates = function(email){
+    return $http.get(`getCertificates/${email}`)
   }
   return {
     createEvent: _createEvent,
@@ -45,12 +48,13 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
     deleteDay: _deleteDay,
     addSubscription: _addSubscription,
     removeSubscription: _removeSubscription,
+    updatePresence: _updatePresence,
     deleteEvent: _deleteEvent,
     showEvents: _showEvents,
     showDays: _showDays,
     getEventsOnDays: _getEventsOnDays,
     getSubscriberInfo: _getSubscriberInfo,
     getSubscriberByIdEvent: _getSubscriberByIdEvent,
-    updatePresence: _updatePresence
+    getCertificates: _getCertificates
   }
 }])

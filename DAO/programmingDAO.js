@@ -145,6 +145,20 @@ programmingDAO = function(){
         conection.end();
     };
 
+    this.getCertificates = function(email, response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("select e.id, e.day, e.workload, e.title from subscription s join event e on s.idEvent = e.id where s.presence=1 and s.email=(?)",[email],function(err, result){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }
+            if(result[0]){
+                response.send({result});
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
     this.getEventsOnDays = function(response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("select d.day, e.id from (day d  left join event e on d.day = e.day) order by d.day;",function(err, result){
@@ -157,7 +171,7 @@ programmingDAO = function(){
             response.end();
         })
         conection.end();
-    };
+    };    
 
     this.deleteDay = function(day, response){
         var conection = mysql.createConnection(dbConfig);

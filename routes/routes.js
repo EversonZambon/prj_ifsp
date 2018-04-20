@@ -109,6 +109,12 @@ router.get('/getSubscriberByIdEvent/:idEvent', function(request, response, next)
 	event.getSubscriberByIdEvent(response.req.params.idEvent, response)
 });
 
+router.get('/getCertificates/:email', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var certificate = new programmingDAO()
+	certificate.getCertificates(response.req.params.email, response)
+});
+
 //--- router.post ---//
 
 router.post('/postLogin', function(request, response, next){

@@ -81,6 +81,23 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
           })
     }());
 
+    (function getCertificates(){
+      $scope.load = true
+      programmingAPI.getCertificates($scope.currentUser.email)
+        .then(function (response){
+          $scope.certificates = response.data.result
+          for(var i in $scope.certificates){
+            $scope.certificates[i].day = $filter('date')($scope.certificates[i].day,'dd/MM/yyyy')
+          }
+        })
+        .catch(function (err){
+          Materialize.toast('Erro ao carregar os certificados!', 4000, "red")
+        })
+        .finally(function (){
+          $scope.load = false
+        })
+    }());
+
     $scope.addSubscription = function(eventID){
       $scope.load = true
       programmingAPI.addSubscription(eventID, $scope.currentUser.email)
@@ -117,6 +134,14 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
         .finally(function (){
             $scope.load = false
         })
+    }
+
+    $scope.viewCertificate = function(certificate){
+      $scope.certificate = certificate
+      $scope.certificate.person = $scope.currentUser.name
+      //$scope.load = true
+      console.log($scope.certificate)
+      $('#modalCertificate').modal('open')
     }
 
     $scope.openEventInfo = function(event){
