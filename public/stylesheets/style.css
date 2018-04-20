@@ -177,13 +177,13 @@ p{
   border-radius: 50%;
 }
 
-#btn-edit-event-icon, #btn-del-event-icon, #btn-view-event-icon, #btn-generate-certificate-icon{
+#btn-edit-event-icon, #btn-del-event-icon, #btn-view-event-icon, #btn-edit-profile-icon, #btn-generate-certificate-icon{
   font-size: 2.3rem;
   color: #999999;
   width: 10px;
 }
 
-#btn-edit-event-icon:hover, #btn-del-event-icon:hover, #btn-view-event-icon:hover, #btn-generate-certificate-icon:hover{
+#btn-edit-event-icon:hover, #btn-del-event-icon:hover, #btn-view-event-icon:hover, #btn-edit-profile-icon:hover, #btn-generate-certificate-icon:hover{
   color: #666666;
 }
 

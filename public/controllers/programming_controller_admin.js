@@ -1,12 +1,12 @@
-weComp.controller("programming_controller_admin", ['$scope', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
-	function ($scope, $window, $interval, programmingAPI, loginAPI, $filter){
+weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
+	function ($scope, $cookieStore, $window, $interval, programmingAPI, loginAPI, $filter){
 
 		$scope.load = false
 		$scope.events = {};
 		$scope.days = {};
 		$scope.newEvent = {};
 		$scope.eventOnDays = {};
-   		$scope.subscriber = {};
+		$scope.subscriber = {};
 
 		(function showEvents(){
         $scope.load = true
@@ -45,7 +45,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
           .finally(function (){
             $scope.load = false
           })
-     	}());	
+     	}());
 
      	(function getEventsOnDays(){
         $scope.load = true
@@ -107,7 +107,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$window', '$interv
 	        });
 	    });
 
-	    $scope.getSubscriberByIdEvent = function(idEvent){
+   	    $scope.getSubscriberByIdEvent = function(idEvent){
 	      $scope.load = true
 	      programmingAPI.getSubscriberByIdEvent(idEvent)
 	        .then(function (response){

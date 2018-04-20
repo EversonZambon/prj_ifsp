@@ -1,6 +1,5 @@
 <% include navbar-pattern %>
 <div ng-controller="login_controller">
-  <script src="./services/registerAPI.js"></script>
   <script src="./services/loginAPI.js"></script>
   <script src="./controllers/login_controller.js"></script>
   <% include components/preloader %>
@@ -41,7 +40,7 @@
        <div class="col s12 m6 l4">
         <div class="card card-login-subscribe">
           <h4>Inscreva-se</h4>
-          <form ng-submit="register(newUser)">
+          <form ng-submit="registerUser(newUser)">
             <div class="row-login">
               <div class="row">
                 <div class="input-field col s10">

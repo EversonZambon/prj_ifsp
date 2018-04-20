@@ -1,34 +1,40 @@
 <% include components/header %>
-<div class="navbar-fixed">
-    <ul id="dropdown1" class="dropdown-content">
-      <li><a href="/minhaconta">Minha conta</a></li>
-      <li class="divider"></li>
-      <li><a href="/sair">Sair</a></li>
-    </ul>
-    <ul id="dropdown2" class="dropdown-content">
-      <li class="divider"></li>
-      <li><a href="/minhaconta">Minha conta</a></li>
-      <li><a href="/sair">Sair</a></li>
-    </ul>
-    <nav>
-        <div class="nav-wrapper">
-            <a href="/" class="brand-logo"><img class="logo-wecomp-nav" src="/images/wecomp2.png" alt="WeComp"></a>
-            <a href="#" data-activates="side-nav" class="button-collapse" onclick="openNav()"><i class="material-icons reset">menu</i></a>
-            <ul class="center hide-on-med-and-down">
-                
-            </ul>
-            <ul class="right hide-on-med-and-down">
-                <li class=" "><a href="/programacao">Programação</a></li>
-                <li class=" "><a href="/localizacao">Localização</a></li>
-                <li><a class="dropdown-trigger user-name" href="#!" data-activates="dropdown1"><%= nome %><i class="material-icons right">arrow_drop_down</i></a></li>
-            </ul>
-        </div>
-    </nav>
+<div ng-controller="login_controller">
+  <script src="./services/loginAPI.js"></script>
+  <script src="./controllers/login_controller.js"></script>
+  <div class="navbar-fixed">
+      <ul id="dropdown1" class="dropdown-content">
+        <li><a href="/minhaconta">Minha conta</a></li>
+        <li class="divider"></li>
+        <li><a href="/sair" ng-click="logout()">Sair</a></li>
+      </ul>
+      <ul id="dropdown2" class="dropdown-content">
+        <li class="divider"></li>
+        <li><a href="/minhaconta">Minha conta</a></li>
+        <li><a href="/sair" ng-click="logout()">Sair</a></li>
+      </ul>
+      <nav>
+          <div class="nav-wrapper">
+              <a href="/" class="brand-logo"><img class="logo-wecomp-nav" src="/images/wecomp2.png" alt="WeComp"></a>
+              <a href="#" data-activates="side-nav" class="button-collapse" onclick="openNav()"><i class="material-icons reset">menu</i></a>
+              <ul class="center hide-on-med-and-down">
+                  
+              </ul>
+              <ul class="right hide-on-med-and-down">
+                  <li class=" "><a href="/programacao">Programação</a></li>
+                  <li class=" "><a href="/localizacao">Localização</a></li>
+                  <li><a class="dropdown-trigger user-name" href="#!" data-activates="dropdown1" ng-cloak>{{userName}}<i class="material-icons right">arrow_drop_down</i></a></li>
+              </ul>
+          </div>
+      </nav>
+  </div>
+
+  <!-- Off Canvas Menu -->
+
+  <ul class="side-nav collapsible" id="side-nav" data-collapsible="expandable">
+      <li class=" "><a class="closebtn" href="" onclick="closeNav()">&times;</a></li>
+      <li class=" "><a href="/programacao">Programação</a></li>
+      <li class=" "><a href="/localizacao">Localização</a></li>
+      <li><a class="dropdown-trigger" href="#!" data-activates="dropdown2">{{userName}}<i class="material-icons right">arrow_drop_down</i></a></li>
+  </ul>
 </div>
-<!-- Off Canvas Menu -->
-<ul class="side-nav collapsible" id="side-nav" data-collapsible="expandable">
-    <li class=" "><a class="closebtn" href="" onclick="closeNav()">&times;</a></li>
-    <li class=" "><a href="/programacao">Programação</a></li>
-    <li class=" "><a href="/localizacao">Localização</a></li>
-    <li><a class="dropdown-trigger" href="#!" data-activates="dropdown2"><%= nome %><i class="material-icons right">arrow_drop_down</i></a></li>
-</ul>

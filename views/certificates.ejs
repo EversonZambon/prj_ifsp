@@ -1,0 +1,19 @@
+<% include navbar-user%>
+<div ng-controller="programming_controller_user">
+	<script src="./services/programmingAPI.js"></script>
+	<script src="./services/loginAPI.js"></script>
+	<script src="./controllers/programming_controller_user.js"></script>
+	<% include components/preloader %>
+	<div class="row" ng-cloak>
+		<div class="s12 col">
+			<div class="row container container-wecomp">
+				<div class="col s12 m12 l10 offset-l1">
+					<div class="center-align">
+						<p>O certificados serão gerados após a semana da WeComp</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<% include components/footer%>

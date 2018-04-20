@@ -1,18 +1,15 @@
 var express = require('express');
 var router = express.Router();
 var app = express();
-var userName = "";
 
 //--- router.get ---//
 
 router.get('/', function(request, response, next){
-	if(session.user){
-		if(session.user.profile == 0){
-	 		userName = session.user.name.split(" ");
-			response.render('index-user', {titulo: 'WeComp', nome: userName[0]});
-		}else if(session.user.profile == 1){
-			userName = session.user.name.split(" ");
-			response.render('index-admin', {titulo: 'WeComp', nome: userName[0]});
+	if(request.session.user){
+		if(request.session.profile == 0){
+			response.render('index-user', {titulo: 'WeComp'});
+		}else if(request.session.profile == 1){
+			response.render('index-admin', {titulo: 'WeComp'});
 		}
 	}else{
 		response.render('index-pattern', {titulo: 'WeComp'});
@@ -20,42 +17,58 @@ router.get('/', function(request, response, next){
 });
 
 router.get('/localizacao', function(request, response, next){
-	if(session.user){
-		if(session.user.profile == 0){
-	 		userName = session.user.name.split(" ");
-			response.render('localization-user', {titulo: 'Localização | WeComp', nome: userName[0]});
-		}else if(session.user.profile == 1){
-			userName = session.user.name.split(" ");
-			response.render('localization-admin', {titulo: 'Localização | WeComp', nome: userName[0]});
+	if(request.session.user){
+		if(request.session.profile == 0){
+			response.render('localization-user', {titulo: 'Localização | WeComp'});
+		}else if(request.session.profile == 1){
+			response.render('localization-admin', {titulo: 'Localização | WeComp'});
 		}
 	}else{
 		response.render('localization-pattern', {titulo: 'Localização | WeComp'});
 	}
 });
 
-router.get('/minhaconta', function(request, response, next){
-	if(session.user){
-		if(session.user.profile == 0){
-			userName = session.user.name.split(" ");
-			response.render('profile-user', {titulo: 'Minha Conta | WeComp', nome: userName[0]});
+router.get('/programacao', function(request, response, next){
+	if(request.session.user){
+		if(request.session.profile == 0){
+			response.render('programming-user', {titulo: 'Programação | WeComp'});
+		}else if(request.session.profile == 1){
+			response.render('programming-admin', {titulo: 'Programação | WeComp'});
 		}
+	}else{
+		response.render('programming-pattern', {titulo: 'Programação | WeComp'});
+	}
+});
+
+router.get('/minhaconta', function(request, response, next){
+	if(request.session.user){
+		response.render('profile-user', {titulo: 'Minha Conta | WeComp'});
 	}else{
 		response.render('index-pattern', {titulo: 'WeComp'});
 	}
 });
 
-router.get('/programacao', function(request, response, next){
-	if(session.user){
-		if(session.user.profile == 0){
-	 		userName = session.user.name.split(" ");
-			response.render('programming-user', {titulo: 'Programação | WeComp', nome: userName[0]});
-		}else if(session.user.profile == 1){
-			userName = session.user.name.split(" ");
-			response.render('programming-admin', {titulo: 'Programação | WeComp', nome: userName[0]});
+router.get('/certificados', function(request, response, next){
+    if(request.session.user){
+    	if(request.session.profile == 0){
+    		response.render('certificates', {titulo: 'Certificados | WeComp'});
+    	}else if(request.session.profile == 1){
+			response.render('index-admin', {titulo: 'WeComp'});
 		}
-	}else{
-		response.render('programming-pattern', {titulo: 'Programação | WeComp'});
+    }else{
+		response.render('index-pattern', {titulo: 'WeComp'});
 	}
+});
+
+router.get('/sair', function(request, response, next){
+	request.session.destroy(function(err) {
+	  if(err) {
+	  	console.log("err",err)
+	    return next(err);
+	  }else{
+	    return response.render('index-pattern', {titulo: 'WeComp'});
+	  }
+	});
 });
 
 router.get('/login', function(request, response, next){
@@ -64,11 +77,6 @@ router.get('/login', function(request, response, next){
 
 router.get('/recuperarsenha', function(request, response, next){
     response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
-});
-
-router.get('/sair', function(request, response, next){
-	delete session.user;
-	response.render('index-pattern', {titulo: 'WeComp'});
 });
 
 router.get('/showEvents', function(request, response, next){
@@ -106,13 +114,19 @@ router.get('/getSubscriberByIdEvent/:idEvent', function(request, response, next)
 router.post('/postLogin', function(request, response, next){
     var loginDAO = require('../DAO/loginDAO');
 	var user = new loginDAO();
-	user.signIn(request.body, response);
+	user.signIn(request.body, response, request);
 });
 
 router.post('/postRegisterUser', function(request, response, next){
-	var registerDAO = require('../DAO/registerDAO');
-	var newUser = new registerDAO()
+	var loginDAO = require('../DAO/loginDAO');
+	var newUser = new loginDAO();
 	newUser.registerUser(request.body, response)
+});
+
+router.post('/postUpdateUser', function(request, response, next){
+	var loginDAO = require('../DAO/loginDAO');
+	var user = new loginDAO();
+	user.updateUser(request.body, response)
 });
 
 router.post('/postRegisterDay/:newDay', function(request, response, next){
@@ -168,6 +182,5 @@ router.post('/updatePresence', function(request, response, next){
 	var subscriber = new programmingDAO()
 	subscriber.updatePresence(request.body, response)
 });
-
 
 module.exports = router;

@@ -4,8 +4,8 @@ use wecomp;
 
 CREATE TABLE person(
     
-    email VARCHAR(30) NOT NULL,
-    name VARCHAR(30) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    name VARCHAR(50) NOT NULL,
     password TEXT NOT NULL,
     profile BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY(email)
@@ -27,9 +27,9 @@ CREATE TABLE event(
     classroom VARCHAR(10) NOT NULL,
     vacancies INT NOT NULL,
     vacanciesRemaining INT NOT NULL DEFAULT 0,
-    title VARCHAR(30) NOT NULL,
+    title VARCHAR(50) NOT NULL,
     description TEXT NOT NULL,
-    speaker VARCHAR(30) NOT NULL,
+    speaker VARCHAR(50) NOT NULL,
     photo LONGTEXT,
     PRIMARY KEY(id),
     FOREIGN KEY (day) REFERENCES day(day) ON DELETE CASCADE
@@ -37,8 +37,9 @@ CREATE TABLE event(
 
 CREATE TABLE subscription(
 
-    email VARCHAR(30) NOT NULL,
+    email VARCHAR(50) NOT NULL,
     idEvent INT NOT NULL,
+    presence BOOLEAN DEFAULT FALSE,
     PRIMARY KEY(email,idEvent),
     FOREIGN KEY (email) REFERENCES person(email) ON DELETE CASCADE,
     FOREIGN KEY (idEvent) REFERENCES event(id) ON DELETE CASCADE

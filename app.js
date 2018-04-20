@@ -5,8 +5,20 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/routes');
+var session = require('express-session');
 var app = express();
-session = express();
+ 
+app.use(session({
+  secret: 'we_comp_session_ifsp',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+
+app.use(function(req, res, next) {
+  res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

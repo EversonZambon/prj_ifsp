@@ -1,22 +1,29 @@
-weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$window', '$interval', 'registerAPI', 'loginAPI',
-	function ($scope, $cookies, $cookieStore, $window, $interval, registerAPI, loginAPI){
+weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$window', '$interval', 'loginAPI',
+	function ($scope, $cookies, $cookieStore, $window, $interval, loginAPI){
 
 		$scope.user = {};
 		$scope.newUser = {};
+		$scope.editUser = {};
 		$scope.load = false;
 
 		(function getInfo(){
 	      $scope.currentUser = $cookieStore.get('user');
+	      if($scope.currentUser){
+	      	var name = $scope.currentUser.name.split(" ");
+	      	$scope.userName = name[0];
+	      	$scope.editUser.name = $scope.currentUser.name;
+	  	  }
 	    }());
 
-		$scope.register = function(newUser){
+		$scope.registerUser = function(newUser){
 			if(newUser.password === newUser.passConfirm){
 				$scope.load = true
-				registerAPI.create(newUser)
+				loginAPI.registerUser(newUser)
 					.then(function(response){
-						Materialize.toast('Cadastrado!', 4000, 'green')
 						loginAPI.signIn(newUser)
-							.then(function(){
+							.then(function(response){
+								$cookieStore.put('user', response.data);
+								Materialize.toast('Cadastrado!', 4000, 'green')
 								$interval(function(){
 									$window.location.href = '/programacao';
 								},700);
@@ -58,8 +65,11 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 			
 		}
 
+		$scope.logout = function(user){
+			$cookieStore.remove('user');
+		}
+
 		$scope.recoverPassword = function(email){
-			console.log(email.toString())
 			$scope.load = true
 			loginAPI.passwordRecover(email)
 				.then(function(response){
@@ -75,6 +85,38 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 				.finally(function(){
 					$scope.load = false
 				})
+		}
+
+		$scope.updateUser = function(user){
+			if(user.password === user.passConfirm){
+				$scope.load = true
+				user.email = $scope.currentUser.email
+				loginAPI.updateUser(user)
+					.then(function(response){
+						loginAPI.signIn(user)
+							.then(function(response){
+								$cookieStore.remove('user');
+								$cookieStore.put('user', response.data);
+								Materialize.toast('Dados atualizados!', 4000, 'green')
+								$interval(function(){
+									$window.location.reload();
+								},700);
+							})
+					})
+					.catch(function(err){
+						Materialize.toast('Erro ao atualizar!', 4000, 'red')
+					})
+					.finally(function(){
+						$scope.editUser = {}
+						$scope.load = false
+					})
+			}else{
+				Materialize.toast('Confira sua senha!', 4000, 'orange')
+			}
+		}
+
+		$scope.openModalEditProfile = function(){
+			$('#modalUpdateUser').modal('open');
 		}
 	},
 ])

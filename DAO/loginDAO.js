@@ -6,7 +6,31 @@ var rn = require('random-number');
 
 loginDAO = function(){
 
-    this.signIn = function(user, response){
+    this.registerUser = function(user, response){
+        var conection = mysql.createConnection(dbConfig);
+        var password = bcrypt.hashSync(user.password, 10);
+        conection.query("Insert into person(email,name,password) Values(?,?,?)",[user.email,user.name,password],function(err){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
+    this.updateUser = function(user, response){
+        var conection = mysql.createConnection(dbConfig);
+        var password = bcrypt.hashSync(user.password, 10);
+        conection.query("update person set name=(?), password=(?) where email=(?)",[user.name,password,user.email],function(err){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
+    this.signIn = function(user, response, request){
         var conection = mysql.createConnection(dbConfig);
         conection.query("select * from person where email=?",[user.email],function(err,result){    
             if(err){
@@ -16,14 +40,16 @@ loginDAO = function(){
                 response.status(401).send({ error: 'Não autorizado' });
             }else{
                 if(bcrypt.compareSync(user.password, result[0].password)==true){
-                    session.user = {}
-                    session.user.name = result[0].name;
-                    session.user.email = result[0].email;
-                    session.user.profile = result[0].profile;
-                    var userLog = {};
-                    userLog.name = result[0].name;
-                    userLog.email = result[0].email;
-                    response.send(userLog);
+                    
+                    var currentUser = {};
+                    currentUser.name = result[0].name;
+                    currentUser.email = result[0].email;
+
+                    var session = request.session
+                    session.user = currentUser;
+                    session.profile = result[0].profile;
+
+                    response.send(currentUser);
                 }else{
                     response.status(401).send({ error: 'Não autorizado' });
                 }
