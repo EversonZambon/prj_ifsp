@@ -18,22 +18,11 @@
 						<ul class="collection " >
 							<li ng-repeat="certificate in certificates" class="collection-item certificates-item">
 								<span>{{certificate.title}}</span>
-								<a ng-click="viewCertificate(certificate)" data-tooltip="Visualizar certificado" data-position="left" class="btn tooltipped btn-floating secondary-content btn-certificate" href=""><i class="material-icons right-align">aspect_ratio</i></a>
+								<a ng-click="viewCertificate(certificate.id)" data-tooltip="Visualizar certificado" data-position="left" class="btn tooltipped btn-floating secondary-content btn-certificate" href=""><i class="material-icons right-align">aspect_ratio</i></a>
 							</li>
 						</ul>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="modalCertificate" class="modal">
-		<div class="modal-content">
-			<div style="margin: 22% 0% 0 31%;" class="row">
-				<h1>CERTIFICADO</h1>
-			</div>
-			<div class="row">
-				<h2>{{certificate.person}}</h2>{
 			</div>
 		</div>
 	</div>

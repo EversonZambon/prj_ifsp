@@ -335,14 +335,27 @@ p{
   background-color: #993300;
 }
 
-#modalCertificate{
-  background-image: url("/images/Certificado.png");
-  background-repeat: no-repeat, repeat;
-  top: 0;
-  bottom: 65px;
-  width: 73%;
-  height: 96%;
-  max-height: 100%;
+#certificate-img{
+  display: unset;
+  position: absolute;
+  margin: auto;
+  bottom: 4%;
+  min-width: auto;
+  min-height: auto;
+}
+
+#parallax-certificate{
+  position: unset;
+  overflow: hidden;
+  height: 48rem;
+}
+
+#data-certificate{
+  margin-top: 15%;
+}
+
+#data-certificate h2{
+  font-family: cursive;
 }
 
 /*-- Localização --*/

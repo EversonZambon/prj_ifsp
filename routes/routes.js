@@ -115,6 +115,18 @@ router.get('/getCertificates/:email', function(request, response, next){
 	certificate.getCertificates(response.req.params.email, response)
 });
 
+router.get('/certificado-visualizar', function(request, response, next){
+	if(request.session.user){
+		if(request.session.profile == 0){
+    		response.render('certificates-view', {titulo: 'Certificados | WeComp'});
+    	}else if(request.session.profile == 1){
+    		response.render('index-admin', {titulo: 'WeComp'});
+    	}
+	}else{
+		return response.render('index-pattern', {titulo: 'WeComp'});
+	}
+});
+
 //--- router.post ---//
 
 router.post('/postLogin', function(request, response, next){

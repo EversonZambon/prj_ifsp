@@ -98,6 +98,13 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
         })
     }());
 
+    (function getCertificates(){
+      $scope.load = true
+      $scope.certificate = JSON.parse(window.sessionStorage.getItem('certificate'));
+      //window.sessionStorage.removeItem('certificate');
+    }());
+
+
     $scope.addSubscription = function(eventID){
       $scope.load = true
       programmingAPI.addSubscription(eventID, $scope.currentUser.email)
@@ -136,12 +143,23 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
         })
     }
 
-    $scope.viewCertificate = function(certificate){
-      $scope.certificate = certificate
-      $scope.certificate.person = $scope.currentUser.name
-      //$scope.load = true
-      console.log($scope.certificate)
-      $('#modalCertificate').modal('open')
+    $scope.viewCertificate = function(certificateId){
+       var i = 0;
+       var a = false;
+       while(i < $scope.certificates.length && a === false){
+           if ($scope.certificates[i].id === certificateId){
+               a = true;
+           } else {
+               i++;
+           }
+       }
+       if(i < $scope.certificates.length){
+          window.sessionStorage.setItem('certificate', JSON.stringify($scope.certificates[i]));
+          window.location.href='/certificado-visualizar'
+       }else{
+          Materialize.toast('Erro ao abrir o certificado!', 4000, 'red')
+          window.location.href='/certificado'
+       }
     }
 
     $scope.openEventInfo = function(event){
