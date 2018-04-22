@@ -336,18 +336,15 @@ p{
 }
 
 #certificate-img{
+  position: relative;
   display: unset;
-  position: absolute;
-  margin: auto;
-  bottom: 4%;
-  min-width: auto;
   min-height: auto;
+  min-width: auto;
 }
 
 #parallax-certificate{
   position: unset;
-  overflow: hidden;
-  height: 48rem;
+  min-height: 50rem;
 }
 
 #data-certificate{

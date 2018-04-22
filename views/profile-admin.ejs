@@ -1,0 +1,76 @@
+<% include navbar-admin %>
+<div ng-controller="login_controller">
+  <script src="./services/loginAPI.js"></script>
+  <script src="./controllers/login_controller.js"></script>
+  <% include components/preloader %>
+  <div class="row" ng-cloak>
+    <div class="col s12 offset-l2 offset-m1">
+      <div class="col s12 m10 l8">
+        <div class="row container-wecomp">
+          <div class="card current-user">
+            <div class="card-content">
+              <div class="row">
+                <div class="col s12">
+                  <div class="col l1.5">
+                    <i class="large material-icons person-profile">person_pin</i>
+                  </div>
+                  <div class="col s9 current-user">
+                    <h1 class="card-title">{{currentUser.name}}</h1>
+                    <p>{{currentUser.email}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-action right-align">
+             <a ng-click="openModalEditProfile()" class="btn tooltipped btn-flat btn-event" data-tooltip="Editar dados" data-position="top"><i class="material-icons" id="btn-edit-profile-icon">edit</i></a>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+
+<!-- Modal para editar os dados do usuário -->
+
+  <div id="modalUpdateUser" class="modal">
+    <div class="row">
+      <div class="modal-content">
+        <div class="col s12">
+          <div class="modal-header center">
+            <h4 class="modal-title modalTitle">Editar dados</h4>
+          </div>
+          <form ng-submit="updateUser(editUser)">
+            <div class="row-login">
+              <div class="row">
+                <div class="input-field col s10">
+                  <input id="userName" ng-model="editUser.name" type="text" class="validate" required>
+                  <label for="userName">Nome</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s10">
+                  <input id="newPassword" ng-model="editUser.password" type="password" class="validate" maxlength="8" size="8" required>
+                  <label for="newPassword">Nova senha (máximo de 8 caracteres)</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s10">
+                  <input id="passwordConfirm" ng-model="editUser.passConfirm" type="password" class="validate" maxlength="8" size="8" required>
+                  <label for="passwordConfirm">Confirmar senha</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <div class="col s12 center">
+                <button type="submit" name="action" class="btn btn-primary center-block">Atualizar</button>
+                <a class="btn btn-primary center-block modal-close">Cancelar</a>  
+              </div>  
+            </div>
+          </form>
+        </div>
+      </div>
+    </div> 
+  </div>
+
+</div>
+<% include components/footer%>

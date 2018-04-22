@@ -1,5 +1,5 @@
-weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieStore', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
-  function ($scope, $cookies, $cookieStore, $window, $interval, programmingAPI, loginAPI, $filter){
+weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieStore', '$window', '$interval', 'programmingAPI', '$filter',
+  function ($scope, $cookies, $cookieStore, $window, $interval, programmingAPI, $filter){
 
     $scope.load = false
     $scope.events = {};
@@ -98,10 +98,11 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
         })
     }());
 
-    (function getCertificates(){
-      $scope.load = true
-      $scope.certificate = JSON.parse(window.sessionStorage.getItem('certificate'));
-      //window.sessionStorage.removeItem('certificate');
+    (function getCertificate(){
+      $scope.certificate = $cookieStore.get('certificate')
+      if($scope.certificate){
+        $scope.certificate.person = $scope.currentUser.name
+      }
     }());
 
 
@@ -143,19 +144,10 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
         })
     }
 
-    $scope.viewCertificate = function(certificateId){
-       var i = 0;
-       var a = false;
-       while(i < $scope.certificates.length && a === false){
-           if ($scope.certificates[i].id === certificateId){
-               a = true;
-           } else {
-               i++;
-           }
-       }
-       if(i < $scope.certificates.length){
-          window.sessionStorage.setItem('certificate', JSON.stringify($scope.certificates[i]));
-          window.location.href='/certificado-visualizar'
+    $scope.viewCertificate = function(position){
+       if(position < $scope.certificates.length){
+          $cookieStore.put('certificate', $scope.certificates[position])
+          window.open('/certificado-visualizar');
        }else{
           Materialize.toast('Erro ao abrir o certificado!', 4000, 'red')
           window.location.href='/certificado'
@@ -170,6 +162,17 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
     $scope.confirmDeleteSubscription = function(event){
       $scope.subscriptionEventID = event.id
       $('#modalRemoveSubscription').modal('open')
+    }
+
+    $scope.saveCertificate = function(){
+        html2canvas(document.querySelector("#form-certificate"))
+          .then(function(canvas) {
+              var img = canvas.toDataURL('image/png');
+              var doc = new jsPDF('l', 'mm', [400,200]);
+              doc.addImage(img, 'png', 0, 0);
+              doc.save('certificado.pdf');
+              //document.body.appendChild(canvas)
+          });﻿
     }
 	},
 ])

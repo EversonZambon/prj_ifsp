@@ -67,6 +67,7 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 
 		$scope.logout = function(user){
 			$cookieStore.remove('user');
+			$cookieStore.remove('certificate')
 		}
 
 		$scope.recoverPassword = function(email){

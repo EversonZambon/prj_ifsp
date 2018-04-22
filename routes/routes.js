@@ -42,7 +42,11 @@ router.get('/programacao', function(request, response, next){
 
 router.get('/minhaconta', function(request, response, next){
 	if(request.session.user){
-		response.render('profile-user', {titulo: 'Minha Conta | WeComp'});
+		if(request.session.profile == 0){
+			response.render('profile-user', {titulo: 'Minha Conta | WeComp'});
+		}else if(request.session.profile == 1){
+			response.render('profile-admin', {titulo: 'Minha Conta | WeComp'});
+		}
 	}else{
 		response.render('index-pattern', {titulo: 'WeComp'});
 	}

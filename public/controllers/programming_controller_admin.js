@@ -1,5 +1,5 @@
-weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$window', '$interval', 'programmingAPI', 'loginAPI', '$filter',
-	function ($scope, $cookieStore, $window, $interval, programmingAPI, loginAPI, $filter){
+weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$window', '$interval', 'programmingAPI', '$filter',
+	function ($scope, $cookieStore, $window, $interval, programmingAPI, $filter){
 
 		$scope.load = false
 		$scope.events = {};
