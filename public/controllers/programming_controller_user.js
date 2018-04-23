@@ -145,20 +145,20 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
     }
 
     $scope.downloadCertificate = function(){
-        $scope.load = true
-        html2canvas(document.querySelector("#certificate"))
-          .then(function(canvas){
-              var img = canvas.toDataURL('image/png');
-              var doc = new jsPDF('l', 'mm', 'a4');
-              doc.addImage(img, 'png', 8, 8);
-              doc.save('Certificado-WeComp.pdf');
-          })
-          .catch(function(err){
-            Materialize.toast('Erro ao fazer o download!', 4000, 'red')
-          })
-          .finally(function(){
-            $scope.load = false
-          })
+      Materialize.toast('Aguarde o download!', 4000, 'orange')
+      html2canvas(document.querySelector("#certificate"))
+        .then(function(canvas){
+          var img = canvas.toDataURL('image/png');
+          var doc = new jsPDF('l', 'mm', 'a4');
+          doc.addImage(img, 'png', 8, 8);
+          doc.save('Certificado-WeComp.pdf');
+        })
+        .catch(function(err){
+          Materialize.toast('Erro ao fazer o download!', 4000, 'red')
+        })
+        .finally(function(){
+          Materialize.toast('Download concluido!', 4000, 'green')
+        })
     }
 
     $scope.viewCertificate = function(certificate){

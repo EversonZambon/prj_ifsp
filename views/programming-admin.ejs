@@ -127,7 +127,7 @@
 					<div ng-repeat="sub in subscriber" class="col s12 m12 l12 certificate">
 						<div class="form-group col s12">
 							<div class="col s8">
-								<p>{{sub.name}}</p>
+								<p>{{sub.name}}</br><span class="gen-person-email">{{sub.email}}</span></p>	
 							</div>	
 							<div ng-if="sub.presence==0" class="col s4 certificate-checkbox">
 								<input ng-model="sub.selected" type="checkbox" id="check-{{subscriber.indexOf(sub)}}" name="checkPersons" value={{sub.email}} class="filled-in" ng-checked="sub.checked"/>

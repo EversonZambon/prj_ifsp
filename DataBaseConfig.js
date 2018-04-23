@@ -1,6 +1,6 @@
 module.exports = {
    host:'localhost',
    user:'root',
-   password:"user",
+   password:"123*root",
    database:'wecomp'
 };

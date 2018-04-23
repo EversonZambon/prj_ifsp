@@ -306,6 +306,10 @@ p{
   color: #00b3b3;
 }
 
+.gen-person-email{
+  font-size: 1rem;
+}
+
 /*-- Certificados --*/
 
 .certificate{
@@ -314,7 +318,7 @@ p{
 }
 
 .certificate-checkbox{
-  margin-top: 25px;
+  margin-top: 2.8rem;
   margin-bottom: 10px;
 }
 
@@ -365,8 +369,13 @@ p{
   font-family: cursive;
 }
 
+.footer-certificate{
+  padding-top: 0;
+}
+
 .btn-download-certificate{
-  margin-left: 1rem;
+  margin-left: 3rem;
+  margin-bottom: 3rem;
 }
 
 /*-- Localização --*/
