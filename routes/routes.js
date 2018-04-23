@@ -64,6 +64,18 @@ router.get('/certificados', function(request, response, next){
 	}
 });
 
+router.get('/certificado-visualizar', function(request, response, next){
+	if(request.session.user){
+		if(request.session.profile == 0){
+    		response.render('certificates-view', {titulo: 'Certificados | WeComp'});
+    	}else if(request.session.profile == 1){
+    		response.render('index-admin', {titulo: 'WeComp'});
+    	}
+	}else{
+		response.render('index-pattern', {titulo: 'WeComp'});
+	}
+});
+
 router.get('/sair', function(request, response, next){
 	request.session.destroy(function(err) {
 	  if(err) {
@@ -76,11 +88,27 @@ router.get('/sair', function(request, response, next){
 });
 
 router.get('/login', function(request, response, next){
-    response.render('login', {titulo: 'Login | WeComp'});
+	if(request.session.user){
+		if(request.session.profile == 0){
+    		response.render('index-user', {titulo: 'WeComp'});
+    	}else if(request.session.profile == 1){
+    		response.render('index-admin', {titulo: 'WeComp'});
+    	}
+	}else{
+		response.render('login', {titulo: 'Login | WeComp'});
+	}
 });
 
 router.get('/recuperarsenha', function(request, response, next){
-    response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
+	if(request.session.user){
+		if(request.session.profile == 0){
+    		response.render('index-user', {titulo: 'WeComp'});
+    	}else if(request.session.profile == 1){
+    		response.render('index-admin', {titulo: 'WeComp'});
+    	}
+	}else{
+		response.render('recover-password', {titulo: 'Recuperar Senha | WeComp'});
+	}
 });
 
 router.get('/showEvents', function(request, response, next){
@@ -117,18 +145,6 @@ router.get('/getCertificates/:email', function(request, response, next){
     var programmingDAO = require('../DAO/programmingDAO');
 	var certificate = new programmingDAO()
 	certificate.getCertificates(response.req.params.email, response)
-});
-
-router.get('/certificado-visualizar', function(request, response, next){
-	if(request.session.user){
-		if(request.session.profile == 0){
-    		response.render('certificates-view', {titulo: 'Certificados | WeComp'});
-    	}else if(request.session.profile == 1){
-    		response.render('index-admin', {titulo: 'WeComp'});
-    	}
-	}else{
-		return response.render('index-pattern', {titulo: 'WeComp'});
-	}
 });
 
 //--- router.post ---//

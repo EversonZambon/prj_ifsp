@@ -65,42 +65,22 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
      	}());
 
      	$(document).ready(function (){
-	        $('#speaker-photo').change(function (){
+	        $('#speaker-photo, #edit-speaker-photo').change(function (){
 	            if (this.files.length > 0){
 	                $.each(this.files, function (index, value){
-	                	if(value.size > 1000000){
-	                		Materialize.toast('Foto até 900 KB!', 6000, 'red')
-	                		$('#speaker-photo').val('')
-	                	}
 	                	switch(value.type){
 	                		case "image/png": break;
 	                		case "image/jpeg": break;
 	                		case "image/jpg": break;
 	                		default:{
 	                			Materialize.toast('Apenas arquivos de imagem!', 6000, 'red')
-	                			$('#speaker-photo').val('')
-	                			break;
+	                			$('#speaker-photo, #edit-speaker-photo').val('')
+	                			return 0;
 	                		}
 	                	}
-	                })
-	            }
-	        });
-	        $('#edit-speaker-photo').change(function (){
-	            if (this.files.length > 0){
-	                $.each(this.files, function (index, value){
 	                	if(value.size > 1000000){
 	                		Materialize.toast('Foto até 900 KB!', 6000, 'red')
-	                		$('#edit-speaker-photo').val('')
-	                	}
-	                	switch(value.type){
-	                		case "image/png": break;
-	                		case "image/jpeg": break;
-	                		case "image/jpg": break;
-	                		default:{
-	                			Materialize.toast('Apenas arquivos de imagem!', 6000, 'red')
-	                			$('#edit-speaker-photo').val('')
-	                			break;
-	                		}
+	                		$('#speaker-photo, #edit-speaker-photo').val('')
 	                	}
 	                })
 	            }

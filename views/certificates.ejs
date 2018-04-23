@@ -14,10 +14,10 @@
 						<p>O certificados serão gerados após a semana da WeComp</p>
 					</div>
 					<div ng-if="certificates.length > 0" ng-cloak>
-						<ul class="collection " >
+						<ul class="collection">
 							<li ng-repeat="certificate in certificates" class="collection-item certificates-item">
 								<span>{{certificate.title}}</span>
-								<a ng-click="viewCertificate(certificates.indexOf(certificate))" data-tooltip="Visualizar certificado" data-position="left" class="btn tooltipped btn-floating secondary-content btn-certificate" href=""><i class="material-icons right-align">aspect_ratio</i></a>
+								<a ng-click="viewCertificate(certificate)" data-tooltip="Visualizar certificado" data-position="left" class="btn tooltipped btn-flat secondary-content btn-certificate" href=""><i class="material-icons right-align">crop_original</i></a>
 							</li>
 						</ul>
 					</div>

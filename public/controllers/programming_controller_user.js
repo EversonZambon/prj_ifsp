@@ -135,7 +135,7 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
             $interval(function(){
               $window.location.reload();
             },700)
-       })
+        })
         .catch(function (err){
             Materialize.toast('Erro ao remover inscrição!', 4000, 'red')
         })
@@ -144,14 +144,26 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
         })
     }
 
-    $scope.viewCertificate = function(position){
-       if(position < $scope.certificates.length){
-          $cookieStore.put('certificate', $scope.certificates[position])
-          window.open('/certificado-visualizar');
-       }else{
-          Materialize.toast('Erro ao abrir o certificado!', 4000, 'red')
-          window.location.href='/certificado'
-       }
+    $scope.downloadCertificate = function(){
+        $scope.load = true
+        html2canvas(document.querySelector("#certificate"))
+          .then(function(canvas){
+              var img = canvas.toDataURL('image/png');
+              var doc = new jsPDF('l', 'mm', 'a4');
+              doc.addImage(img, 'png', 8, 8);
+              doc.save('Certificado-WeComp.pdf');
+          })
+          .catch(function(err){
+            Materialize.toast('Erro ao fazer o download!', 4000, 'red')
+          })
+          .finally(function(){
+            $scope.load = false
+          })
+    }
+
+    $scope.viewCertificate = function(certificate){
+      $cookieStore.put('certificate', certificate)
+      window.open('/certificado-visualizar');
     }
 
     $scope.openEventInfo = function(event){
@@ -162,17 +174,6 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
     $scope.confirmDeleteSubscription = function(event){
       $scope.subscriptionEventID = event.id
       $('#modalRemoveSubscription').modal('open')
-    }
-
-    $scope.saveCertificate = function(){
-        html2canvas(document.querySelector("#form-certificate"))
-          .then(function(canvas) {
-              var img = canvas.toDataURL('image/png');
-              var doc = new jsPDF('l', 'mm', [400,200]);
-              doc.addImage(img, 'png', 0, 0);
-              doc.save('certificado.pdf');
-              //document.body.appendChild(canvas)
-          });﻿
     }
 	},
 ])
