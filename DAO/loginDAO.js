@@ -9,7 +9,7 @@ loginDAO = function(){
     this.registerUser = function(user, response){
         var conection = mysql.createConnection(dbConfig);
         var password = bcrypt.hashSync(user.password, 10);
-        conection.query("Insert into person(email,name,password) Values(?,?,?)",[user.email,user.name,password],function(err){
+        conection.query("Insert into person(email,name,cpf,password) Values(?,?,?,?)",[user.email,user.name,user.cpf,password],function(err){
             if(err){
                 response.status(500).send({ error: err.code });
             }

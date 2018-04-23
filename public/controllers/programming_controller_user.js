@@ -100,9 +100,6 @@ weComp.controller("programming_controller_user", ['$scope', '$cookies','$cookieS
 
     (function getCertificate(){
       $scope.certificate = $cookieStore.get('certificate')
-      if($scope.certificate){
-        $scope.certificate.person = $scope.currentUser.name
-      }
     }());
 
 

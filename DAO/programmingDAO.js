@@ -133,7 +133,7 @@ programmingDAO = function(){
 
     this.getSubscriberByIdEvent = function(idEvent, response){
         var conection = mysql.createConnection(dbConfig);
-        conection.query("select s.idEvent, p.name, s.email, s.presence from subscription s, person p where s.email=p.email and s.idEvent=(?) order by p.name",[idEvent],function(err, result){
+        conection.query("select s.idEvent, p.name, p.cpf, s.email, s.presence from subscription s, person p where s.email=p.email and s.idEvent=(?) order by p.name",[idEvent],function(err, result){
            if(err){
                 response.status(500).send({ error: err.code });
             }
@@ -147,7 +147,7 @@ programmingDAO = function(){
 
     this.getCertificates = function(email, response){
         var conection = mysql.createConnection(dbConfig);
-        conection.query("select e.id, e.day, e.workload, e.title from subscription s join event e on s.idEvent = e.id where s.presence=1 and s.email=(?)",[email],function(err, result){
+        conection.query("select p.name, p.cpf, e.id, e.day, e.workload, e.title from ((subscription s join event e on s.idEvent = e.id) join person p on p.email = s.email) where s.presence=1 and s.email=(?)",[email],function(err, result){
             if(err){
                 response.status(500).send({ error: err.code });
             }

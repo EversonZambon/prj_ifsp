@@ -16,32 +16,37 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 	    }());
 
 		$scope.registerUser = function(newUser){
-			if(newUser.password === newUser.passConfirm){
-				$scope.load = true
-				loginAPI.registerUser(newUser)
-					.then(function(response){
-						loginAPI.signIn(newUser)
-							.then(function(response){
-								$cookieStore.put('user', response.data);
-								Materialize.toast('Cadastrado!', 4000, 'green')
-								$interval(function(){
-									$window.location.href = '/programacao';
-								},700);
-							})
-					})
-					.catch(function(err){
-						if(err.data.error === "ER_DUP_ENTRY"){
-							Materialize.toast('E-mail já cadastrado!', 4000, 'red')
-						}else{
-							Materialize.toast('Erro ao cadastrar!', 4000, 'red')
-						}
-					})
-					.finally(function(){
-						$scope.newUser = {}
-						$scope.load = false
-					})
+			if(CPF.validate(newUser.cpf)===true){
+				if(newUser.password === newUser.passConfirm){
+					$scope.load = true
+					newUser.cpf = CPF.format(newUser.cpf)
+					loginAPI.registerUser(newUser)
+						.then(function(response){
+							loginAPI.signIn(newUser)
+								.then(function(response){
+									$cookieStore.put('user', response.data);
+									Materialize.toast('Cadastrado!', 4000, 'green')
+									$interval(function(){
+										$window.location.href = '/programacao';
+									},700);
+								})
+						})
+						.catch(function(err){
+							if(err.data.error === "ER_DUP_ENTRY"){
+								Materialize.toast('E-mail já cadastrado!', 4000, 'red')
+							}else{
+								Materialize.toast('Erro ao cadastrar!', 4000, 'red')
+							}
+						})
+						.finally(function(){
+							$scope.newUser = {}
+							$scope.load = false
+						})
+				}else{
+					Materialize.toast('Confira sua senha!', 4000, 'orange')
+				}
 			}else{
-				Materialize.toast('Confira sua senha!', 4000, 'orange')
+				Materialize.toast('CPF Inválido!', 4000, 'red')
 			}
 		}
 

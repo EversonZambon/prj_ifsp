@@ -6,6 +6,7 @@ CREATE TABLE person(
     
     email VARCHAR(50) NOT NULL,
     name VARCHAR(50) NOT NULL,
+    cpf VARCHAR(15) NOT NULL,
     password TEXT NOT NULL,
     profile BOOLEAN NOT NULL DEFAULT FALSE,
     PRIMARY KEY(email)
@@ -45,4 +46,4 @@ CREATE TABLE subscription(
     FOREIGN KEY (idEvent) REFERENCES event(id) ON DELETE CASCADE
 )ENGINE=INNODB;
 
-insert into person values ("admin@ifsp.com", "Admin", '$2a$10$bY1Af27upkZEf4EhwIaRyeybTETuMWIe4Xh5mNi37Q8SGc8hvpJ/m',1);
+insert into person values ("admin@ifsp.com", "Admin", '0', '$2a$10$bY1Af27upkZEf4EhwIaRyeybTETuMWIe4Xh5mNi37Q8SGc8hvpJ/m', 1);

@@ -56,6 +56,12 @@
               </div>
               <div class="row">
                 <div class="input-field col s10">
+                  <input id="newCpf" ui-mask="999.999.999-99" ng-model="newUser.cpf" type="text" class="validate" required>
+                  <label for="newCpf">CPF</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s10">
                   <input id="newPassword" ng-model="newUser.password" type="password" class="validate" maxlength="8" size="8" required>
                   <label for="newPassword">Senha (máximo de 8 caracteres)</label>
                 </div>
