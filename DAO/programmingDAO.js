@@ -59,6 +59,19 @@ programmingDAO = function(){
         conection.end();
     };
 
+    this.registerSupport = function(support, response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("insert into support(site, photo) Values(?,?)",[support.site, support.photo],function(err){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }else{
+                response.status(200).end();
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
     this.addSubscription = function(info, response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("insert into subscription(idEvent,email) Values(?,?)",[info.eventID,info.email],function(err){
@@ -94,6 +107,19 @@ programmingDAO = function(){
     this.showDays = function(response){
         var conection = mysql.createConnection(dbConfig);
         conection.query("select * from day;",function(err, result){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }else{
+                response.send({result});
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
+    this.showSupports = function(response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("select * from support;",function(err, result){
             if(err){
                 response.status(500).send({ error: err.code });
             }else{

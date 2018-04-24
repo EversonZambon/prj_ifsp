@@ -46,7 +46,7 @@ weComp.controller("login_controller", ['$scope', '$cookies', '$cookieStore', '$w
 					Materialize.toast('Confira sua senha!', 4000, 'orange')
 				}
 			}else{
-				Materialize.toast('CPF Inválido!', 4000, 'red')
+				Materialize.toast('CPF Inválido!', 4000, 'orange')
 			}
 		}
 

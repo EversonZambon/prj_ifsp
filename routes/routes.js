@@ -111,6 +111,18 @@ router.get('/recuperarsenha', function(request, response, next){
 	}
 });
 
+router.get('/apoio', function(request, response, next){
+	if(request.session.user){
+		if(request.session.profile == 0){
+    		response.render('index-user', {titulo: 'WeComp'});
+    	}else if(request.session.profile == 1){
+    		response.render('support-admin', {titulo: 'Apoio | WeComp'});
+    	}
+	}else{
+		response.render('index-pattern', {titulo: 'WeComp'});
+	}
+});
+
 router.get('/showEvents', function(request, response, next){
     var programmingDAO = require('../DAO/programmingDAO');
 	var event = new programmingDAO()
@@ -121,6 +133,12 @@ router.get('/showDays', function(request, response, next){
     var programmingDAO = require('../DAO/programmingDAO');
 	var day = new programmingDAO()
 	day.showDays(response)
+});
+
+router.get('/showSupports', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var support = new programmingDAO()
+	support.showSupports(response)
 });
 
 router.get('/getEventsOnDays', function(request, response, next){
@@ -171,6 +189,12 @@ router.post('/postRegisterDay/:newDay', function(request, response, next){
     var programmingDAO = require('../DAO/programmingDAO');
 	var day = new programmingDAO()
 	day.registerDay(request.params.newDay, response)
+});
+
+router.post('/postRegisterSupport', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var support = new programmingDAO()
+	support.registerSupport(request.body, response)
 });
 
 router.post('/postDeleteDay/:day', function(request, response, next){

@@ -1,0 +1,73 @@
+<% include navbar-admin %>
+	<div ng-controller="programming_controller_admin">
+		<script src="./services/programmingAPI.js"></script>
+		<script src="./controllers/programming_controller_admin.js"></script>
+		<% include components/preloader %>
+		<div class="row" ng-cloak>
+			<div class="s12 col">
+				<div class="row container container-wecomp">
+					<div class="col s12 m12 l10 offset-l1">
+						<div ng-if="supports.length == 0" class="center-align">
+							<p>Nenhuma apoio foi cadastrado</p>
+						</div>
+						<div ng-if="supports.length > 0" class="center">
+							<h4>Apoio</h4>
+						</div>
+						<div class="col s4" ng-repeat="support in supports" ng-if="supports.length > 0">
+							<div>
+								<a ng-click="(support.id)" class="btn-floating btn-remove-photo"><i class="material-icons">close</i></a>
+								<label>Excluir apoio</label>
+								<a href="{{support.site}}" target="_blank">
+									<img width="200" ng-src='{{support.photo}}'/>
+								</a>							
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12 m12 l10 offset-l4">
+							<a ng-click="openModalSupport()" class="btn tooltipped btn-floating btn-large waves-effect waves-light blue secondary-content" data-tooltip="Cadastrar um apoio" data-position="left"><i class="material-icons btn-add-day">add</i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>				
+
+		<!-- Modal para criar evento -->
+
+		<div id="modalRegisterSupport" class="modal col s12 m12 l12">
+			<div class="modal-content date">
+				<div class="modal-header center">
+					<h4 class="modal-title modalTitle">Cadastrar Apoio</h4>
+				</div>
+				<form id="formDay" ng-submit="createSupport(newSupport)">
+					<div class="modal-body">
+						<div class="row">
+							<div class="input-field col s12">
+								<input ng-model="newSupport.site" type="text" name="support-site" class="validate" id="support-site">
+								<label for="name-speaker">Site do apoio</label>
+							</div>
+							<div class="input-field col s12">
+								<div class="file-field input-field">
+									<div class="btn btn-photo">
+										<span>Imagem</span>
+										<input id="support-photo" ng-model="newSupport.photo" name="file" type="file" accept="image/*">
+									</div>
+									<div class="file-path-wrapper">
+										<input class="file-path" placeholder="Imagem do logo" type="text" required>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>				
+					<div class="modal-footer">
+						<div class="col s8 center">
+							<button type="submit" name="action" class="btn btn-primary center-block">Cadastrar</button>
+							<a class="btn btn-primary center-block modal-close">Cancelar</a>
+						</div>	
+					</div>
+				</form>
+			</div>
+		</div>
+
+	</div>
+<% include components/footer%>

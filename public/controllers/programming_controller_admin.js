@@ -4,9 +4,11 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 		$scope.load = false
 		$scope.events = {};
 		$scope.days = {};
+		$scope.newSupport = {};
 		$scope.newEvent = {};
 		$scope.eventOnDays = {};
 		$scope.subscriber = {};
+		$scope.supports = {};
 
 		(function showEvents(){
         $scope.load = true
@@ -47,6 +49,20 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
           })
      	}());
 
+     	(function showSupports(){
+        $scope.load = true
+        programmingAPI.showSupports()
+          .then(function (response){
+          	$scope.supports = response.data.result
+          })
+          .catch(function (err){
+            Materialize.toast('Erro ao carregar os apoios!', 4000, "red")
+          })
+          .finally(function (){
+            $scope.load = false
+          })
+     	}());
+
      	(function getEventsOnDays(){
         $scope.load = true
         programmingAPI.getEventsOnDays()
@@ -65,7 +81,7 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
      	}());
 
      	$(document).ready(function (){
-	        $('#speaker-photo, #edit-speaker-photo').change(function (){
+	        $('#speaker-photo, #edit-speaker-photo, #support-photo').change(function (){
 	            if (this.files.length > 0){
 	                $.each(this.files, function (index, value){
 	                	switch(value.type){
@@ -74,13 +90,13 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 	                		case "image/jpg": break;
 	                		default:{
 	                			Materialize.toast('Apenas arquivos de imagem!', 6000, 'red')
-	                			$('#speaker-photo, #edit-speaker-photo').val('')
+	                			$('#speaker-photo, #edit-speaker-photo, #support-photo').val('')
 	                			return 0;
 	                		}
 	                	}
 	                	if(value.size > 1000000){
 	                		Materialize.toast('Foto até 900 KB!', 6000, 'red')
-	                		$('#speaker-photo, #edit-speaker-photo').val('')
+	                		$('#speaker-photo, #edit-speaker-photo, #support-photo').val('')
 	                	}
 	                })
 	            }
@@ -126,6 +142,32 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 				})
 				.catch(function(err){
 					Materialize.toast('Erro gerar certificados!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})
+		}
+
+		$scope.createSupport = function(newSupport){
+			$scope.load = true
+			var file = new FileReader();
+			file.readAsDataURL($('#support-photo')[0].files[0]);
+			file.onloadend = function () {
+		    	newSupport.photo = file.result
+		    	$scope.createSupportDB(newSupport)
+		  	}
+		}
+
+		$scope.createSupportDB = function(newSupport){
+			programmingAPI.createSupport(newSupport)
+				.then(function(response){
+					Materialize.toast('Apoio cadastrado!', 4000, 'green')
+					$interval(function(){
+						$window.location.reload();
+					},700)
+				})
+				.catch(function(err){
+					Materialize.toast('Erro ao cadastrar!', 4000, 'red')
 				})
 				.finally(function(){
 					$scope.load = false
@@ -258,6 +300,10 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 				.finally(function(){
 					$scope.load = false
 				})
+		}
+
+		$scope.openModalSupport = function(){
+			$('#modalRegisterSupport').modal('open')
 		}
 
 		$scope.openModalDay = function(){
