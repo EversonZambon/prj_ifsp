@@ -209,6 +209,12 @@ router.post('/postDeleteEvent/:id', function(request, response, next){
 	event.deleteEvent(request.params.id, response)
 });
 
+router.post('/postDeleteSupport/:id', function(request, response, next){
+    var programmingDAO = require('../DAO/programmingDAO');
+	var support = new programmingDAO()
+	support.deleteSupport(request.params.id, response)
+});
+
 router.post('/postRegisterEvent', function(request, response, next){
     var programmingDAO = require('../DAO/programmingDAO');
 	var event = new programmingDAO()

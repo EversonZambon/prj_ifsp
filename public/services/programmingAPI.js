@@ -16,7 +16,10 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   }
   var _deleteEvent = function (id) {
     return $http.post(`postDeleteEvent/${id}`)
-  }  
+  }
+  var _deleteSupport = function (id) {
+    return $http.post(`postDeleteSupport/${id}`)
+  }
   var _addSubscription = function(eventID, email){
     return $http.post(`postAddSubscription/${eventID},${email}`)
   }
@@ -57,6 +60,7 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
     removeSubscription: _removeSubscription,
     updatePresence: _updatePresence,
     deleteEvent: _deleteEvent,
+    deleteSupport: _deleteSupport,
     showEvents: _showEvents,
     showDays: _showDays,
     getEventsOnDays: _getEventsOnDays,

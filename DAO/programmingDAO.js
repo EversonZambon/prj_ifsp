@@ -225,6 +225,19 @@ programmingDAO = function(){
         conection.end();
     };
 
+    this.deleteSupport = function(id, response){
+        var conection = mysql.createConnection(dbConfig);
+        conection.query("delete from support where id=(?)",[id],function(err){
+            if(err){
+                response.status(500).send({ error: err.code });
+            }else{
+                response.status(200).end();
+            }
+            response.end();
+        })
+        conection.end();
+    };
+
     this.updatePresence = function(selecteds, response){
         var conection = mysql.createConnection(dbConfig);
         for(var i in selecteds){

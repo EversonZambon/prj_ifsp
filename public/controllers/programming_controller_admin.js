@@ -150,6 +150,9 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 
 		$scope.createSupport = function(newSupport){
 			$scope.load = true
+			if(newSupport.site){
+				newSupport.site = 'http://' + newSupport.site
+			}
 			var file = new FileReader();
 			file.readAsDataURL($('#support-photo')[0].files[0]);
 			file.onloadend = function () {
@@ -285,11 +288,27 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 		}
 
 		$scope.deleteEvent = function(id){
-			console.log(id)
 			$scope.load = true
 			programmingAPI.deleteEvent(id)
 				.then(function(response){
 					Materialize.toast('Evento excluído!', 4000, 'green')
+					$interval(function(){
+						$window.location.reload();
+					},700)
+				})
+				.catch(function(err){
+					Materialize.toast('Erro ao excluir!', 4000, 'red')
+				})
+				.finally(function(){
+					$scope.load = false
+				})
+		}
+
+		$scope.deleteSupport = function(id){
+			$scope.load = true
+			programmingAPI.deleteSupport(id)
+				.then(function(response){
+					Materialize.toast('Apoio excluído!', 4000, 'green')
 					$interval(function(){
 						$window.location.reload();
 					},700)
