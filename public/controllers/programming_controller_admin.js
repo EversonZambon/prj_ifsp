@@ -118,12 +118,12 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 	    }
 
 	    $scope.getSelectedPersons = function(){
-			$scope.selecteds = [];
-			angular.forEach($scope.subscriber, function(sub){
-				if (!!sub.selected){
-					$scope.selecteds.push(sub);
-				} 
-			})
+	    	$scope.selecteds = [];
+			for(var i in $scope.subscriber){
+				if($('#check-'+i).prop('checked')==true){
+					$scope.selecteds.push($scope.subscriber[i])
+				}
+			}
 			if($scope.selecteds.length!=0){
 				$scope.updatePresence($scope.selecteds)
 			}else{
@@ -319,6 +319,14 @@ weComp.controller("programming_controller_admin", ['$scope', '$cookieStore', '$w
 				.finally(function(){
 					$scope.load = false
 				})
+		}
+
+		$scope.checkAll = function(){
+			if($(':checkbox').prop('checked')==false){
+				$(':checkbox').prop('checked', true);
+			}else{
+				$(':checkbox').prop('checked', false);
+			}
 		}
 
 		$scope.openModalSupport = function(){

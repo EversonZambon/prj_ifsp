@@ -285,7 +285,7 @@ p{
   font-weight: bold;
 }
 
-.btn-flat-del:hover{
+.btn-flat-del:hover, .btn-select-all:hover{
   background-color: #e0e0e0;
 }
 
@@ -308,6 +308,10 @@ p{
 
 .gen-person-email{
   font-size: 1rem;
+}
+
+.btn-check-all{
+  margin-right: 6.5rem;
 }
 
 /*-- Certificados --*/
