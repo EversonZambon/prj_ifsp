@@ -314,6 +314,12 @@ p{
   margin-right: 6.5rem;
 }
 
+#list-presence-item{
+  min-height: 3rem;
+  padding: 1rem;
+  padding-bottom: 2.5rem;
+}
+
 /*-- Certificados --*/
 
 .certificate{
@@ -412,4 +418,8 @@ p{
 .page-footer h4{
   font-family: sans-serif;
   color: #4d4d4d;
+}
+
+.support{
+  margin-bottom: 2rem;
 }

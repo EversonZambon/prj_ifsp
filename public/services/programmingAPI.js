@@ -5,9 +5,6 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   var _createDay = function (day) {
     return $http.post(`postRegisterDay/${day}`)
   }
-  var _createSupport = function (support){
-    return $http.post(`postRegisterSupport/`,support)
-  }
   var _updateEvent = function(event){
     return $http.post(`postUpdateEvent/`,event)
   }
@@ -16,9 +13,6 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   }
   var _deleteEvent = function (id) {
     return $http.post(`postDeleteEvent/${id}`)
-  }
-  var _deleteSupport = function (id) {
-    return $http.post(`postDeleteSupport/${id}`)
   }
   var _addSubscription = function(eventID, email){
     return $http.post(`postAddSubscription/${eventID},${email}`)
@@ -47,26 +41,20 @@ weComp.factory('programmingAPI', ['$http', 'env', function ($http, env) {
   var _getCertificates = function(email){
     return $http.get(`getCertificates/${email}`)
   }
-  var _showSupports = function (){
-    return $http.get(`showSupports/`)
-  }
   return {
     createEvent: _createEvent,
     createDay: _createDay,
-    createSupport: _createSupport,
     updateEvent: _updateEvent,
     deleteDay: _deleteDay,
     addSubscription: _addSubscription,
     removeSubscription: _removeSubscription,
     updatePresence: _updatePresence,
     deleteEvent: _deleteEvent,
-    deleteSupport: _deleteSupport,
     showEvents: _showEvents,
     showDays: _showDays,
     getEventsOnDays: _getEventsOnDays,
     getSubscriberInfo: _getSubscriberInfo,
     getSubscriberByIdEvent: _getSubscriberByIdEvent,
-    getCertificates: _getCertificates,
-    showSupports: _showSupports
+    getCertificates: _getCertificates
   }
 }])

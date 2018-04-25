@@ -1,5 +1,5 @@
-weComp.controller("programming_controller_pattern", ['$scope', '$window', '$interval', 'programmingAPI', '$filter',
-	function ($scope, $window, $interval, programmingAPI, $filter){
+weComp.controller("programming_controller_pattern", ['$scope', 'programmingAPI', '$filter',
+	function ($scope, programmingAPI, $filter){
 
 		$scope.load = false
 		$scope.events = {};

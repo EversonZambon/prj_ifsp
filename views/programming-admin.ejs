@@ -38,7 +38,8 @@
 											</div>
 											<div class="card-action">
 												<div class="div-event">
-													<a ng-click="openModalGenerateCertificate(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Gerar certificados" data-position="top"><i class="material-icons" id="btn-generate-certificate-icon">playlist_add_check</i></a>
+													<a ng-click="openModalGeneratePresenceList(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Gerar lista de presença" data-position="top"><i class="material-icons" id="btn-generate-certificate-icon">playlist_add_check</i></a>
+													<a ng-click="openModalGenerateCertificate(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Gerar certificados" data-position="top"><i class="material-icons" id="btn-generate-certificate-icon">image</i></a>
 													<a ng-click="openModalEditEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Editar evento" data-position="top"><i class="material-icons" id="btn-edit-event-icon">edit</i></a>
 													<a ng-click="confirmDeleteEvent(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir evento" data-position="top"><i class="material-icons btn-event" id="btn-del-event-icon">delete</i></a>
 												</div>
@@ -125,7 +126,7 @@
 						<p class="center">Não há inscritos</p>
 					</div>
 					<div class="col s4 offset-s8" ng-if="subscriber.length!=null">
-						<a id="btn-select" ng-click="checkAll()" class="btn btn-flat btn-select-all"><i class="material-icons">keyboard_arrow_down</i></a>
+						<a id="btn-select" ng-click="selectAll()" class="btn btn-flat btn-select-all"><i class="material-icons">keyboard_arrow_down</i></a>
 					</div>
 					<div ng-repeat="sub in subscriber" class="col s12 m12 l12 certificate">
 						<div class="form-group col s12">
@@ -145,7 +146,41 @@
 			</div>
 			<div class="modal-footer">
 				<div class="col s8 center">
-					<button ng-click="getSelectedPersons()" ng-if="subscriber.length!=null" class="btn btn-primary center-block">Gerar</button>
+					<button ng-click="getSelectedPersons()" ng-if="subscriber.length!=null" class="btn btn-primary center-block">Gerar Certificados</button>
+					<a class="btn btn-primary center-block modal-close">Cancelar</a>
+				</div>	
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal para gerar lista de presença -->
+
+	<div id="modalGeneratePresenceList" class="modal col s12 m12 l12">
+		<div class="modal-content">
+			<div class="modal-header center">
+				<h4 class="modal-title modalTitle">Gerar lista de presença</h4>
+				<span>{{title}}</span>
+			</div>
+			<div  class="modal-body">
+				<div class="row" ng-cloak>
+					<div class="col s12">
+						<div class="col s12" ng-if="subscriber.length==null">
+							<p class="center">Não há inscritos</p>
+						</div>
+						<div ng-if="subscriber.length > 0" ng-cloak>
+							<ul ng-repeat="sub in subscriber" class="collection">
+								<li id="list-presence-item" class="collection-item">
+									<span class="col s6">{{sub.name}}</span>
+									<span class="col s6 right-align">{{sub.cpf}}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<div class="col s8 center">
+					<button ng-click="generateListPDF(title)" ng-if="subscriber.length!=null" class="btn btn-primary center-block">Gerar Lista</button>
 					<a class="btn btn-primary center-block modal-close">Cancelar</a>
 				</div>	
 			</div>
@@ -310,4 +345,7 @@
 	</div>
 
 </div>
+	<script src="./javascripts/jspdf.debug.js"></script>
+	<script src="./javascripts/jspdf.min.js"></script>
+	<script src="./javascripts/jspdf.plugin.autotable.js"></script>
 <% include components/footer%>
