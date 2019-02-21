@@ -13,7 +13,7 @@ weComp.controller("login_controller", ['$scope', '$cookieStore', '$window', '$in
 					newUser.cpf = CPF.format(newUser.cpf)
 					loginAPI.registerUser(newUser)
 						.then(function(response){
-							loginAPI.signIn(newUser)
+							loginAPI.logIn(newUser)
 								.then(function(response){
 									$cookieStore.put('user', response.data);
 									Materialize.toast('Cadastrado!', 4000, 'green')
@@ -23,7 +23,7 @@ weComp.controller("login_controller", ['$scope', '$cookieStore', '$window', '$in
 								})
 						})
 						.catch(function(err){
-							if(err.data.error === "ER_DUP_ENTRY"){
+							if(err.data.error && err.data.error == '23505'){
 								Materialize.toast('E-mail já cadastrado!', 4000, 'red')
 							}else{
 								Materialize.toast('Erro ao cadastrar!', 4000, 'red')
@@ -41,9 +41,9 @@ weComp.controller("login_controller", ['$scope', '$cookieStore', '$window', '$in
 			}
 		}
 
-		$scope.signIn = function(user){
+		$scope.logIn = function(user){
 			$scope.load = true
-			loginAPI.signIn(user)
+			loginAPI.logIn(user)
 				.then(function(response){
 					$cookieStore.put('user', response.data);
 					Materialize.toast('Bem vindo!', 4000, 'green')

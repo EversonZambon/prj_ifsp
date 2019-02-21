@@ -27,16 +27,16 @@
 									<div ng-if="event.day == day.day" ng-repeat="event in events" class="card">
 										<div class="card">
 											<div class="card-event">
-												<h4> {{event.title}} <span class="span-subs" ng-if="subscriber[events.indexOf(event)].idEvent == event.id" >Inscrito <i class="material-icons">check</i></span></h4>
-												<p> Inicia às: {{event.hourStart}} | Termina às: {{event.hourFinish}} | Carga horária: {{event.workload}}</p>
-												<p> Total de vagas: {{event.vacancies}} | Inscritos: {{event.vacanciesRemaining}}</p>
+												<h4> {{event.title}} <span class="span-subs" ng-if="subscriber[events.indexOf(event)].idevent == event.id" >Inscrito <i class="material-icons">check</i></span></h4>
+												<p> Inicia às: {{event.hourstart}} | Termina às: {{event.hourfinish}} | Carga horária: {{event.workload}}</p>
+												<p> Total de vagas: {{event.vacancies}} | Inscritos: {{event.vacanciesremaining}}</p>
 												<p> Palestrante:  {{event.speaker}} </p>
 											</div>
 											<div class="card-action">
 												<div class="div-event">
-													<a ng-if="subscriber[events.indexOf(event)].idEvent != event.id && event.vacanciesRemaining != event.vacancies" ng-click='addSubscription(event.id)' class="btn tooltipped btn-flat btn-event" data-tooltip="Inscrever-se" data-position="top"><i class="material-icons" id="btn-register-event-icon">add</i></a>
-													<span ng-if="event.vacanciesRemaining == event.vacancies">Total de vagas preenchidas</span>
-													<a ng-if="subscriber[events.indexOf(event)].idEvent == event.id" ng-click='confirmDeleteSubscription(event)' class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir inscrição" data-position="top"><i class="material-icons" id="btn-remove-event-icon">remove</i></a>
+													<a ng-if="subscriber[events.indexOf(event)].idevent != event.id && event.vacanciesremaining != event.vacancies" ng-click='addSubscription(event.id)' class="btn tooltipped btn-flat btn-event" data-tooltip="Inscrever-se" data-position="top"><i class="material-icons" id="btn-register-event-icon">add</i></a>
+													<span ng-if="event.vacanciesremaining == event.vacancies">Total de vagas preenchidas</span>
+													<a ng-if="subscriber[events.indexOf(event)].idevent == event.id" ng-click='confirmDeleteSubscription(event)' class="btn tooltipped btn-flat btn-event" data-tooltip="Excluir inscrição" data-position="top"><i class="material-icons" id="btn-remove-event-icon">remove</i></a>
 													<a ng-click="openEventInfo(event)" class="btn tooltipped btn-flat btn-event" data-tooltip="Ver informações" data-position="top"><i class="material-icons" id="btn-view-event-icon">info_outline</i></a>
 												</div>
 											</div>
@@ -60,8 +60,8 @@
 			</div>
 			<div class="card-event">
 				<h4> {{eventInfo.title}} </h4>
-				<p> Inicia às: {{eventInfo.hourStart}} | Termina às: {{eventInfo.hourFinish}} | Carga horária: {{eventInfo.workload}}</p>
-				<p> Total de vagas: {{eventInfo.vacancies}} | Inscritos: {{eventInfo.vacanciesRemaining}}</p>
+				<p> Inicia às: {{eventInfo.hourstart}} | Termina às: {{eventInfo.hourfinish}} | Carga horária: {{eventInfo.workload}}</p>
+				<p> Total de vagas: {{eventInfo.vacancies}} | Inscritos: {{eventInfo.vacanciesremaining}}</p>
 				<p> Sala: {{eventInfo.classroom}} </p>
 				<p> Descrição: {{eventInfo.description}} </p>
 				<p> Palestrante:  {{eventInfo.speaker}} </p>

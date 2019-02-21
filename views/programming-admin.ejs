@@ -32,8 +32,8 @@
 										<div class="card">
 											<div class="card-event">
 												<h4> {{event.title}} </h4>
-												<p> Inicia às: {{event.hourStart}} | Termina às: {{event.hourFinish}} | Carga horária: {{event.workload}}</p>
-												<p> Total de vagas: {{event.vacancies}} | Inscritos: {{event.vacanciesRemaining}}</p>
+												<p> Inicia às: {{event.hourstart}} | Termina às: {{event.hourfinish}} | Carga horária: {{event.workload}}</p>
+												<p> Total de vagas: {{event.vacancies}} | Inscritos: {{event.vacanciesremaining}}</p>
 												<p> Palestrante:  {{event.speaker}} </p>
 											</div>
 											<div class="card-action">
@@ -146,7 +146,7 @@
 			</div>
 			<div class="modal-footer">
 				<div class="col s8 center">
-					<button ng-click="getSelectedPersons()" ng-if="subscriber.length!=null" class="btn btn-primary center-block">Gerar certificados</button>
+					<button ng-click="getSelectedPersons()" ng-if="subscriber.length!=null" class="btn btn-primary center-block">Gerar Certificados</button>
 					<a class="btn btn-primary center-block modal-close">Cancelar</a>
 				</div>	
 			</div>
@@ -201,11 +201,11 @@
 						<div class="col s12 m12 l12">
 							<div class="row">
 								<div class="input-field col s6">
-									<input ng-model="newEvent.hourStart" type="text" name="hour-start" class="timepicker validate" id="hour-start" required>
+									<input ng-model="newEvent.hourstart" type="text" name="hour-start" class="timepicker validate" id="hour-start" required>
 									<label for="hour-start">Inicia às</label>
 								</div>
 								<div class="input-field col s6">
-									<input ng-model="newEvent.hourFinish" type="text" name="hour-finish" class="timepicker validate" id="hour-finish" required>
+									<input ng-model="newEvent.hourfinish" type="text" name="hour-finish" class="timepicker validate" id="hour-finish" required>
 									<label for="hour-finish">Termina às</label>
 								</div>
 							</div>
@@ -275,11 +275,11 @@
 						<div id="div-edit-event" class="col s12 m12 l12">
 							<div class="row">
 								<div class="input-field col s6">
-									<input ng-model="editEvent.hourStart" type="text" name="edit-hour-start" class="timepicker validate" id="edit-hour-start" required>
+									<input ng-model="editEvent.hourstart" type="text" name="edit-hour-start" class="timepicker validate" id="edit-hour-start" required>
 									<label class="active" for="edit-hour-start">Inicia às</label>
 								</div>
 								<div class="input-field col s6">
-									<input ng-model="editEvent.hourFinish" type="text" name="edit-hour-finish" class="timepicker validate" id="edit-hour-finish" required>
+									<input ng-model="editEvent.hourfinish" type="text" name="edit-hour-finish" class="timepicker validate" id="edit-hour-finish" required>
 									<label class="active" for="edit-hour-finish">Termina às</label>
 								</div>
 							</div>

@@ -1,5 +1,5 @@
 weComp.factory('loginAPI', ['$http', 'env', function ($http, env) {
-  var _signIn = function (user){
+  var _logIn = function (user){
     return $http.post(`postLogin/`, user)
   }
   var _registerUser = function (user){
@@ -12,7 +12,7 @@ weComp.factory('loginAPI', ['$http', 'env', function ($http, env) {
   	return $http.post(`postRecoverPassword/${email}`)
   }
   return {
-    signIn: _signIn,
+    logIn: _logIn,
     registerUser: _registerUser,
     updateUser: _updateUser,
     passwordRecover: _passwordRecover,

@@ -79,7 +79,6 @@ router.get('/certificado-visualizar', function(request, response, next){
 router.get('/sair', function(request, response, next){
 	request.session.destroy(function(err) {
 	  if(err) {
-	  	console.log("err",err)
 	    return next(err);
 	  }else{
 	    return response.render('index-pattern', {titulo: 'WeComp'});
@@ -170,7 +169,7 @@ router.get('/getCertificates/:email', function(request, response, next){
 router.post('/postLogin', function(request, response, next){
     var loginDAO = require('../DAO/loginDAO');
 	var user = new loginDAO();
-	user.signIn(request.body, response, request);
+	user.logIn(request.body, response, request);
 });
 
 router.post('/postRegisterUser', function(request, response, next){

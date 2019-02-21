@@ -9,13 +9,13 @@ weComp.controller("programming_controller_pattern", ['$scope', 'programmingAPI',
 			$scope.load = true
 			programmingAPI.showEvents()
 			.then(function (response){
-				$scope.events = response.data.result
+				$scope.events = response.data
 				for(var i in $scope.events){
 					$scope.events[i].day = $filter('date')($scope.events[i].day,'dd/MM/yyyy')
-					var hourStart = $scope.events[i].hourStart.split(':')
-					$scope.events[i].hourStart = hourStart[0] + ":" + hourStart[1]
-					var hourFinish = $scope.events[i].hourFinish.split(':')
-					$scope.events[i].hourFinish = hourFinish[0] + ":" + hourFinish[1]
+					var hourstart = $scope.events[i].hourstart.split(':')
+					$scope.events[i].hourstart = hourstart[0] + ":" + hourstart[1]
+					var hourfinish = $scope.events[i].hourfinish.split(':')
+					$scope.events[i].hourfinish = hourfinish[0] + ":" + hourfinish[1]
 				}
 			})
 			.catch(function (err){
@@ -30,7 +30,7 @@ weComp.controller("programming_controller_pattern", ['$scope', 'programmingAPI',
 			$scope.load = true
 			programmingAPI.showDays()
 			.then(function (response){
-				$scope.days = response.data.result
+				$scope.days = response.data
 				for(var i in $scope.days){
                     $scope.days[i].dayFormat = $filter('date')($scope.days[i].day,'dd/MM/yyyy | EEEE')
                     $scope.days[i].day = $filter('date')($scope.days[i].day,'dd/MM/yyyy')
@@ -48,7 +48,7 @@ weComp.controller("programming_controller_pattern", ['$scope', 'programmingAPI',
         $scope.load = true
         programmingAPI.getEventsOnDays()
           .then(function (response){
-          	$scope.eventOnDays = response.data.result
+          	$scope.eventOnDays = response.data
           	for(var i in $scope.eventOnDays){
               	$scope.eventOnDays[i].day =$filter('date')($scope.eventOnDays[i].day,'dd/MM/yyyy') 	
           	}

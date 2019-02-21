@@ -9,7 +9,7 @@ weComp.controller("support_controller", ['$scope', '$window', '$interval', 'supp
         $scope.load = true
         supportAPI.showSupports()
           .then(function (response){
-          	$scope.supports = response.data.result
+          	$scope.supports = response.data
           })
           .catch(function (err){
             Materialize.toast('Erro ao carregar os apoios!', 4000, "red")

@@ -12,7 +12,7 @@ weComp.controller("certificates_controller_user", ['$scope', '$cookieStore', '$w
       $scope.load = true
       certificateAPI.getCertificates($scope.currentUser.email)
         .then(function (response){
-          $scope.certificates = response.data.result
+          $scope.certificates = response.data
           for(var i in $scope.certificates){
             $scope.certificates[i].day = $filter('date')($scope.certificates[i].day,'dd/MM/yyyy')
           }

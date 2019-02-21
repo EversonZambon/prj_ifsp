@@ -34234,7 +34234,7 @@ $provide.value("$locale", {
       "PM"
     ],
     "DAY": [
-      "Domigo",
+      "Domingo",
       "Segunda-feira",
       "Terça-feira",
       "Quarta-feira",

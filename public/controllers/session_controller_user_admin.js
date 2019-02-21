@@ -20,7 +20,7 @@ weComp.controller("session_controller_user_admin", ['$scope', '$cookieStore', '$
 				user.email = $scope.currentUser.email
 				loginAPI.updateUser(user)
 					.then(function(response){
-						loginAPI.signIn(user)
+						loginAPI.logIn(user)
 							.then(function(response){
 								$cookieStore.remove('user');
 								$cookieStore.put('user', response.data);
